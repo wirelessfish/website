@@ -7,7 +7,7 @@
 
   let canvas = $state<HTMLCanvasElement>();
   let current_code: QRCode.QRCode | undefined = $state();
-  let content = $state<string>("Hello, quick response code!");
+  let content = $state<string>("Hello, quick-response code!");
   let image_blob = $state<Blob | null>(null);
   let warn = $state("");
   let generated = $state(false);
