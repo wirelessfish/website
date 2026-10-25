@@ -3,43 +3,79 @@ import "@styles/style.css"
 import TabBar from "@components/TabBar.astro";
 import TabElement from "@components/TabElement.astro";
 import { colors } from "@scripts/colors";
-import SiteStats from "@components/SiteStats.svelte";
+import SiteStatsCompact from "@components/SiteStatsCompact.svelte";
 import StatusCafe from "@components/StatusCafe.svelte";
 import FloatingImg from "@components/FloatingImg.svelte";
 import RecentScrobble from "@components/RecentScrobble.svelte";
+import NavElement from "@components/NavElement.astro";
+import NewIndicator from "@components/posts/NewIndicator.svelte";
+import { getCollection } from "astro:content";
 
 const {title, description, og_img} = Astro.props;
 
 const color_vars = `:root {\n${Object.entries(colors)
   .map(([k, v]) => `  --${k}: ${v};`)
   .join('\n')}\n}`;
+
+let blog = await getCollection("blog");
+blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
 ---
 <style set:html={color_vars} is:global></style>
 
 <style>
   html {
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    overflow: scroll;
+    
   }
 
   body {
-    display: grid;
-    grid-template-columns: 200px 1000px 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: scroll;
+    width: 100vw;
+    min-height: 100vh;
   }
 
   footer {
-    margin-bottom: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.5em;
+
+    width: 100%;
+    background-color: var(--black);
+  }
+
+  nav {
+    border-bottom: 1px solid var(--grey);
+    background-color: var(--darkergrey);
+    display: flex;
+    justify-content: space-evenly;
+    gap: 0;
+    width: 100%;
+    gap: 1em;
+    padding: 0.5em 1em;
+
+    * {
+      flex: 1;
+      text-align: center;
+      padding: 2px 0px;
+    }
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    background-color: var(--black);
   }
 
   .header-title {
-    height: 170px;
     background-image: url("/header.jpg");
-
+    border-bottom: 1px solid var(--grey);
     display: flex;
-    justify-content: start;
-    align-items: end;
+    justify-content: space-between;
+    flex-direction: row;
+    z-index: 10000;
 
     h1, a {
       margin: 0;
@@ -49,14 +85,16 @@ const color_vars = `:root {\n${Object.entries(colors)
     }
 
     h1 {
+      font-size: 28px;
+      font-family: "HS LunaObscura";
       padding: 4px 16px;
-      max-width: 600px;
-      overflow: hidden;
-      height: fit-content;
+      width: 450px;
       text-align: left;
-      background: linear-gradient(to right, var(--black) 81%, transparent);
+      display: flex;
+      align-items: center;
+      font-feature-settings: "ss01" 1;
 
-      border-image: linear-gradient(to left, var(--red));
+      background: linear-gradient(to right, var(--black) 80%, transparent);
     }
   }
 
@@ -65,10 +103,19 @@ const color_vars = `:root {\n${Object.entries(colors)
   }
 
   .content {
-  background-color: var(--black);
-  min-height: 100vh;
-  max-width: 1000px;
-}
+    background-color: var(--black);
+    width: 1000px;
+    height: 100%;
+    flex: 1;
+    margin: 40px 0px;
+    border-radius: 4px;
+    border: 2px solid var(--darkgrey);
+  }
+
+  .slot {
+    /* overflow: visible; */
+    /* overflow-y: scroll; */
+  }
 
   .sidelink {
     margin-top: 256px;
@@ -143,56 +190,35 @@ const color_vars = `:root {\n${Object.entries(colors)
   </head>
 
   <body>
-    <div class="sidebar">
-      <div class="sidecard" style="margin-top: 195px;">
-        <SiteStats client:only/>
-      </div>
-
-      <div class="sidecard" style="margin-top: 8px;">
-        <StatusCafe client:only/>
-      </div>
-
-      <FloatingImg alt="a blacktip shark" src="/assets/sharks/blacktip.webp" top="-10px" left="-20px" width="256px"/>
-
-      <div class="sidecard" style="margin-top: 45px; padding: 8px;">
-        <RecentScrobble client:only/>
-      </div>
-    </div>
-
     <div class="content">
       <header>
           <div class="header-title">
-            <h1><a href="/">wireless.fish</a></h1>
+            <h1><a href="/">wireless.fish!</a></h1>
+            <SiteStatsCompact client:only />
           </div>
         
-          <TabBar>
-            <TabElement href="/">Home</TabElement>
-            <TabElement href="/collections/">Collections</TabElement>
-            <TabElement href="/scrobbles/">Scrobbles</TabElement>
-            <TabElement href="/guestbook/">Guestbook</TabElement>
-            <TabElement href="/tools/">Tools</TabElement>
-          </TabBar>
-
-          <FloatingImg alt="a great white shark" src="/assets/sharks/great_white.webp" top="-130px" left="930px" width="256px"/>
+          <nav>
+            <NavElement href="/">Home</NavElement>
+            <NavElement href="/collections/">Collections</NavElement>
+            <NavElement href="/scrobbles/">Scrobbles</NavElement>
+            <NavElement href="/guestbook/">Guestbook</NavElement>
+            <NavElement href="/tools/">Tools</NavElement>
+            <NavElement href="/blog/">Blog<NewIndicator blog={blog} client:only/></NavElement>
+          </nav>
       </header>
 
       <slot />
+    </div>
 
-      <footer style="text-align: center; display: flex; flex-direction: column; gap: 1px; margin-top: 0.5em;">
-        <div>
-          ♡ Copying is an act of theft, while taking inspiration is the true act of love.
-          <a class="link-button link-alt" href="https://maxpixels.moe/manifesto/">🡕</a>
-        </div>
-
-        <div>© Sharky 2025-2026 <a class="link-button link-alt" href="/LICENSE.txt">→</a></div>
-
-        <div><a href="https://github.com/wirelessfish/website" class="link-button link-alt">Source code</a></div>
+    <footer>
+      <div>© Sharky 2025-2026 <a class="link-button link-alt" href="/LICENSE.txt">➙</a></div>
+      
+      <div>
+        ♡ Copying is an act of theft, while taking inspiration is the true act of love.
+        <a class="link-button link-alt" href="https://maxpixels.moe/manifesto/">➟</a>
+      </div>
+      
+      <div>SharkySite v4.2 - <a href="https://github.com/wirelessfish/website" class="link-alt">Source code ➟</a></div>
       </footer>
-    </div>
-
-    <div class="sidebar">
-        <iframe class="sidelink" width="150" height="450" style="border:none" src="https://dogspit.nekoweb.org/sidelink.html" name="sidelink"></iframe>
-        <FloatingImg alt="a blacktip shark" src="/assets/sharks/blacktip2.webp" top="10px" left="-20px" width="256px"/>
-    </div>
   </body>
 </html>

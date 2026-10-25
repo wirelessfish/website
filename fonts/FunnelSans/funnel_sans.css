@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Funnel Sans";
+  src: url("FunnelSans-VariableFont_wght.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: "Funnel Sans";
+  src: url("FunnelSans-Italic-VariableFont_wght.woff2") format("woff2");
+  font-display: swap;
+  font-style: italic;
+  font-weight: 100 900;
+}

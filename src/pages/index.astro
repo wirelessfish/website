@@ -6,6 +6,23 @@ import EightyEightButton from "@components/EightyEightButton.astro";
 import ThingMade from "@components/index/ThingMade.astro";
 import AeroButton from "@components/AeroButton.svelte";
 import FloatingImg from "@components/FloatingImg.svelte";
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+import { getEntry } from "astro:content";
+import { format } from "date-fns";
+
+let blog = await getCollection("blog");
+blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
+let latestBlogpost = blog[0];
+let latestDateFormatted = format(latestBlogpost.data.published, "yyyy/MM/dd");
+
+let latestBlogDescriptionContent = await getEntry("blog_descriptions", latestBlogpost.id);
+
+if (latestBlogDescriptionContent === undefined) {
+  throw new Error(`ERROR: Blogpost id ${latestBlogpost.id} does NOT have an index description!`);
+}
+
+const { Content: LatestBlogDescription } = await render(latestBlogDescriptionContent);
 ---
 
 <script src="../scripts/notify.ts"></script>
@@ -149,20 +166,11 @@ import FloatingImg from "@components/FloatingImg.svelte";
     </p>
   </section>
 
-  <ThingMade title="Latest blog?? post" date="26/09/02" image="/assets/post/moving-to-astro/thumbnail.webp">
-    <p>Well first off it's not really a "blog" post, but it might be if I enjoy making more posts and begin a blog.</p>
+  <ThingMade title={latestBlogpost.data.title} date={latestDateFormatted} image={latestBlogpost.data.og_img}>
+    <LatestBlogDescription />
 
     <p>
-      Anyways, after a few months I have made the switch from <a href="https://11ty.dev">Eleventy</a> to <a
-        href="https://astro.build/">Astro</a
-      > (with Svelte components) for a few reasons. Main reason for that was honestly components. Ever since I've made my
-      <a href="/guestbook/">guestbook</a> it was a pain to extend it in many ways. Components make that way easier.
-    </p>
-
-    <p>More things like scoped styles and better documentation influenced my decision too.</p>
-
-    <p>
-      If you're interested in my rambling you can <a href="/post/moving-to-astro/">read the whole post</a>.
+      If you're interested in my rambling you can <a href={"/blog/" + latestBlogpost.id}>read the whole post ➞</a>
     </p>
   </ThingMade>
 

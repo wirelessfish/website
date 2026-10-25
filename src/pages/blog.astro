@@ -1,0 +1,30 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { format } from "date-fns";
+
+let blog = await getCollection("blog");
+blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
+---
+
+<BaseLayout title="Blog" description="Sometimes I like to write about stuff">
+  <section class="content-padding">
+    <h2>My writings</h2>
+
+    <p>WIP</p>
+  </section>
+
+  <section>
+    <ul>
+      {
+        blog.map((post) => (
+          <li>
+            <a href={"/blog/" + post.id}>{post.data.title}</a> - {format(post.data.published, "yyyy/MM/dd")}
+            <br />
+            {post.data.description}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>

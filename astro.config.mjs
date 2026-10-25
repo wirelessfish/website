@@ -8,4 +8,8 @@ export default defineConfig({
   markdown: {
     processor: satteri({ features: { directive: true } }),
   },
+  redirects: {
+    // to keep all the two old links alive lol
+    "/post/moving-to-astro": "/blog/moving-to-astro",
+  },
 });

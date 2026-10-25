@@ -3,6 +3,8 @@
 @import url("/fonts/Inter/inter.css");
 @import url("/fonts/StackSansText/stack_sans_text.css");
 @import url("/fonts/AkmornGrotesque/akmorn_grotesque.css");
+@import url("/fonts/FunnelSans/funnel_sans.css");
+@import url("/fonts/FunnelDisplay/funnel_display.css");
 
 /* === BASE ELEMENTS === */
 
@@ -11,9 +13,9 @@ html {
   background-color: var(--bg);
   background-image: url("/bg.gif");
   color: var(--white);
-  font-family: "Stack Sans Text", "Akmorn Grotesque", sans-serif;
+  font-family: "Funnel Sans", sans-serif;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: normal;
 }
 
 body {
@@ -29,22 +31,20 @@ body > section + section {
 h1 {
   color: var(--blue);
 
-  font-family: "HS LunaObscura";
-  font-feature-settings: "ss01" 1;
+  font-family: "Funnel Display";
   font-size: 42px;
   font-weight: bold;
 }
 
 h2 {
-  font-family: "Stack Sans Text";
-  font-feature-settings: "ss01" 1;
+  font-family: "Funnel Display";
   font-size: 26px;
   font-weight: bold;
   margin-bottom: 8px;
 }
 
 h3 {
-  font-family: "Stack Sans Text";
+  font-family: "Funnel Display";
   font-size: 21px;
   font-weight: bold;
 }
