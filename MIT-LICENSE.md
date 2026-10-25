@@ -1,4 +1,4 @@
-MIT License (applicable for commits up to and including 8df630b49efd076716a7932cd1fcfe03f18d44c8)
+## MIT License
 
 Copyright © 2025-2026 Sharky
 

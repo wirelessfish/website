@@ -1,0 +1,30 @@
+---
+import Base from "@layouts/Base.astro";
+
+import MITLicense from "@root/MIT-LICENSE.md";
+---
+
+<Base title="License" description>
+  <div class="license">
+    <MITLicense />
+  </div>
+</Base>
+
+<style>
+  html {
+    font-family: monospace;
+  }
+
+  body {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  .license {
+    width: 600px;
+    background-color: var(--black);
+    border: 1px solid var(--grey);
+    padding: 1em 2em;
+  }
+</style>

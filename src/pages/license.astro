@@ -1,0 +1,49 @@
+---
+import Base from "@layouts/Base.astro";
+---
+
+<Base title="License" description>
+  <div class="license">
+    <h2>LICENSE</h2>
+
+    <p>© Sharky 2025-2026</p>
+    <p>Code is licensed under the <a href="/license-mit/">MIT License</a>.</p>
+    <p>
+      Assets and content are licensed under the <a href="/license-cc-by-nc/">CC BY-NC 4.0</a> (unless stated otherwise).
+    </p>
+
+    <p>
+      Please keep in mind that <i>copying is an act of theft, while taking inspiration is the true act of love</i>
+      . <a href="https://maxpixels.moe/manifesto/">[link]</a>
+    </p>
+
+    <div class="spacer"></div>
+
+    <p>
+      Want to <a href="/">go back</a>?
+    </p>
+  </div>
+</Base>
+
+<style>
+  html {
+    font-family: monospace;
+  }
+
+  body {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  .license {
+    width: 600px;
+    background-color: var(--black);
+    border: 1px solid var(--grey);
+    padding: 1em 2em;
+  }
+
+  .spacer {
+    height: 1em;
+  }
+</style>

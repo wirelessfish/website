@@ -1,0 +1,31 @@
+---
+import Base from "@layouts/Base.astro";
+
+import License from "@root/CC-BY-NC.md";
+---
+
+<Base title="License" description>
+  <div class="license">
+    <License />
+  </div>
+</Base>
+
+<style>
+  html {
+    font-family: monospace;
+  }
+
+  body {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    padding: 32px;
+  }
+
+  .license {
+    width: 1000px;
+    background-color: var(--black);
+    border: 1px solid var(--grey);
+    padding: 1em 2em;
+  }
+</style>
