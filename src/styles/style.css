@@ -1,8 +1,5 @@
 @import url("./reset.css");
 @import url("/fonts/HS_LunaObscura/luna.css");
-@import url("/fonts/Inter/inter.css");
-@import url("/fonts/StackSansText/stack_sans_text.css");
-@import url("/fonts/AkmornGrotesque/akmorn_grotesque.css");
 @import url("/fonts/FunnelSans/funnel_sans.css");
 @import url("/fonts/FunnelDisplay/funnel_display.css");
 
@@ -79,7 +76,7 @@ input {
   color: var(--white);
   box-shadow: inset 0px 0px 4px var(--black);
   border: 2px solid var(--black);
-  font-family: "Stack Sans Text";
+  font-family: monospace;
   border-radius: 6px;
 
   padding: 4px 8px;

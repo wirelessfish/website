@@ -72,7 +72,6 @@
 
   .scrobble-track_name {
     display: block;
-    font-family: "Stack Sans Text";
     font-weight: bold;
     min-width: 0;
 

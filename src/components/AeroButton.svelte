@@ -25,7 +25,6 @@
     box-shadow: inset 0 0 0 1px var(--color_border);
     border-radius: 2px;
     border: 0px;
-    font-family: "Stack Sans Text";
     outline: 0px solid transparent;
     width: fit-content;
 
