@@ -146,7 +146,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
   }
 </style>
 
-<Base title description og_img>
+<Base title={title} description={description} og_img={og_img}>
   <div class="content">
     <header>
       <div class="header-title">
