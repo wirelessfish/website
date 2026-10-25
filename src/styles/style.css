@@ -72,12 +72,11 @@ b {
 
 textarea,
 input {
-  background-color: var(--darkbluegrey);
+  background-color: var(--darkergrey);
   color: var(--white);
-  box-shadow: inset 0px 0px 4px var(--black);
-  border: 2px solid var(--black);
+  border: 1px solid var(--grey);
   font-family: monospace;
-  border-radius: 6px;
+  border-radius: 2px;
 
   padding: 4px 8px;
   resize: vertical;
