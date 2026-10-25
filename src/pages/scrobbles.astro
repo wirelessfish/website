@@ -1,9 +1,9 @@
 ---
 import Scrobbles from "../components/scrobbles/Scrobbles.svelte";
-import BaseLayout from "../layouts/BaseLayout.astro";
+import Page from "../layouts/Page.astro";
 ---
 
-<BaseLayout title="WIRELESS.FISH scrobbles" description="See what music I listen to">
+<Page title="WIRELESS.FISH scrobbles" description="See what music I listen to">
   <section class="content-padding">
     <h2>Scrobbles</h2>
     <p>This is what I've been listening to recently <noscript>JAVASCRIPT REQUIRED</noscript></p>
@@ -21,4 +21,4 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <div class="content-padding">
     <Scrobbles client:only />
   </div>
-</BaseLayout>
+</Page>

@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import Page from "@layouts/Page.astro";
 
 import eightyeight from "@data/eightyeight.json";
 import EightyEightButton from "@components/EightyEightButton.astro";
@@ -137,7 +137,7 @@ const { Content: LatestBlogDescription } = await render(latestBlogDescriptionCon
   }
 </style>
 
-<BaseLayout
+<Page
   title="WIRELESS.FISH"
   description="Sharky's personal webpage. The creature. Shark-infested website. wireless.fish 🐟"
 >
@@ -287,4 +287,4 @@ const { Content: LatestBlogDescription } = await render(latestBlogDescriptionCon
     >
     </iframe>
   </section>
-</BaseLayout>
+</Page>

@@ -1,6 +1,6 @@
 ---
 import fs from "node:fs";
-import BaseLayout from "@layouts/BaseLayout.astro";
+import Page from "@layouts/Page.astro";
 
 const stamps = fs.readdirSync("public/assets/stamps");
 const blinkies = fs.readdirSync("public/assets/blinkies");
@@ -35,7 +35,7 @@ const blinkies = fs.readdirSync("public/assets/blinkies");
   }
 </style>
 
-<BaseLayout title="WIRELESS.FISH collections" description="I collect images.">
+<Page title="WIRELESS.FISH collections" description="I collect images.">
   <section class="content-padding">
     <h2>Stamps</h2>
 
@@ -81,4 +81,4 @@ const blinkies = fs.readdirSync("public/assets/blinkies");
       <img src="/assets/misc/borntoshare.jpg" width="400px" />
     </div>
   </section>
-</BaseLayout>
+</Page>

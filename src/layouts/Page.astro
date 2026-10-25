@@ -1,0 +1,180 @@
+---
+import Base from "./Base.astro";
+
+import SiteStatsCompact from "@components/SiteStatsCompact.svelte";
+import StatusCafe from "@components/StatusCafe.svelte";
+import FloatingImg from "@components/FloatingImg.svelte";
+import RecentScrobble from "@components/RecentScrobble.svelte";
+import NavElement from "@components/NavElement.astro";
+import NewIndicator from "@components/posts/NewIndicator.svelte";
+import { getCollection } from "astro:content";
+
+const { title, description, og_img } = Astro.props;
+
+let blog = await getCollection("blog");
+blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
+---
+
+<style>
+  html {
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: scroll;
+    width: 100vw;
+    min-height: 100vh;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.5em;
+
+    width: 100%;
+    background-color: var(--black);
+  }
+
+  nav {
+    border-bottom: 1px solid var(--grey);
+    background-color: var(--darkergrey);
+    display: flex;
+    justify-content: space-evenly;
+    gap: 0;
+    width: 100%;
+    gap: 1em;
+    padding: 0.5em 1em;
+
+    * {
+      flex: 1;
+      text-align: center;
+      padding: 2px 0px;
+    }
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    background-color: var(--black);
+  }
+
+  .header-title {
+    background-image: url("/header.jpg");
+    border-bottom: 1px solid var(--grey);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    z-index: 10000;
+
+    h1,
+    a {
+      margin: 0;
+      padding: 0;
+
+      text-decoration: none !important;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-family: "HS LunaObscura";
+      padding: 4px 16px;
+      width: 450px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      font-feature-settings: "ss01" 1;
+
+      background: linear-gradient(to right, var(--black) 80%, transparent);
+    }
+  }
+
+  .sidebar {
+    height: 100%;
+  }
+
+  .content {
+    background-color: var(--black);
+    width: 1000px;
+    height: 100%;
+    flex: 1;
+    margin: 40px 0px;
+    border-radius: 4px;
+    border: 2px solid var(--darkgrey);
+  }
+
+  .slot {
+    /* overflow: visible; */
+    /* overflow-y: scroll; */
+  }
+
+  .sidelink {
+    margin-top: 256px;
+    margin-left: 16px;
+  }
+
+  .sidecard {
+    background-color: var(--black);
+    padding: 4px 8px;
+
+    border: 1px solid var(--grey);
+    border-right: none;
+  }
+
+  @media (max-width: 1000px) {
+    .sidebar {
+      display: none;
+    }
+    body {
+      display: block;
+    }
+  }
+
+  @media (max-width: 550px) {
+    .header-title > h1 {
+      font-size: 26px;
+      background: var(--black);
+      width: 100%;
+      text-align: center;
+    }
+    .header-title {
+      height: 120px;
+      background-size: contain;
+    }
+  }
+</style>
+
+<Base title description og_img>
+  <div class="content">
+    <header>
+      <div class="header-title">
+        <h1><a href="/">wireless.fish!</a></h1>
+        <SiteStatsCompact client:only />
+      </div>
+
+      <nav>
+        <NavElement href="/">Home</NavElement>
+        <NavElement href="/collections/">Collections</NavElement>
+        <NavElement href="/scrobbles/">Scrobbles</NavElement>
+        <NavElement href="/guestbook/">Guestbook</NavElement>
+        <NavElement href="/tools/">Tools</NavElement>
+        <NavElement href="/blog/">Blog<NewIndicator blog={blog} client:only /></NavElement>
+      </nav>
+    </header>
+
+    <slot />
+  </div>
+
+  <footer>
+    <div>© Sharky 2025-2026 <a class="link-button link-alt" href="/LICENSE.txt">➙</a></div>
+
+    <div>
+      ♡ Copying is an act of theft, while taking inspiration is the true act of love.
+      <a class="link-button link-alt" href="https://maxpixels.moe/manifesto/">➟</a>
+    </div>
+
+    <div>Version 4.2 - <a href="https://github.com/wirelessfish/website" class="link-alt">Source code ➟</a></div>
+  </footer>
+</Base>

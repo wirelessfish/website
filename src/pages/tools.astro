@@ -1,11 +1,11 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import Page from "@layouts/Page.astro";
 
 import UUIDGen from "@components/tools/UUIDGen.svelte";
 import QRGen from "@components/tools/QRGen.svelte";
 ---
 
-<BaseLayout title="Tools" description="Various tools so that I don't keep searching for em online.">
+<Page title="Tools" description="Various tools so that I don't keep searching for em online.">
   <section class="content-padding">
     <h2>Hey there...</h2>
     <p>
@@ -27,4 +27,4 @@ import QRGen from "@components/tools/QRGen.svelte";
   </section>
 
   <QRGen client:only />
-</BaseLayout>
+</Page>

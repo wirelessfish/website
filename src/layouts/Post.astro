@@ -1,6 +1,7 @@
 ---
+import Page from "./Page.astro";
+
 import FormatAgo from "@components/FormatAgo.svelte";
-import BaseLayout from "./BaseLayout.astro";
 import { format } from "date-fns";
 const { frontmatter } = Astro.props;
 
@@ -10,7 +11,7 @@ const published = new Date(frontmatter.published);
 const updated = updated_str ? new Date(updated_str) : undefined;
 ---
 
-<BaseLayout
+<Page
   title={frontmatter.title || "METHOD: POST"}
   description={frontmatter.description || "I wrote about something"}
   og_img={frontmatter.og_img}
@@ -39,7 +40,7 @@ const updated = updated_str ? new Date(updated_str) : undefined;
 
     <slot />
   </div>
-</BaseLayout>
+</Page>
 
 <style>
   h2 {

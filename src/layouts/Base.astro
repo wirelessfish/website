@@ -1,0 +1,75 @@
+---
+import "@styles/style.css"
+import { colors } from "@scripts/colors";
+
+import SiteStatsCompact from "@components/SiteStatsCompact.svelte";
+import StatusCafe from "@components/StatusCafe.svelte";
+import FloatingImg from "@components/FloatingImg.svelte";
+import RecentScrobble from "@components/RecentScrobble.svelte";
+import NavElement from "@components/NavElement.astro";
+import NewIndicator from "@components/posts/NewIndicator.svelte";
+import { getCollection } from "astro:content";
+
+const {title, description, og_img} = Astro.props;
+
+const color_vars = `:root {\n${Object.entries(colors)
+  .map(([k, v]) => `  --${k}: ${v};`)
+  .join('\n')}\n}`;
+
+let blog = await getCollection("blog");
+blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
+---
+<style set:html={color_vars} is:global></style>
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <!-- META -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={`https://wireless.fish${Astro.url}`}  />
+
+    <link href="https://bsky.app/profile/wireless.fish" rel="me">
+
+    <!-- SOME STUFF -->
+    <title>{ title }</title>
+    <meta name="description" content={ description } />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="alternate icon" type="image/png" href="/assets/favicon.png">
+
+    <!-- https://ogp.me stuff -->
+    <meta property="og:url" content={`https://wireless.fish${Astro.url}`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={ title } />
+    <meta property="og:locale" content="en_US" />
+    
+    {description ? (
+      <meta property="og:description" content={ description } />
+    ) : ""}
+
+    { og_img ? (
+      <meta property="og:image" content={ og_img } />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+    ) : "" }
+
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ title } />
+    
+    { description ? (
+      <meta name="twitter:description" content={ description } />
+    ) : ""}
+
+    { og_img ? (
+      <meta name="twitter:image" content={ og_img } />
+    ) : ""}
+  </head>
+
+  <body>
+      <slot />
+  </body>
+</html>
