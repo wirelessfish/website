@@ -34,7 +34,7 @@
 
         <span class="comment_date">{format(new Date(guestbook_entry.created), "yyyy/MM/dd")}</span>
         {#if guestbook_entry.site}
-          <a href={guestbook_entry.site} target="_blank">{new URL(guestbook_entry.site).hostname} 🡕</a>
+          <a href={guestbook_entry.site} target="_blank">➟ {new URL(guestbook_entry.site).hostname}</a>
         {/if}
       </div>
     </div>
