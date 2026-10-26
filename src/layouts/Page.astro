@@ -8,6 +8,8 @@ import RecentScrobble from "@components/RecentScrobble.svelte";
 import NavElement from "@components/NavElement.astro";
 import NewIndicator from "@components/posts/NewIndicator.svelte";
 import { getCollection } from "astro:content";
+import ViewCounter from "@components/widgets/ViewCounter.svelte";
+import SidebarStats from "@components/sidebar/SidebarStats.svelte";
 
 const { title, description, og_img } = Astro.props;
 
@@ -15,14 +17,51 @@ let blog = await getCollection("blog");
 blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
 ---
 
+<Base title={title} description={description} og_img={og_img}>
+  <div class="main-layout">
+    <div class="sidebar">
+      <div style="position: relative; top: 128px">
+        <SidebarStats client:only />
+      </div>
+    </div>
+
+    <div class="content">
+      <header>
+        <div class="header-title">
+          <h1><a href="/">wireless.fish!</a></h1>
+        </div>
+
+        <nav>
+          <NavElement href="/">Home</NavElement>
+          <NavElement href="/collections/">Collections</NavElement>
+          <NavElement href="/scrobbles/">Scrobbles</NavElement>
+          <NavElement href="/guestbook/">Guestbook</NavElement>
+          <NavElement href="/tools/">Tools</NavElement>
+          <NavElement href="/blog/">Blog<NewIndicator blog={blog} client:only /></NavElement>
+        </nav>
+      </header>
+
+      <slot />
+    </div>
+  </div>
+
+  <footer>
+    <div>© Sharky 2025-2026 <a class="link-button link-alt" href="/license/">➙</a></div>
+
+    <div>
+      ♡ Copying is an act of theft, while taking inspiration is the true act of love.
+      <a class="link-button link-alt" href="https://maxpixels.moe/manifesto/">➟</a>
+    </div>
+
+    <div>Version 4.2 - <a href="https://github.com/wirelessfish/website" class="link-alt">Source code ➟</a></div>
+  </footer>
+</Base>
+
 <style>
   html {
   }
 
   body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: scroll;
     width: 100vw;
     min-height: 100vh;
@@ -63,6 +102,8 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
 
   .header-title {
     background-image: url("/header.jpg");
+    background-position: 100% 40%;
+    background-size: 70%;
     border-bottom: 1px solid var(--grey);
     display: flex;
     justify-content: space-between;
@@ -97,17 +138,19 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
 
   .content {
     background-color: var(--black);
-    width: 1000px;
+    width: 100%;
     height: 100%;
     flex: 1;
-    margin: 40px 0px;
     border-radius: 4px;
     border: 2px solid var(--darkgrey);
   }
 
-  .slot {
-    /* overflow: visible; */
-    /* overflow-y: scroll; */
+  .sidecard {
+    background-color: var(--black);
+    height: fit-content;
+    border: 1px solid var(--grey);
+    padding: 4px 8px;
+    border-radius: 2px;
   }
 
   .sidelink {
@@ -115,20 +158,28 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     margin-left: 16px;
   }
 
-  .sidecard {
-    background-color: var(--black);
-    padding: 4px 8px;
-
-    border: 1px solid var(--grey);
-    border-right: none;
+  .main-layout {
+    margin: 40px 128px;
+    display: grid;
+    grid-template-columns: 200px 1000px 200px;
+    gap: 1em;
+    height: 100%;
   }
 
   @media (max-width: 1000px) {
     .sidebar {
       display: none;
     }
-    body {
+
+    .main-layout {
       display: block;
+      margin: 0;
+    }
+
+    .content {
+      width: 100%;
+      border-radius: 0;
+      border: none;
     }
   }
 
@@ -145,36 +196,3 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     }
   }
 </style>
-
-<Base title={title} description={description} og_img={og_img}>
-  <div class="content">
-    <header>
-      <div class="header-title">
-        <h1><a href="/">wireless.fish!</a></h1>
-        <SiteStatsCompact client:only />
-      </div>
-
-      <nav>
-        <NavElement href="/">Home</NavElement>
-        <NavElement href="/collections/">Collections</NavElement>
-        <NavElement href="/scrobbles/">Scrobbles</NavElement>
-        <NavElement href="/guestbook/">Guestbook</NavElement>
-        <NavElement href="/tools/">Tools</NavElement>
-        <NavElement href="/blog/">Blog<NewIndicator blog={blog} client:only /></NavElement>
-      </nav>
-    </header>
-
-    <slot />
-  </div>
-
-  <footer>
-    <div>© Sharky 2025-2026 <a class="link-button link-alt" href="/license/">➙</a></div>
-
-    <div>
-      ♡ Copying is an act of theft, while taking inspiration is the true act of love.
-      <a class="link-button link-alt" href="https://maxpixels.moe/manifesto/">➟</a>
-    </div>
-
-    <div>Version 4.2 - <a href="https://github.com/wirelessfish/website" class="link-alt">Source code ➟</a></div>
-  </footer>
-</Base>
