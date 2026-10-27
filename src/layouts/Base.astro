@@ -2,22 +2,11 @@
 import "@styles/style.css"
 import { colors } from "@scripts/colors";
 
-import SiteStatsCompact from "@components/SiteStatsCompact.svelte";
-import StatusCafe from "@components/StatusCafe.svelte";
-import FloatingImg from "@components/FloatingImg.svelte";
-import RecentScrobble from "@components/RecentScrobble.svelte";
-import NavElement from "@components/NavElement.astro";
-import NewIndicator from "@components/posts/NewIndicator.svelte";
-import { getCollection } from "astro:content";
-
-const {title, description, og_img} = Astro.props;
+const {title, description, og_img, og_img_alt} = Astro.props;
 
 const color_vars = `:root {\n${Object.entries(colors)
   .map(([k, v]) => `  --${k}: ${v};`)
   .join('\n')}\n}`;
-
-let blog = await getCollection("blog");
-blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
 ---
 <style set:html={color_vars} is:global></style>
 
@@ -41,7 +30,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     <link rel="alternate icon" type="image/png" href="/assets/favicon.png">
 
     <!-- https://ogp.me stuff -->
-    <meta property="og:url" content={`https://wireless.fish${Astro.url}`} />
+    <meta property="og:url" content={`https://wireless.fish${Astro.url.pathname}`} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={ title } />
     <meta property="og:locale" content="en_US" />
@@ -54,6 +43,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
       <meta property="og:image" content={ og_img } />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={ og_img_alt } />
     ) : "" }
 
     <!-- twitter card -->
