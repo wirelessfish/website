@@ -61,17 +61,14 @@ import WebRing from "@components/index/WebRing.astro";
   </section>
 
   <section class="content-padding">
-    <div class="mybtn">
-      <div style="text-align: center">My button!</div>
-      <EightyEightButton src="/assets/button.svg" href="https://wireless.fish/" alt="wireless.fish" />
-    </div>
-
     <div class="eightyeight">
       {eightyeight.map((i) => <EightyEightButton src={i.src} href={i.href} alt={i.alt} css_classes={i.class} />)}
     </div>
   </section>
 
   <section class="content-padding">
+    <h3>Also... webrings!</h3>
+
     <div class="webrings">
       <WebRing
         title="SSG ring"
