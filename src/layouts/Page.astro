@@ -1,31 +1,26 @@
 ---
 import Base from "./Base.astro";
 
-import SiteStatsCompact from "@components/SiteStatsCompact.svelte";
-import StatusCafe from "@components/StatusCafe.svelte";
+import StatusCafe from "@components/sidebar/StatusCafe.svelte";
 import FloatingImg from "@components/FloatingImg.svelte";
-import RecentScrobble from "@components/RecentScrobble.svelte";
 import NavElement from "@components/NavElement.astro";
 import NewIndicator from "@components/posts/NewIndicator.svelte";
 import { getCollection } from "astro:content";
-import ViewCounter from "@components/widgets/ViewCounter.svelte";
 import SidebarStats from "@components/sidebar/SidebarStats.svelte";
 
-const { title, description, og_img } = Astro.props;
+const { title, description, og_img, og_img_alt } = Astro.props;
 
 let blog = await getCollection("blog");
 blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
 ---
 
-<Base title={title} description={description} og_img={og_img}>
+<Base title={title} description={description} og_img={og_img} og_img_alt={og_img_alt}>
   <div class="main-layout">
     <div class="sidebar">
-      <div style="position: relative; top: 128px">
-        <SidebarStats client:only />
-      </div>
+      <SidebarStats client:only />
     </div>
 
-    <div class="content">
+    <div class="page-content">
       <header>
         <div class="header-title">
           <h1><a href="/">wireless.fish!</a></h1>
@@ -42,6 +37,10 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
       </header>
 
       <slot />
+    </div>
+
+    <div class="sidebar">
+      <StatusCafe client:only />
     </div>
   </div>
 
@@ -101,13 +100,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
   }
 
   .header-title {
-    background-image: url("/header.jpg");
-    background-position: 100% 40%;
-    background-size: 70%;
     border-bottom: 1px solid var(--grey);
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
     z-index: 10000;
 
     h1,
@@ -122,10 +115,10 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
       font-size: 28px;
       font-family: "HS LunaObscura";
       padding: 4px 16px;
-      width: 450px;
-      text-align: left;
+      width: 100%;
       display: flex;
       align-items: center;
+      justify-content: center;
       font-feature-settings: "ss01" 1;
 
       background: linear-gradient(to right, var(--black) 80%, transparent);
@@ -134,15 +127,17 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
 
   .sidebar {
     height: 100%;
+    margin-top: 128px;
   }
 
-  .content {
-    background-color: var(--black);
+  .page-content {
+    background-color: var(--blacker);
     width: 100%;
     height: 100%;
+    min-height: 600px;
     flex: 1;
-    border-radius: 4px;
-    border: 2px solid var(--darkgrey);
+    border-radius: 2px;
+    border: 1px solid var(--lightgrey);
   }
 
   .sidecard {
@@ -176,7 +171,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
       margin: 0;
     }
 
-    .content {
+    .page-content {
       width: 100%;
       border-radius: 0;
       border: none;
