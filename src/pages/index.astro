@@ -4,16 +4,8 @@ import Page from "@layouts/Page.astro";
 import eightyeight from "@data/eightyeight.json";
 import EightyEightButton from "@components/EightyEightButton.astro";
 import AeroButton from "@components/AeroButton.svelte";
-import FloatingImg from "@components/FloatingImg.svelte";
-import { getCollection } from "astro:content";
-import { format } from "date-fns";
 import LatestBlogpost from "@components/index/LatestBlogpost.astro";
 import WebRing from "@components/index/WebRing.astro";
-
-let blog = await getCollection("blog");
-blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
-let latestBlogpost = blog[0];
-let latestDateFormatted = format(latestBlogpost.data.published, "yyyy/MM/dd");
 ---
 
 <script src="../scripts/notify.ts"></script>
@@ -45,7 +37,6 @@ let latestDateFormatted = format(latestBlogpost.data.published, "yyyy/MM/dd");
   </section>
 
   <section class="content-padding">
-    <h3>Latest blog entry</h3>
     <LatestBlogpost />
   </section>
 
