@@ -6,6 +6,7 @@ import EightyEightButton from "@components/EightyEightButton.astro";
 import AeroButton from "@components/AeroButton.svelte";
 import LatestBlogpost from "@components/index/LatestBlogpost.astro";
 import WebRing from "@components/index/WebRing.astro";
+import Scrobble from "@components/index/Scrobble.svelte";
 ---
 
 <script src="../scripts/notify.ts"></script>
@@ -54,6 +55,10 @@ import WebRing from "@components/index/WebRing.astro";
       <textarea id="notifyinput" placeholder="Hello, fishy" rows="1" spellcheck="false"></textarea>
       <AeroButton color="#1e78ff" id="notifysend">Send →</AeroButton>
     </form>
+  </section>
+
+  <section>
+    <Scrobble client:only />
   </section>
 
   <section class="heading">
