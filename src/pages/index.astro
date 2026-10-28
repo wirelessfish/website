@@ -8,6 +8,7 @@ import FloatingImg from "@components/FloatingImg.svelte";
 import { getCollection } from "astro:content";
 import { format } from "date-fns";
 import LatestBlogpost from "@components/index/LatestBlogpost.astro";
+import WebRing from "@components/index/WebRing.astro";
 
 let blog = await getCollection("blog");
 blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
@@ -22,7 +23,7 @@ let latestDateFormatted = format(latestBlogpost.data.published, "yyyy/MM/dd");
   description="Sharky's personal webpage. The creature. Shark-infested website. wireless.fish 🐟"
 >
   <section class="content-padding mobile-warning">
-    <h2>[ [ WARNING ] ]</h2>
+    <h2 style="text-align: center;">[ [ WARNING ] ]</h2>
 
     <p>
       This website was not made with mobile devices in mind! I have taken some action to make it usable on smaller
@@ -64,32 +65,6 @@ let latestDateFormatted = format(latestBlogpost.data.published, "yyyy/MM/dd");
     </form>
   </section>
 
-  <section class="content-padding">
-    <div class="webrings">
-      <span>
-        <a href="https://jbc.lol/webrings/ssgring/redirect?slug=sharky&way=prev" class="link-button link-alt">&larr;</a>
-        <a target="_blank" href="https://jbc.lol/webrings/ssgring/" class="link-alt">SSG ring</a>
-        <a href="https://jbc.lol/webrings/ssgring/redirect?slug=sharky&way=next" class="link-button link-alt">&rarr;</a>
-      </span>
-
-      <span>
-        <a href="https://baccyflap.com/noai/?prv&s=shr" target="_top" title="previous" class="link-button link-alt"
-          >&larr;</a
-        >
-        <a href="https://baccyflap.com/noai" target="_blank" class="link-alt">the no AI webring</a>
-        <a href="https://baccyflap.com/noai/?nxt&s=shr" target="_top" title="next" class="link-button link-alt"
-          >&rarr;</a
-        >
-      </span>
-
-      <span>
-        <a href="https://webring.dinhe.net/prev/https://wireless.fish/" class="link-button link-alt">&larr;</a>
-        <a target="_blank" href="https://webring.dinhe.net" class="link-alt">retronaut webring</a>
-        <a href="https://webring.dinhe.net/next/https://wireless.fish/" class="link-button link-alt">&rarr;</a>
-      </span>
-    </div>
-  </section>
-
   <section class="heading">
     <h2>Visit these sites</h2>
   </section>
@@ -105,7 +80,30 @@ let latestDateFormatted = format(latestBlogpost.data.published, "yyyy/MM/dd");
     </div>
   </section>
 
-  <FloatingImg alt="a pyjama shark" src="/assets/sharks/pyjama.webp" top="50px" left="-50px" width="256px" />
+  <section class="content-padding">
+    <div class="webrings">
+      <WebRing
+        title="SSG ring"
+        prev="https://jbc.lol/webrings/ssgring/redirect?slug=sharky&way=prev"
+        next="https://jbc.lol/webrings/ssgring/redirect?slug=sharky&way=next"
+        home="https://jbc.lol/webrings/ssgring/"
+      />
+
+      <WebRing
+        title="no AI webring"
+        prev="https://baccyflap.com/noai/?prv&s=shr"
+        next="https://baccyflap.com/noai"
+        home="https://baccyflap.com/noai/?nxt&s=shr"
+      />
+
+      <WebRing
+        title="retronaut webring"
+        prev="https://webring.dinhe.net/prev/https://wireless.fish/"
+        next="https://webring.dinhe.net/next/https://wireless.fish/"
+        home="https://webring.dinhe.net"
+      />
+    </div>
+  </section>
 
   <section class="arivertisement">
     <iframe

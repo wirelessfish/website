@@ -1,0 +1,36 @@
+---
+const { title, prev, next, home } = Astro.props;
+---
+
+<div>
+  <a class="prev" href={prev}>&lt;</a>
+  <a class="title" href={home}>{title}</a>
+  <a class="next" href={next}>&gt;</a>
+</div>
+
+<style>
+  div {
+    border: 1px solid var(--white);
+  }
+
+  a {
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--blacker);
+    background-color: var(--white);
+  }
+
+  .next,
+  .prev {
+    padding: 2px 6px;
+  }
+
+  .title {
+    padding: 2px 6px;
+    border-left: 1px solid var(--white);
+    border-right: 1px solid var(--white);
+  }
+</style>
