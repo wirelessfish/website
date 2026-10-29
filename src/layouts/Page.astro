@@ -56,6 +56,15 @@ projects = projects.sort((a, b) => b.data.published.valueOf() - a.data.published
 
     <div class="sidebar">
       <StatusCafe client:only />
+
+      <div style="display: flex; justify-content: center; margin-top: 1em;">
+        <iframe
+          width="150"
+          height="450"
+          style="border:none"
+          src="https://dogspit.nekoweb.org/sidelink.html"
+          name="sidelink"></iframe>
+      </div>
     </div>
   </div>
 </Base>
@@ -154,11 +163,6 @@ projects = projects.sort((a, b) => b.data.published.valueOf() - a.data.published
     border: 1px solid var(--grey);
     padding: 4px 8px;
     border-radius: 2px;
-  }
-
-  .sidelink {
-    margin-top: 256px;
-    margin-left: 16px;
   }
 
   .main-layout {
