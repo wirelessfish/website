@@ -21,22 +21,22 @@ const updated = updated_str ? new Date(updated_str) : undefined;
     <div class="post-head">
       <h2>{frontmatter.title}</h2>
       <div class="date">
-        Published: {format(published, "yyyy/MM/dd")} (<FormatAgo client:only date={published} format="round" />)
+        <span>
+          Published: {format(published, "yyyy/MM/dd")} (<FormatAgo client:only date={published} format="round" />)
+        </span>
+
+        {
+          updated ? (
+            <>
+              <span>
+                Last updated: {format(updated, "yyyy/MM/dd")} (<FormatAgo client:only date={updated} format="round" />)
+              </span>
+            </>
+          ) : (
+            ""
+          )
+        }
       </div>
-
-      {
-        updated ? (
-          <>
-            <div class="date">
-              Last updated: {format(updated, "yyyy/MM/dd")} (<FormatAgo client:only date={updated} format="round" />)
-            </div>
-          </>
-        ) : (
-          ""
-        )
-      }
-
-      <div class="description">{frontmatter.description}</div>
     </div>
 
     <slot />
@@ -48,16 +48,11 @@ const updated = updated_str ? new Date(updated_str) : undefined;
     margin: 0;
   }
 
-  .post-head {
-    background-color: var(--darkgrey);
-    padding: 6px 10px;
-  }
-
-  .description {
-  }
-
   .date {
     opacity: 70%;
     font-style: italic;
+
+    display: flex;
+    gap: 1em;
   }
 </style>
