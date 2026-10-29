@@ -19,15 +19,16 @@
   const content = " (new!)";
 </script>
 
-<span>{shouldShow ? content : ""}</span>
+<span class="new">{shouldShow ? content : ""}</span>
 
 <style>
-  span {
+  .new {
     color: var(--red) !important;
     font-size: 10px;
     font-style: italic;
     position: absolute;
-    transform: translateX(40%) translateY(35%);
+    right: 1px;
+    bottom: 2px;
     rotate: -10deg;
   }
 </style>

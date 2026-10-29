@@ -12,6 +12,9 @@ const { title, description, og_img, og_img_alt } = Astro.props;
 
 let blog = await getCollection("blog");
 blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
+
+let projects = await getCollection("projects");
+projects = projects.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
 ---
 
 <Base title={title} description={description} og_img={og_img} og_img_alt={og_img_alt}>
@@ -29,7 +32,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
         <nav>
           <NavElement href="/">Home</NavElement>
           <NavElement href="/collections/">Collections</NavElement>
-          <NavElement href="/projects/">Projects</NavElement>
+          <NavElement href="/projects/">Projects<NewIndicator blog={projects} client:only /></NavElement>
           <NavElement href="/scrobbles/">Scrobbles</NavElement>
           <NavElement href="/guestbook/">Guestbook</NavElement>
           <NavElement href="/tools/">Tools</NavElement>
