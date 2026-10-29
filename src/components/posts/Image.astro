@@ -1,0 +1,27 @@
+---
+const { src, alt, width, centered } = Astro.props;
+---
+
+<a href={src} class={centered ? "wrapper centered" : "wrapper"}>
+  <img src={src} alt={alt} width={width} />
+</a>
+
+<style>
+  a {
+    padding: 0;
+  }
+
+  a:hover {
+    background: none;
+  }
+
+  img {
+    margin: 1em;
+  }
+
+  .wrapper,
+  .centered {
+    display: flex;
+    justify-content: center;
+  }
+</style>

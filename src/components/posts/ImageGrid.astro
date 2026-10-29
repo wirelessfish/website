@@ -1,0 +1,20 @@
+---
+let { columns, rows } = Astro.props;
+---
+
+<div style={"grid-template-rows: " + rows + "; grid-template-columns: " + columns}>
+  <slot />
+</div>
+
+<style>
+  div {
+    display: grid;
+    gap: 16px;
+  }
+
+  @media (max-width: 700px) {
+    div {
+      display: block;
+    }
+  }
+</style>
