@@ -27,7 +27,7 @@
     font-size: 10px;
     font-style: italic;
     position: absolute;
-    transform: translateX(90%) translateY(35%);
+    transform: translateX(40%) translateY(35%);
     rotate: -10deg;
   }
 </style>

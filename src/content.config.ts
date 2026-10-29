@@ -14,8 +14,16 @@ const blog = defineCollection({
   }),
 });
 
-const blog_descriptions = defineCollection({
-  loader: glob({ pattern: "**/*.mdx", base: "./src/data/blog_descriptions" }),
+const projects = defineCollection({
+  loader: glob({ pattern: "**/*.mdx", base: "./src/pages/projects" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    published: z.coerce.date(),
+    updated: z.coerce.date().optional(),
+    og_img: z.string().optional(),
+    og_img_alt: z.string().optional(),
+  }),
 });
 
-export const collections = { blog, blog_descriptions };
+export const collections = { blog, projects };

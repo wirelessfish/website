@@ -1,0 +1,30 @@
+---
+import Page from "@layouts/Page.astro";
+import { getCollection } from "astro:content";
+import { format } from "date-fns";
+
+let projects = await getCollection("projects");
+projects = projects.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
+---
+
+<Page title="Blog" description="Sometimes I like to write about stuff">
+  <section class="content-padding">
+    <h2>Things I made</h2>
+
+    <p>WIP</p>
+  </section>
+
+  <section>
+    <ul>
+      {
+        projects.map((entry) => (
+          <li>
+            <a href={"/blog/" + entry.id}>{entry.data.title}</a> - {format(entry.data.published, "yyyy/MM/dd")}
+            <br />
+            {entry.data.description}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Page>
