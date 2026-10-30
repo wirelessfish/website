@@ -26,4 +26,23 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { blog, projects };
+const vinyls = defineCollection({
+  loader: glob({ pattern: "**/*.mdx", base: "./src/pages/vinyl" }),
+  schema: z.object({
+    title: z.string(),
+    dateAdded: z.coerce.date(),
+
+    edition: z.string().optional(),
+    editionYear: z.number().optional(),
+    albumYear: z.number(),
+    pressedYear: z.number().optional(),
+
+    artist: z.string(),
+    discogsId: z.number(),
+
+    albumArt: z.string(),
+    albumArtAlt: z.string(),
+  }),
+});
+
+export const collections = { blog, projects, vinyls };

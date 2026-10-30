@@ -1,0 +1,58 @@
+---
+import Base from "@layouts/Base.astro";
+import { getCollection } from "astro:content";
+
+import VinylEntry from "@components/vinyl/VinylEntry.astro";
+
+let vinyls = await getCollection("vinyls");
+vinyls = vinyls.sort((a, b) => b.data.dateAdded.valueOf() - a.data.dateAdded.valueOf());
+---
+
+<Base title="Vinyls" description="My collection of vinyls">
+  <div class="content">
+    <h2>My vinyl collection</h2>
+
+    <div class="vinyls">
+      {vinyls.map((vinylEntry) => <VinylEntry entry={vinylEntry} />)}
+    </div>
+
+    <div class="hint">(Click to see details)</div>
+  </div>
+</Base>
+
+<style>
+  html {
+    background: black;
+  }
+
+  body {
+    min-height: 80vh;
+    padding: 64px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .content {
+    width: 1100px;
+  }
+
+  .vinyls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .hint {
+    margin-top: 1rem;
+    text-align: center;
+    color: var(--lightgrey);
+  }
+</style>
