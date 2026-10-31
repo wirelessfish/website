@@ -1,4 +1,5 @@
 ---
+import Hint from "@components/Hint.astro";
 import VinylBase from "@layouts/VinylBase.astro";
 
 import { getCollection } from "astro:content";
@@ -31,7 +32,7 @@ const { frontmatter }: Props = Astro.props;
           ""
         )
       }
-      <p></p>
+      <Hint>(Click the images for full resolution)</Hint>
     </div>
 
     <slot />
