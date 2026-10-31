@@ -22,6 +22,16 @@ const { frontmatter }: Props = Astro.props;
     <div class="header">
       <h2>{frontmatter.title}</h2>
       <p class="artist">{frontmatter.artist} {frontmatter.albumYear}</p>
+      {
+        frontmatter.edition ? (
+          <p>
+            {frontmatter.edition} {frontmatter.editionYear ? "(" + frontmatter.editionYear + ")" : ""}
+          </p>
+        ) : (
+          ""
+        )
+      }
+      <p></p>
     </div>
 
     <slot />
