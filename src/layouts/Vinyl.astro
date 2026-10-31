@@ -19,7 +19,10 @@ const { frontmatter }: Props = Astro.props;
   <div class="content">
     <a class="back" href="/vinyl/">&lt;&lt;&lt; Go back</a>
 
-    <h2>{frontmatter.title}</h2>
+    <div class="header">
+      <h2>{frontmatter.title}</h2>
+      <p class="artist">{frontmatter.artist} {frontmatter.albumYear}</p>
+    </div>
 
     <slot />
   </div>
@@ -38,5 +41,17 @@ const { frontmatter }: Props = Astro.props;
   .content {
     max-width: 800px;
     width: 100%;
+  }
+
+  h2 {
+    margin-bottom: 0;
+  }
+
+  .artist {
+    font-style: italic;
+  }
+
+  .header {
+    margin-bottom: 1rem;
   }
 </style>

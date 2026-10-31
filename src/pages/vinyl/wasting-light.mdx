@@ -18,53 +18,106 @@ albumArtAlt: Hi
 
 import ImageGrid from "@components/posts/ImageGrid.astro";
 import Image from "@components/posts/Image.astro";
+import Hint from "@components/Hint.astro";
 
-(Click the images for full resolution)
+This has to be one of my favourite albums from Foo Fighters. It's up there with But Here We Are and Foo Fighters (the album, lol).
+Honestly if I were to list all my favourite tracks I'd list half the album, so I'll just tell you which
+one is my #1 favourie: it's tied between Back & Forth and Bridge Burning.
+
+<Hint>(Click the images for full resolution)</Hint>
+
+Front and back of the gatefold + A side of the first record
 
 <ImageGrid columns="1fr 1fr" centered="true">
-  <Image src="/assets/vinyl/wasting_light/thumb_front.webp" click_src="/assets/vinyl/wasting_light/front.webp" alt="" />
-  <Image src="/assets/vinyl/wasting_light/thumb_back.webp" click_src="/assets/vinyl/wasting_light/back.webp" alt="" />
+  <Image
+    src="/assets/vinyl/wasting_light/thumb_front.webp"
+    click_src="/assets/vinyl/wasting_light/front.webp"
+    alt="Front of the album gatefold sleeve"
+  />
+  <Image
+    src="/assets/vinyl/wasting_light/thumb_back.webp"
+    click_src="/assets/vinyl/wasting_light/back.webp"
+    alt="Back of the album gatefold sleeve"
+  />
+  <Image
+    src="/assets/vinyl/wasting_light/thumb_lp_A.webp"
+    click_src="/assets/vinyl/wasting_light/lp_A.webp"
+    alt="A side of the first record"
+  />
 </ImageGrid>
+
+I cannot recommend it enough. If you've haven't listened to it yet, you're missing out!
+
+I can also confidently say that the difference between spotify's losless stream and the vinyl was larger than I initially expected (coming from someone who
+never heard a vinyl before). It's marginal with headphones, you notice it more with actual speakers.
+But the vinyl definitely feels more dynamic, as if the audio range of the spotify stream was flat/cut off at the top and bottom.
+
+### Gallery
+
+The album itself comes packaged in a beautiful gatefold and both of the 2 records also get their own sleeve. I like how the 4 sides of these records have the corresponding
+CMYK colors which the art works with beautifully.
+
+Record sleeves (front + back)
 
 <ImageGrid columns="1fr 1fr 1fr 1fr" centered="true">
   <Image
     src="/assets/vinyl/wasting_light/thumb_sleeve1_front.webp"
     click_src="/assets/vinyl/wasting_light/sleeve1_front.webp"
-    alt=""
+    alt="Front side of the first record sleeve"
   />
   <Image
     src="/assets/vinyl/wasting_light/thumb_sleeve1_back.webp"
     click_src="/assets/vinyl/wasting_light/sleeve1_back.webp"
-    alt=""
+    alt="Back side of the first record sleeve"
   />
   <Image
     src="/assets/vinyl/wasting_light/thumb_sleeve2_front.webp"
     click_src="/assets/vinyl/wasting_light/sleeve2_front.webp"
-    alt=""
+    alt="Front side of the second record sleeve"
   />
   <Image
     src="/assets/vinyl/wasting_light/thumb_sleeve2_back.webp"
     click_src="/assets/vinyl/wasting_light/sleeve2_back.webp"
-    alt=""
+    alt="Back side of the second record sleeve"
   />
 </ImageGrid>
+
+The inner sides of the gatefold
 
 <ImageGrid columns="1fr 1fr" centered="true">
   <Image
     src="/assets/vinyl/wasting_light/thumb_gatefold_left.webp"
     click_src="/assets/vinyl/wasting_light/gatefold_left.webp"
-    alt=""
+    alt="Inner left side of the gatefold sleeve"
   />
   <Image
     src="/assets/vinyl/wasting_light/thumb_gatefold_right.webp"
     click_src="/assets/vinyl/wasting_light/gatefold_right.webp"
-    alt=""
+    alt="Inner right side of the gatefold sleeve"
   />
 </ImageGrid>
 
+Record sides
+
 <ImageGrid columns="1fr 1fr 1fr 1fr" centered="true">
-  <Image src="/assets/vinyl/wasting_light/thumb_lp_A.webp" click_src="/assets/vinyl/wasting_light/lp_A.webp" alt="" />
-  <Image src="/assets/vinyl/wasting_light/thumb_lp_B.webp" click_src="/assets/vinyl/wasting_light/lp_B.webp" alt="" />
-  <Image src="/assets/vinyl/wasting_light/thumb_lp_C.webp" click_src="/assets/vinyl/wasting_light/lp_C.webp" alt="" />
-  <Image src="/assets/vinyl/wasting_light/thumb_lp_D.webp" click_src="/assets/vinyl/wasting_light/lp_D.webp" alt="" />
+  <Image
+    src="/assets/vinyl/wasting_light/thumb_lp_A.webp"
+    click_src="/assets/vinyl/wasting_light/lp_A.webp"
+    alt="A side label"
+  />
+  <Image
+    src="/assets/vinyl/wasting_light/thumb_lp_B.webp"
+    click_src="/assets/vinyl/wasting_light/lp_B.webp"
+    alt="B side label"
+  />
+  <Image
+    src="/assets/vinyl/wasting_light/thumb_lp_C.webp"
+    click_src="/assets/vinyl/wasting_light/lp_C.webp"
+    alt="C side label"
+  />
+  <Image
+    src="/assets/vinyl/wasting_light/thumb_lp_D.webp"
+    click_src="/assets/vinyl/wasting_light/lp_D.webp"
+    alt="D side label"
+  />
 </ImageGrid>

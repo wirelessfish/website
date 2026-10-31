@@ -98,6 +98,14 @@ details {
   summary {
     cursor: pointer;
   }
+
+  margin: 4px 0;
+}
+
+details:open {
+  summary {
+    margin-bottom: 4px;
+  }
 }
 
 /* === INTERFACE === */
