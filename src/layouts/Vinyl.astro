@@ -1,0 +1,42 @@
+---
+import VinylBase from "@layouts/VinylBase.astro";
+
+import { getCollection } from "astro:content";
+
+const vinylCollection = await getCollection("vinyls");
+
+type Props = {
+  frontmatter: (typeof vinylCollection)[0]["data"];
+};
+
+const { frontmatter }: Props = Astro.props;
+---
+
+<VinylBase
+  title={frontmatter.title}
+  description={"A page about the " + frontmatter.title + " album by " + frontmatter.artist}
+>
+  <div class="content">
+    <a class="back" href="/vinyl/">&lt;&lt;&lt; Go back</a>
+
+    <h2>{frontmatter.title}</h2>
+
+    <slot />
+  </div>
+</VinylBase>
+
+<style>
+  .back {
+    color: var(--white);
+  }
+
+  .back:hover {
+    background-color: var(--white);
+    color: var(--blacker);
+  }
+
+  .content {
+    max-width: 800px;
+    width: 100%;
+  }
+</style>

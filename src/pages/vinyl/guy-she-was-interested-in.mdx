@@ -1,4 +1,6 @@
 ---
+layout: "@layouts/Vinyl.astro"
+
 title: The Guy She Was Interested In Wasn't A Guy At All
 dateAdded: 2026-10-16
 
@@ -11,7 +13,28 @@ artist: Various
 discogsId: 32340096
 
 albumArt: /assets/vinyl/guy_she_was_interested_in/thumb_front.webp
-albumArtAlt: Hi
+# albumArtAlt: Hi
 ---
 
-Hi
+import ImageGrid from "@components/posts/ImageGrid.astro";
+import Image from "@components/posts/Image.astro";
+
+(Click the images for full resolution)
+
+<ImageGrid columns="1fr 1fr 1fr" centered="true">
+  <Image
+    src="/assets/vinyl/guy_she_was_interested_in/thumb_front.webp"
+    click_src="/assets/vinyl/guy_she_was_interested_in/front.webp"
+    alt=""
+  />
+  <Image
+    src="/assets/vinyl/guy_she_was_interested_in/thumb_back.webp"
+    click_src="/assets/vinyl/guy_she_was_interested_in/back.webp"
+    alt=""
+  />
+  <Image
+    src="/assets/vinyl/guy_she_was_interested_in/thumb_lp.webp"
+    click_src="/assets/vinyl/guy_she_was_interested_in/lp.webp"
+    alt=""
+  />
+</ImageGrid>

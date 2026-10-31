@@ -11,7 +11,7 @@ type Props = {
 const { entry }: Props = Astro.props;
 ---
 
-<a class="entry" href={"/vinyls/" + entry.id}>
+<a class="entry" href={"/vinyl/" + entry.id}>
   <img src={entry.data.albumArt} alt={entry.data.albumArtAlt} loading="lazy" />
 
   <div class="info">

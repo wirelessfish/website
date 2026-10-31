@@ -1,13 +1,14 @@
 ---
-const { src, alt, width, centered } = Astro.props;
+let { src, alt, width, centered, click_src } = Astro.props;
 ---
 
-<a href={src} class={centered ? "wrapper centered" : "wrapper"}>
+<a href={click_src ?? src} class={centered ? "wrapper centered" : "wrapper"}>
   <img src={src} alt={alt} width={width} />
 </a>
 
 <style>
   a {
+    display: block;
     padding: 0;
   }
 
@@ -16,7 +17,9 @@ const { src, alt, width, centered } = Astro.props;
   }
 
   img {
-    margin: 1em;
+    width: 100%;
+    height: auto;
+    margin: 0;
   }
 
   .wrapper,

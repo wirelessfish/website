@@ -1,4 +1,6 @@
 ---
+layout: "@layouts/Vinyl.astro"
+
 title: Wasting Light
 dateAdded: 2026-10-21
 
@@ -14,4 +16,55 @@ albumArt: /assets/vinyl/wasting_light/thumb_front.webp
 albumArtAlt: Hi
 ---
 
-Hi
+import ImageGrid from "@components/posts/ImageGrid.astro";
+import Image from "@components/posts/Image.astro";
+
+(Click the images for full resolution)
+
+<ImageGrid columns="1fr 1fr" centered="true">
+  <Image src="/assets/vinyl/wasting_light/thumb_front.webp" click_src="/assets/vinyl/wasting_light/front.webp" alt="" />
+  <Image src="/assets/vinyl/wasting_light/thumb_back.webp" click_src="/assets/vinyl/wasting_light/back.webp" alt="" />
+</ImageGrid>
+
+<ImageGrid columns="1fr 1fr 1fr 1fr" centered="true">
+  <Image
+    src="/assets/vinyl/wasting_light/thumb_sleeve1_front.webp"
+    click_src="/assets/vinyl/wasting_light/sleeve1_front.webp"
+    alt=""
+  />
+  <Image
+    src="/assets/vinyl/wasting_light/thumb_sleeve1_back.webp"
+    click_src="/assets/vinyl/wasting_light/sleeve1_back.webp"
+    alt=""
+  />
+  <Image
+    src="/assets/vinyl/wasting_light/thumb_sleeve2_front.webp"
+    click_src="/assets/vinyl/wasting_light/sleeve2_front.webp"
+    alt=""
+  />
+  <Image
+    src="/assets/vinyl/wasting_light/thumb_sleeve2_back.webp"
+    click_src="/assets/vinyl/wasting_light/sleeve2_back.webp"
+    alt=""
+  />
+</ImageGrid>
+
+<ImageGrid columns="1fr 1fr" centered="true">
+  <Image
+    src="/assets/vinyl/wasting_light/thumb_gatefold_left.webp"
+    click_src="/assets/vinyl/wasting_light/gatefold_left.webp"
+    alt=""
+  />
+  <Image
+    src="/assets/vinyl/wasting_light/thumb_gatefold_right.webp"
+    click_src="/assets/vinyl/wasting_light/gatefold_right.webp"
+    alt=""
+  />
+</ImageGrid>
+
+<ImageGrid columns="1fr 1fr 1fr 1fr" centered="true">
+  <Image src="/assets/vinyl/wasting_light/thumb_lp_A.webp" click_src="/assets/vinyl/wasting_light/lp_A.webp" alt="" />
+  <Image src="/assets/vinyl/wasting_light/thumb_lp_B.webp" click_src="/assets/vinyl/wasting_light/lp_B.webp" alt="" />
+  <Image src="/assets/vinyl/wasting_light/thumb_lp_C.webp" click_src="/assets/vinyl/wasting_light/lp_C.webp" alt="" />
+  <Image src="/assets/vinyl/wasting_light/thumb_lp_D.webp" click_src="/assets/vinyl/wasting_light/lp_D.webp" alt="" />
+</ImageGrid>

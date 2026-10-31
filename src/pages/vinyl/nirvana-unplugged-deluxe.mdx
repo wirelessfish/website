@@ -1,4 +1,6 @@
 ---
+layout: "@layouts/Vinyl.astro"
+
 title: MTV Unplugged In New York
 dateAdded: 2026-10-20
 
@@ -13,5 +15,46 @@ discogsId: 14341626
 albumArt: /assets/vinyl/nirvana_unplugged_deluxe/thumb_front.webp
 albumArtAlt: Hi
 ---
+
+import ImageGrid from "@components/posts/ImageGrid.astro";
+import Image from "@components/posts/Image.astro";
+
+(Click the images for full resolution)
+
+<ImageGrid columns="1fr 1fr" centered="true">
+  <Image
+    src="/assets/vinyl/nirvana_unplugged_deluxe/thumb_front.webp"
+    click_src="/assets/vinyl/nirvana_unplugged_deluxe/front.webp"
+    alt=""
+  />
+  <Image
+    src="/assets/vinyl/nirvana_unplugged_deluxe/thumb_back.webp"
+    click_src="/assets/vinyl/nirvana_unplugged_deluxe/back.webp"
+    alt=""
+  />
+</ImageGrid>
+
+<ImageGrid columns="1fr 1fr 1fr 1fr" centered="true">
+  <Image
+    src="/assets/vinyl/nirvana_unplugged_deluxe/thumb_gatefold_left.webp"
+    click_src="/assets/vinyl/nirvana_unplugged_deluxe/gatefold_left.webp"
+    alt=""
+  />
+  <Image
+    src="/assets/vinyl/nirvana_unplugged_deluxe/thumb_gatefold_right.webp"
+    click_src="/assets/vinyl/nirvana_unplugged_deluxe/gatefold_right.webp"
+    alt=""
+  />
+  <Image
+    src="/assets/vinyl/nirvana_unplugged_deluxe/thumb_lp1.webp"
+    click_src="/assets/vinyl/nirvana_unplugged_deluxe/lp1.webp"
+    alt=""
+  />
+  <Image
+    src="/assets/vinyl/nirvana_unplugged_deluxe/thumb_lp2.webp"
+    click_src="/assets/vinyl/nirvana_unplugged_deluxe/lp2.webp"
+    alt=""
+  />
+</ImageGrid>
 
 2nd variant

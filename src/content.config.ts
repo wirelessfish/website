@@ -41,7 +41,7 @@ const vinyls = defineCollection({
     discogsId: z.number(),
 
     albumArt: z.string(),
-    albumArtAlt: z.string(),
+    albumArtAlt: z.string().optional(),
   }),
 });
 
