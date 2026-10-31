@@ -2,9 +2,11 @@
 let { src, alt, width, centered, click_src } = Astro.props;
 ---
 
-<a href={click_src ?? src} class={centered ? "wrapper centered" : "wrapper"}>
-  <img src={src} alt={alt} width={width} />
-</a>
+<div class={centered ? "centered" : ""}>
+  <a href={click_src ?? src}>
+    <img src={src} alt={alt} width={width} />
+  </a>
+</div>
 
 <style>
   a {
@@ -17,7 +19,7 @@ let { src, alt, width, centered, click_src } = Astro.props;
   }
 
   img {
-    width: 100%;
+    /* width: 100%; */
     height: auto;
     margin: 0;
   }

@@ -1,0 +1,15 @@
+---
+import { formatDuration, intervalToDuration } from "date-fns";
+
+const { date } = Astro.props;
+
+const actualDate = new Date(date);
+
+function sinceExact(date: Date) {
+  return formatDuration(intervalToDuration({ start: date, end: new Date() }), {
+    format: ["years", "months", "days", "hours", "minutes"],
+  });
+}
+---
+
+{sinceExact(actualDate)}

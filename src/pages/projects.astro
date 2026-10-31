@@ -26,7 +26,11 @@ projects = projects.sort((a, b) => b.data.published.valueOf() - a.data.published
 
             <div class="project-title">
               <div class="title">{entry.data.title}</div>
-              <div class="date">{format(entry.data.published, "yyyy/MM/dd")}</div>
+              <div class="date">
+                {entry.data.publishedLabelOverride
+                  ? entry.data.publishedLabelOverride
+                  : format(entry.data.published, "yyyy/MM/dd")}
+              </div>
             </div>
           </a>
         );

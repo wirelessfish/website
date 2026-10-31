@@ -21,19 +21,25 @@ const updated = updated_str ? new Date(updated_str) : undefined;
     <div class="post-head">
       <h2>{frontmatter.title}</h2>
       <div class="date">
-        <span>
-          Published: {format(published, "yyyy/MM/dd")} (<FormatAgo client:only date={published} format="round" />)
-        </span>
-
         {
-          updated ? (
-            <>
-              <span>
-                Last updated: {format(updated, "yyyy/MM/dd")} (<FormatAgo client:only date={updated} format="round" />)
-              </span>
-            </>
+          frontmatter.publishedLabelOverride ? (
+            frontmatter.publishedLabelOverride
           ) : (
-            ""
+            <span>
+              Published: {format(published, "yyyy/MM/dd")} (<FormatAgo client:only date={published} format="round" />)
+            </span>
+
+            <span>
+              {
+                updated ? (
+                  <span>
+                    Last updated: {format(updated, "yyyy/MM/dd")} (<FormatAgo client:only date={updated} format="round" />)
+                  </span>
+                ) : (
+                  ""
+                )
+              }
+            </span>
           )
         }
       </div>
