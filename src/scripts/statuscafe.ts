@@ -1,4 +1,3 @@
-import { getEl } from "./module/dom.js";
 import { setLocalStorageMinutes, getLocalStorage } from "./module/localstorage.js";
 
 const CACHE_KEY = "SCAFE";
