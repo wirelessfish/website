@@ -10,16 +10,16 @@ import Scrobble from "@components/index/Scrobble.svelte";
 import { getCollection } from "astro:content";
 import { format } from "date-fns";
 
-let blog = await getCollection("blog");
+let blog = await getCollection("blog", (p) => !p.id.startsWith("cs/"));
+blog.forEach((i) => {
+  i.id = i.id.replace("en/", "");
+});
 blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
 ---
 
 <script src="../scripts/notify.ts"></script>
 
-<Page
-  title="WIRELESS.FISH"
-  description="Sharky's personal webpage. The creature. Shark-infested website. wireless.fish 🐟"
->
+<Page title="f1sh.cz" description="Sharky's personal webpage. The creature. Shark-infested website. f1sh.cz 🐟">
   <section class="content-padding mobile-warning">
     <h4>[ [ WARNING ] ]</h4>
 

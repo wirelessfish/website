@@ -1,0 +1,252 @@
+---
+import Page from "@layouts/Page.astro";
+
+import eightyeight from "@data/eightyeight.json";
+import EightyEightButton from "@components/EightyEightButton.astro";
+import AeroButton from "@components/AeroButton.svelte";
+import WebRing from "@components/index/WebRing.astro";
+import Scrobble from "@components/index/Scrobble.svelte";
+import { getCollection } from "astro:content";
+import { format } from "date-fns";
+
+let blog = await getCollection("blog", (p) => p.id.startsWith("cs/"));
+blog.forEach((i) => {
+  i.id = i.id.replace("cs/", "");
+});
+blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
+---
+
+<script src="@scripts/notify.ts"></script>
+
+<Page title="f1sh.cz" description="Sharkyho osobní stránky. Kreaturea. Stránka zamořená žraloky. f1sh.cz 🐟">
+  <section class="content-padding mobile-warning">
+    <h4>[ [ VAROVÁNÍ ] ]</h4>
+
+    <p>Doporučená velikost obrazovky je 1920x1080 (počítač). Sorry těm co jsou na mobilu!</p>
+  </section>
+
+  <section class="content-padding">
+    <h2>Čauky mňauky</h2>
+
+    <p>
+      Jsem student softwarového inženýrství (první ročník), který má rád počítače a dělá nějaké to hobby programování.
+    </p>
+
+    <p>
+      Taky mám rád žraloky. Nemůžu se rozhodnout který druh je můj nejoblíbenější, ale musí to bít buď <a
+        href="https://cs.wikipedia.org/wiki/%C5%BDralok_%C4%8Dernoploutv%C3%BD">Žralok černoploutvý</a
+      > nebo <a href="https://cs.wikipedia.org/wiki/%C5%BDralok_vouskat%C3%BD">Žralok vouskatý</a>.
+    </p>
+  </section>
+
+  <section class="content-padding">
+    <h3>Kamarádi</h3>
+
+    <div class="eightyeight">
+      {
+        eightyeight
+          .filter((i) => i.friend && !i.hidden)
+          .map((i) => <EightyEightButton src={i.src} href={i.href} alt={i.alt} />)
+      }
+    </div>
+  </section>
+
+  <section class="content-padding">
+    <h3>Zajímávé místa</h3>
+
+    <div class="eightyeight">
+      {
+        eightyeight
+          .filter((i) => !i.friend && !i.hidden)
+          .map((i) => <EightyEightButton src={i.src} href={i.href} alt={i.alt} />)
+      }
+    </div>
+  </section>
+
+  <section class="content-padding blog">
+    <h3>Moje psaní</h3>
+    {
+      blog.map((post) => (
+        <span>
+          <a href={"/cs/blog/" + post.id}>{post.data.title}</a> [{format(post.data.published, "yyyy/MM/dd")}]
+        </span>
+      ))
+    }
+  </section>
+
+  <section class="content-padding">
+    <h3>Pošli mi oznámení na můj telefon!</h3>
+
+    <noscript>Vyžaduje javascript!!</noscript>
+
+    <form class="notify">
+      <textarea id="notifyinput" placeholder="Nazdar debile" rows="1" spellcheck="false"></textarea>
+      <AeroButton color="#1e78ff" id="notifysend">Poslat →</AeroButton>
+    </form>
+  </section>
+
+  <section>
+    <Scrobble locale="cs" client:only />
+  </section>
+
+  <section class="content-padding">
+    <div class="webrings">
+      <WebRing
+        title="SSG ring"
+        prev="https://jbc.lol/webrings/ssgring/redirect?slug=sharky&way=prev"
+        next="https://jbc.lol/webrings/ssgring/redirect?slug=sharky&way=next"
+        home="https://jbc.lol/webrings/ssgring/"
+      />
+
+      <WebRing
+        title="no AI webring"
+        prev="https://baccyflap.com/noai/?prv&s=shr"
+        next="https://baccyflap.com/noai"
+        home="https://baccyflap.com/noai/?nxt&s=shr"
+      />
+
+      <WebRing
+        title="retronaut webring"
+        prev="https://webring.dinhe.net/prev/https://wireless.fish/"
+        next="https://webring.dinhe.net/next/https://wireless.fish/"
+        home="https://webring.dinhe.net"
+      />
+    </div>
+  </section>
+
+  <section class="arivertisement">
+    <iframe
+      src="https://ad.ari.lt/ads/embed?from="
+      sandbox="allow-popups allow-popups-to-escape-sandbox"
+      referrerpolicy="no-referrer"
+      title="An embed showing a silly image and author information."
+      style="border:none;max-width:100%"
+      width="722"
+      height="98"
+      loading="lazy"
+      role="img"
+    >
+    </iframe>
+  </section>
+</Page>
+
+<style>
+  #notifyinput {
+    flex: 1;
+  }
+
+  .blog {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .eightyeight {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .webrings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .notify {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+  }
+
+  .notify > form {
+    height: 1em;
+  }
+
+  #contact-fluxer::before,
+  #contact-discord::before,
+  #contact-email::before {
+    display: inline-block;
+    height: 1.5em;
+    margin-right: 0.5em;
+    width: 1.5em;
+  }
+
+  #contact-fluxer::before {
+    content: url("/assets/icons/fluxer_light.svg");
+  }
+
+  #contact-discord::before {
+    content: url("/assets/icons/discord_light.svg");
+  }
+  #contact-email::before {
+    content: url("/assets/icons/email_light.svg");
+  }
+
+  .heading {
+    background-color: var(--blue);
+    width: fit-content;
+    padding: 0px 1em;
+    padding-right: 2em;
+  }
+
+  .mybtn {
+    background-color: var(--grey);
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    float: right;
+    padding: 0px 4px 4px;
+  }
+
+  .contact-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+
+    div {
+      align-items: center;
+      display: flex;
+    }
+  }
+
+  .arivertisement {
+    display: flex;
+    justify-content: center;
+  }
+
+  .mobile-warning {
+    color: var(--orange);
+    font-weight: bold;
+    background-color: var(--darkorange);
+    padding: 4px 8px;
+    border: 1px solid var(--orange);
+    display: none;
+  }
+
+  @media (max-width: 500px) {
+    .notify {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .notify > textarea {
+      width: 100%;
+    }
+
+    .mybtn {
+      float: none;
+      width: max-content;
+      margin-bottom: 8px;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .mobile-warning {
+      display: block;
+    }
+  }
+</style>

@@ -3,7 +3,10 @@ import Page from "@layouts/Page.astro";
 import { getCollection } from "astro:content";
 import { format } from "date-fns";
 
-let blog = await getCollection("blog");
+let blog = await getCollection("blog", (p) => !p.id.startsWith("cs/"));
+blog.forEach((i) => {
+  i.id = i.id.replace("en/", "");
+});
 blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
 ---
 
@@ -17,7 +20,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
       {
         blog.map((post) => (
           <li>
-            <a href={"/blog/" + post.id}>{post.data.title}</a> - {format(post.data.published, "yyyy/MM/dd")}
+            <a href={"/blog/" + post.id}>{post.data.title}</a> [{format(post.data.published, "yyyy/MM/dd")}]
             <br />
             {post.data.description}
           </li>

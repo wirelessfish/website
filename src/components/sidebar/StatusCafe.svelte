@@ -1,9 +1,24 @@
 <script lang="ts">
   import { getSCafeData, type StatusCafe } from "@scripts/statuscafe.ts";
 
+  type Props = {
+    locale: "en" | "cs";
+  };
+  const { locale = "en" }: Props = $props();
   let scafe: StatusCafe | undefined = $state();
 
   getSCafeData().then((data) => (scafe = data));
+
+  const componentLocalization = {
+    en: {
+      loading: "Loading...",
+    },
+    cs: {
+      loading: "Načítání...",
+    },
+  };
+
+  const t = $derived(componentLocalization[locale]);
 </script>
 
 <div class="main">
@@ -11,12 +26,12 @@
 
   <div class="content">
     {#if !scafe}
-      <div>Loading...</div>
+      <div>{t.loading}</div>
 
       <div class="user">
         [
-        <span>Loading...</span>
-        <span>Loading...</span>
+        <span>{t.loading}</span>
+        <span>{t.loading}</span>
         ]
       </div>
     {:else}

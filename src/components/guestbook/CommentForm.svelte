@@ -5,6 +5,11 @@
   import type { GuestbookEntry, GuestbookPostBody } from "@scripts/types/guestbook";
   import validator from "validator";
 
+  type Props = {
+    locale: "en" | "cs";
+    reply_to: GuestbookEntry | undefined;
+  };
+
   let name: string = $state("");
   let website_url: string = $state("");
   let comment_content: string = $state("");
@@ -12,11 +17,32 @@
 
   let submit_status: string | undefined = $state();
 
-  interface Props {
-    reply_to: GuestbookEntry | undefined;
-  }
+  let { reply_to = $bindable(), locale = "en" }: Props = $props();
 
-  let { reply_to = $bindable() }: Props = $props();
+  const componentLocalization = {
+    en: {
+      name: "Name",
+      website: "Your website",
+      optional: "Optional",
+      message: "Message",
+      messagePlaceholder: "Rat activiy has increased exponentially",
+      submit: "Submit",
+      sendingState: "Sending...",
+      networkError: "Network error. Check your connection.",
+    },
+    cs: {
+      name: "Jméno",
+      website: "Tvoje webovka",
+      optional: "Volitelné",
+      message: "Zpráva",
+      messagePlaceholder: "Aktivita krys se exponencionálně zvýšila",
+      submit: "Odeslat",
+      sendingState: "Odesílám...",
+      networkError: "Síťová chyba. Zkontrolujte své připojení.",
+    },
+  };
+
+  const t = $derived(componentLocalization[locale]);
 
   function validateForm() {
     if (name.trim().length <= 0) {
@@ -50,7 +76,7 @@
   async function submitComment(e: Event) {
     e.preventDefault();
 
-    submit_status = "Sending...";
+    submit_status = t.sendingState;
 
     let resp: Response | undefined;
 
@@ -64,7 +90,7 @@
         },
       });
     } catch (e) {
-      submit_status = `Network error. Check your connection.`;
+      submit_status = t.networkError;
       return;
     }
 
@@ -78,7 +104,11 @@
       await sleep(1000);
       window.location.reload();
     } else {
-      submit_status = `Error while posting (${resp.status}). Please poke me on discord/fluxer/email.`;
+      if (locale === "en") {
+        submit_status = `Error while posting (${resp.status}). Please poke me on discord/fluxer/email.`;
+      } else {
+        submit_status = `Error při zpracování komentáře (${resp.status}). Prosím kontaktuj mě na discordu/fluxeru/emailu.`;
+      }
     }
   }
 </script>
@@ -87,31 +117,26 @@
   <div class="form_head">
     <!-- NAME -->
     <div class="input_group">
-      <label for="form_name">Name <span style="color: var(--red)">*</span></label>
+      <label for="form_name">{t.name} <span style="color: var(--red)">*</span></label>
       <input bind:value={name} id="form_name" name="name" placeholder="Jane Doe" type="text" required />
     </div>
 
     <!-- WEBSITE -->
     <div class="input_group">
-      <label for="form_url">Your website <span style="color: var(--lightgrey)">(Optional)</span></label>
+      <label for="form_url">{t.website} <span style="color: var(--lightgrey)">({t.optional})</span></label>
       <input bind:value={website_url} id="form_url" name="your website" placeholder="https://example.com" type="url" />
     </div>
   </div>
 
   <!-- MESSAGE -->
   <div class="input_group">
-    <label for="form_message">Message <span style="color: var(--red)">*</span></label>
-    <textarea
-      bind:value={comment_content}
-      id="form_message"
-      name="message"
-      placeholder="Rat activiy has increased exponentially"
-      required
+    <label for="form_message">{t.message} <span style="color: var(--red)">*</span></label>
+    <textarea bind:value={comment_content} id="form_message" name="message" placeholder={t.messagePlaceholder} required
     ></textarea>
   </div>
 
   <div style="display: flex; flex-direction: column; align-items: center;">
-    <AeroButton disabled={!valid_comment} onclick={submitComment} color={colors.blue}>Submit</AeroButton>
+    <AeroButton disabled={!valid_comment} onclick={submitComment} color={colors.blue}>{t.submit}</AeroButton>
 
     {#if submit_status}
       <div class="submit_status">{submit_status}</div>

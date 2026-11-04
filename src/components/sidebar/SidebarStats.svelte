@@ -2,9 +2,15 @@
   import ViewCounter from "@components/widgets/ViewCounter.svelte";
   import { getNekowebStats, type NekowebStats } from "@scripts/nw_stats";
   import "javascript-time-ago/locale/en";
+  import "javascript-time-ago/locale/cs";
   import TimeAgo from "javascript-time-ago";
 
+  type Props = {
+    locale: "en" | "cs";
+  };
+  const { locale }: Props = $props();
   let timeAgo = new TimeAgo("en");
+  let timeAgoCs = new TimeAgo("cs");
   let nw_stats: NekowebStats | undefined = $state();
   let backend_alive: boolean | undefined = $state();
 
@@ -19,12 +25,33 @@
 
   getNekowebStats("wireless.fish").then((data) => (nw_stats = data));
   getBackendStatus().then((state) => (backend_alive = state));
+
+  const componentLocalization = {
+    en: {
+      statistics: "Statistics",
+      views: "Visits",
+      updates: "Updates",
+      followers: "Followers",
+      lastUpdated: "Last Updated",
+      backend: "Backend",
+    },
+    cs: {
+      statistics: "Statistiky",
+      views: "Návštěvy",
+      updates: "Aktualizace",
+      followers: "Followeři",
+      lastUpdated: "Naposledy aktualizováno",
+      backend: "Backend",
+    },
+  };
+
+  const t = $derived(componentLocalization[locale]);
 </script>
 
 <div class="stats">
-  <h2>Statistics</h2>
+  <h2>{t.statistics}</h2>
 
-  <h3>Views</h3>
+  <h3>{t.views}</h3>
 
   <div style="display: flex; justify-content: center; align-items: center; padding: 8px 0px;">
     <ViewCounter />
@@ -33,29 +60,37 @@
   <table>
     <tbody>
       <tr>
-        <td>Updates</td>
+        <td>{t.updates}</td>
         <td>{nw_stats?.updates ?? "00"}</td>
       </tr>
 
       <tr>
-        <td>Nw followers</td>
+        <td>{t.followers}</td>
         <td>{nw_stats?.followers ?? "00"}</td>
       </tr>
 
       <tr>
-        <td>Last updated</td>
-        <td>{nw_stats?.updated_at ? timeAgo.format(nw_stats?.updated_at, "mini") : "loading"} ago</td>
+        <td>{t.lastUpdated}</td>
+        {#if locale === "en"}
+          <td>{nw_stats?.updated_at ? timeAgo.format(nw_stats?.updated_at, "mini") : "loading"} ago</td>
+        {:else}
+          <td>{nw_stats?.updated_at ? timeAgoCs.format(nw_stats?.updated_at, "mini") : "načítání"}</td>
+        {/if}
       </tr>
 
       <tr>
-        <td>Backend</td>
+        <td>{t.backend}</td>
         <td>
           {#if backend_alive === true}
             <span style="color: var(--green)">online</span>
           {:else if backend_alive === false}
             <span style="color: var(--red)">offline</span>
           {:else}
-            Loading...
+            {#if locale === "en"}
+              Loading...
+            {:else}
+              Načítání...
+            {/if}
           {/if}
         </td>
       </tr>
@@ -63,7 +98,11 @@
   </table>
 
   <div>
-    You could <a href="https://nekoweb.org/follow/wireless.fish">follow me</a> on nekoweb... that'd be cool
+    {#if locale === "en"}
+      You could <a href="https://nekoweb.org/follow/wireless.fish">follow me</a> on nekoweb... that'd be cool
+    {:else}
+      Můžeš mě <a href="https://nekoweb.org/follow/wireless.fish">dát follow</a> na nekowebu... to by bylo cool
+    {/if}
   </div>
 </div>
 

@@ -1,0 +1,22 @@
+---
+import Scrobbles from "@components/scrobbles/Scrobbles.svelte";
+import Page from "@layouts/Page.astro";
+---
+
+<Page title="Muzika" description="Co poslouchám">
+  <section class="content-padding">
+    <h2>Muzika</h2>
+    <p>Tady máte nějakou tu muziku co jsem nedávno poslouchal <noscript>VYŽADUJE JAVASCRIPT</noscript></p>
+    <p>
+      Data je získáváno pomocí <a href="https://last.fm" target="_blank">last.fm</a> (ale jejich API může jít do prdele)
+    </p>
+    <p>
+      Někdy v blízké době to tu předělám a budu používat <a href="https://listenbrainz.org/">listenbrainz</a>, protože
+      jsou lepší :)
+    </p>
+  </section>
+
+  <div class="content-padding">
+    <Scrobbles locale="cs" client:only />
+  </div>
+</Page>

@@ -1,0 +1,72 @@
+---
+layout: "@layouts/Post.astro"
+title: Nekoweb návštěvnost... na mém stole!
+description: I built a small device, that displays nekoweb views and followers out of an ESP32. It also has a 3D printed case, which I designed.
+published: 2026-10-27T16:11:00.000+2:00
+# updated: timedate string of last update
+og_img: "/assets/projects/nw-stats/thumb.webp"
+og_img_alt: "photo of a small black box with a screen showing views and followers along with some numbers"
+---
+
+import Image from "@components/posts/Image.astro";
+import ImageGrid from "@components/posts/ImageGrid.astro";
+
+You can find the code and design files in my [github repository](https://github.com/wirelessfish/nekoweb-stats-esp32)!
+
+## Why
+
+I always wanted to build something. Something that would connect my interest in computers and the physical world, because you can't touch code.
+However what you can touch is hardware. So i've gotten my hands on an ESP32-C6. For the uninitiated, it's a microcontroller with built in WiFi and Bluetooth
+and can connect to various i/o including buttons, screens, sensors, switches, etc...
+
+<Image
+  src="/assets/projects/nw-stats/stats-photo.webp"
+  alt="photo of a small black box with a screen showing views and followers along with some numbers"
+  width="500px"
+  centered
+/>
+
+## But how do you program the damn thing?
+
+The programming itself is pretty simple, you can use C++ like me, or you can use MicroPython. Though MicroPython doesn't have as much libraries
+as C++ does thanks to the arduino framework. The actual program is quite simple, the gist of it is as follows:
+
+```
+initialize display
+
+try connecting to WiFi
+
+if connected
+    repeat every 5 minutes
+        fetch data from nekoweb's api
+        display data on display
+else
+    display "could not connect to WiFi"
+```
+
+If you take a look at the source code, it's really not that complex. Just one file with 71 lines of code and two libraries (one for parsing JSON, other for the display).
+The harder part was designing the enclosure.
+
+As this was my first time actually designing in CAD, the model really sucks. It's made up of 4 parts: The top, bottom, back and a bracket for the microcontroller.
+
+<ImageGrid columns="1fr 1fr">
+<Image
+  src="/assets/projects/nw-stats/cad_1.webp"
+  alt="picture of the CAD model with different parts highlited in different colors along with labels for each part"
+  width="500px"
+  centered
+/>
+
+<Image
+  src="/assets/projects/nw-stats/cad_2.webp"
+  alt="picture of the CAD model disected in the middle with the microcontroller bracket labeled"
+  width="500px"
+  centered
+/>
+</ImageGrid>
+
+## More things to come
+
+As bad as the model is, I quite enjoyed making it and writing software for the thing. And I'm planning on building a small weather station at some point.
+It's going to be a fine excercise in both hardware and software as it will have a solar panel and a li-ion cell for power along with multiple sensors for temperature,
+humidity, pressure and luminosity. Once you'll see a weather widget on my site, you'll know I've built it!

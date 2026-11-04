@@ -14,6 +14,11 @@
   } from "../../scripts/module/lastfm";
   import type { TopArtists, TopTracks } from "../../scripts/types/lastfm";
 
+  type Props = {
+    locale: "en" | "cs";
+  };
+  const { locale = "en" }: Props = $props();
+
   let recent_tracks: RecentTracks | undefined = $state();
   let user_data: UserInfo | undefined = $state();
   let top_tracks: TopTracks | undefined = $state();
@@ -23,16 +28,35 @@
   getUserInfo().then((data) => (user_data = data));
   getTopTracks(10, "3month").then((tracks) => (top_tracks = tracks));
   getTopArtists(10, "3month").then((artists) => (top_artists = artists));
+
+  const componentLocalization = {
+    en: {
+      recentTracks: "Recent tracks",
+      userInfo: "User info",
+      topTracks: "Top tracks (90 days)",
+      topArtists: "Top artists (90 days)",
+      loading: "Loading...",
+    },
+    cs: {
+      recentTracks: "Nedávné skladby",
+      userInfo: "Info uživatele",
+      topTracks: "Top skladby (90 dní)",
+      topArtists: "Top umělci (90 dní)",
+      loading: "Načítání...",
+    },
+  };
+
+  const t = $derived(componentLocalization[locale]);
 </script>
 
 <section class="scrobbles-container" id="scrobbles-section">
   <div>
     <!-- RECENT TRACKS -->
     <section>
-      <h3>Recent tracks</h3>
+      <h3>{t.recentTracks}</h3>
       <div class="recent-tracks">
         {#if !recent_tracks}
-          <span>Loading recent tracks...</span>
+          <span>{t.loading}</span>
         {:else}
           {#each recent_tracks.recenttracks.track as track}
             <Track {track} dynamic_bg={false} />
@@ -44,27 +68,27 @@
 
   <section>
     <!-- PROFILE -->
-    <h3>User info</h3>
+    <h3>{t.userInfo}</h3>
     <div class="recent-tracks">
       {#if !user_data}
-        <span>Loading user data...</span>
+        <span>{t.loading}</span>
       {:else}
         <LastfmProfile user={user_data}></LastfmProfile>
       {/if}
     </div>
 
     <!-- TOP TRACKS -->
-    <h3>Top tracks (90 days)</h3>
+    <h3>{t.topTracks}</h3>
     {#if !top_tracks}
-      <span>Loading top tracks...</span>
+      <span>{t.loading}</span>
     {:else}
       <TopTracksComponent {top_tracks} />
     {/if}
 
     <!-- TOP ARTISTS -->
-    <h3>Top artists (90 days)</h3>
+    <h3>{t.topArtists}</h3>
     {#if !top_artists}
-      <span>Loading top artists...</span>
+      <span>{t.loading}</span>
     {:else}
       <TopArtistsComponent {top_artists} />
     {/if}

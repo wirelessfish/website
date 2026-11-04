@@ -1,0 +1,19 @@
+{
+  "nav": {
+    "home": "Domů",
+    "blog": "Blog",
+    "vinyls": "Vinyly",
+    "scrobbles": "Muzika",
+    "guestbook": "Návštěvnická kniha"
+  },
+  "footer": {
+    "copyright": {
+      "text": "© Sharky 2025-2026 ",
+      "link": "[licence]"
+    },
+    "version": {
+      "text": "Verze 4.2 ",
+      "link": "[zdrojový kód]"
+    }
+  }
+}

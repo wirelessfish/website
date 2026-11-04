@@ -1,0 +1,19 @@
+{
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "vinyls": "Vinyls",
+    "scrobbles": "Scrobbles",
+    "guestbook": "Guestbook"
+  },
+  "footer": {
+    "copyright": {
+      "text": "© Sharky 2025-2026 ",
+      "link": "[license]"
+    },
+    "version": {
+      "text": "Version 4.2 ",
+      "link": "[source code]"
+    }
+  }
+}

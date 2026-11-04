@@ -1,14 +1,21 @@
 ---
 import Base from "./Base.astro";
 
+import { localization } from "@i18n/index";
+
 import StatusCafe from "@components/sidebar/StatusCafe.svelte";
-import FloatingImg from "@components/FloatingImg.svelte";
-import a from "@components/NavElement.astro";
 import NewIndicator from "@components/posts/NewIndicator.svelte";
 import { getCollection } from "astro:content";
 import SidebarStats from "@components/sidebar/SidebarStats.svelte";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 const { title, description, og_img, og_img_alt } = Astro.props;
+const locale = (Astro.currentLocale ?? "en") as keyof typeof localization;
+const t = localization[locale];
+
+const path = Astro.url.pathname;
+const otherLocaleUrl = Astro.currentLocale === "cs" ? path.replace("/cs/", "/") : "/cs" + path;
+const otherLocaleString = Astro.currentLocale === "cs" ? "English" : "Čeština";
 
 let blog = await getCollection("blog");
 blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
@@ -17,7 +24,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
 <Base title={title} description={description} og_img={og_img} og_img_alt={og_img_alt}>
   <div class="main-layout">
     <div class="sidebar">
-      <SidebarStats client:only />
+      <SidebarStats locale={locale} client:only />
     </div>
 
     <div class="page-content">
@@ -25,11 +32,13 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
         <h1>f1sh.cz</h1>
 
         <nav>
-          <a href="/">Home</a>
-          <a href="/blog/">Blog<NewIndicator blog={blog} client:only /></a>
-          <a href="/vinyl/">Vinyls</a>
-          <a href="/scrobbles/">Scrobbles</a>
-          <a href="/guestbook/">Guestbook</a>
+          <a href={getRelativeLocaleUrl(locale, "/")}>{t.nav.home}</a>
+          <a href={getRelativeLocaleUrl(locale, "/blog/")}>{t.nav.blog}<NewIndicator blog={blog} client:only /></a>
+          <a href={getRelativeLocaleUrl(locale, "/vinyl/")}>{t.nav.vinyls}</a>
+          <a href={getRelativeLocaleUrl(locale, "/scrobbles/")}>{t.nav.scrobbles}</a>
+          <a href={getRelativeLocaleUrl(locale, "/guestbook/")}>{t.nav.guestbook}</a>
+          |
+          <a class="lang-switch" href={otherLocaleUrl}>{otherLocaleString}</a>
         </nav>
       </header>
 
@@ -38,14 +47,13 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
       </main>
 
       <footer>
-        <div>© Sharky 2025-2026 <a class="link-button" href="/license/">[license]</a></div>
-
-        <div>Version 4.2 <a href="https://github.com/wirelessfish/website">[source code]</a></div>
+        <div>{t.footer.copyright.text}<a href="/license/">{t.footer.copyright.link}</a></div>
+        <div>{t.footer.version.text}<a href="https://github.com/wirelessfish/website">{t.footer.version.link}</a></div>
       </footer>
     </div>
 
     <div class="sidebar">
-      <StatusCafe client:only />
+      <StatusCafe locale={Astro.currentLocale as "en" | "cs"} client:only />
 
       <div style="display: flex; justify-content: center; margin-top: 1em;">
         <iframe
@@ -105,6 +113,15 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
   nav {
     display: flex;
     gap: 4px;
+
+    .lang-switch {
+      color: var(--orange);
+    }
+
+    .lang-switch:hover {
+      color: var(--black);
+      background-color: var(--orange);
+    }
   }
 
   .header-title {

@@ -12,4 +12,8 @@ export default defineConfig({
     // to keep all the two old links alive lol
     "/post/moving-to-astro": "/blog/moving-to-astro",
   },
+  i18n: {
+    locales: ["en", "cs"],
+    defaultLocale: "en",
+  },
 });
