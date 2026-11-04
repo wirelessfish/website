@@ -1,6 +1,6 @@
 import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
-import { glob, file } from "astro/loaders";
+import { glob } from "astro/loaders";
 
 const blog = defineCollection({
   loader: glob({ pattern: "**/*.mdx", base: "./src/pages/blog" }),
@@ -8,19 +8,6 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     published: z.coerce.date(),
-    updated: z.coerce.date().optional(),
-    og_img: z.string().optional(),
-    og_img_alt: z.string().optional(),
-  }),
-});
-
-const projects = defineCollection({
-  loader: glob({ pattern: "**/*.mdx", base: "./src/pages/projects" }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    published: z.coerce.date(),
-    publishedLabelOverride: z.string().optional(),
     updated: z.coerce.date().optional(),
     og_img: z.string().optional(),
     og_img_alt: z.string().optional(),
@@ -46,4 +33,4 @@ const vinyls = defineCollection({
   }),
 });
 
-export const collections = { blog, projects, vinyls };
+export const collections = { blog, vinyls };

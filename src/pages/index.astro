@@ -7,6 +7,11 @@ import AeroButton from "@components/AeroButton.svelte";
 import LatestBlogpost from "@components/index/LatestBlogpost.astro";
 import WebRing from "@components/index/WebRing.astro";
 import Scrobble from "@components/index/Scrobble.svelte";
+import { getCollection } from "astro:content";
+import { format } from "date-fns";
+
+let blog = await getCollection("blog");
+blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
 ---
 
 <script src="../scripts/notify.ts"></script>
@@ -16,40 +21,64 @@ import Scrobble from "@components/index/Scrobble.svelte";
   description="Sharky's personal webpage. The creature. Shark-infested website. wireless.fish 🐟"
 >
   <section class="content-padding mobile-warning">
-    <h2 style="text-align: center;">[ [ WARNING ] ]</h2>
+    <h4>[ [ WARNING ] ]</h4>
 
-    <p>
-      This website was not made with mobile devices in mind! I have taken some action to make it usable on smaller
-      screens, however the recommended screen size to have the full, intended experience is 1920x1080!
-    </p>
-
-    <p>Please bear that in mind as you browse my site, thanks :)</p>
-  </section>
-
-  <section class="heading">
-    <h2>Welcome to my website</h2>
+    <p>The recommended screen size to have the full, intended experience is 1920x1080. Sorry mobile users!</p>
   </section>
 
   <section class="content-padding">
+    <h2>Hey there</h2>
+
     <p>
-      Hi<br />
-      I'm a 1<sup>st</sup> year software engineering student that likes computers and does a bit of hobby programming.
+      I'm a 1<sup>st</sup> year software engineering student from Czechia that likes computers and does a bit of hobby programming.
+    </p>
+
+    <p>
+      I also like sharks. I can't decide on my fav species, but it's got to be either the <a
+        href="https://en.wikipedia.org/wiki/Blacktip_reef_shark">Blacktip Reef Shark</a
+      > or the <a href="https://en.wikipedia.org/wiki/Nurse_shark">Nurse Shark</a>.
     </p>
   </section>
 
   <section class="content-padding">
-    <LatestBlogpost />
+    <h3>Friends</h3>
+
+    <div class="eightyeight">
+      {
+        eightyeight
+          .filter((i) => i.friend && !i.hidden)
+          .map((i) => <EightyEightButton src={i.src} href={i.href} alt={i.alt} />)
+      }
+    </div>
+  </section>
+
+  <section class="content-padding">
+    <h3>Interesting places</h3>
+
+    <div class="eightyeight">
+      {
+        eightyeight
+          .filter((i) => !i.friend && !i.hidden)
+          .map((i) => <EightyEightButton src={i.src} href={i.href} alt={i.alt} />)
+      }
+    </div>
+  </section>
+
+  <section class="content-padding blog">
+    <h3>My writing</h3>
+    {
+      blog.map((post) => (
+        <span>
+          <a href={"/blog/" + post.id}>{post.data.title}</a> [{format(post.data.published, "yyyy/MM/dd")}]
+        </span>
+      ))
+    }
   </section>
 
   <section class="content-padding">
     <h3>Send me a push noitification!</h3>
 
     <noscript>Requires javascript!!</noscript>
-
-    <p>
-      Send me anything honestly, idk if there is a character limit. Didn't test that. This will be recieved on my mobile
-      device "Nothing phone (4a)".
-    </p>
 
     <form class="notify">
       <textarea id="notifyinput" placeholder="Hello, fishy" rows="1" spellcheck="false"></textarea>
@@ -61,19 +90,7 @@ import Scrobble from "@components/index/Scrobble.svelte";
     <Scrobble client:only />
   </section>
 
-  <section class="heading">
-    <h2>Visit these sites</h2>
-  </section>
-
   <section class="content-padding">
-    <div class="eightyeight">
-      {eightyeight.map((i) => <EightyEightButton src={i.src} href={i.href} alt={i.alt} css_classes={i.class} />)}
-    </div>
-  </section>
-
-  <section class="content-padding">
-    <h3>Also... webrings!</h3>
-
     <div class="webrings">
       <WebRing
         title="SSG ring"
@@ -117,6 +134,11 @@ import Scrobble from "@components/index/Scrobble.svelte";
 <style>
   #notifyinput {
     flex: 1;
+  }
+
+  .blog {
+    display: flex;
+    flex-direction: column;
   }
 
   .eightyeight {
@@ -202,7 +224,6 @@ import Scrobble from "@components/index/Scrobble.svelte";
     background-color: var(--darkorange);
     padding: 4px 8px;
     border: 1px solid var(--orange);
-    border-radius: 4px;
     display: none;
   }
 

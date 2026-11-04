@@ -3,84 +3,73 @@
     "href": "https://ivrry.nekoweb.org/",
     "src": "https://ivrry.nekoweb.org/assets/svg/button.svg",
     "alt": "ivrry",
-    "class": ""
+    "friend": true
   },
   {
     "href": "https://nekoweb.org/",
     "src": "https://nekoweb.org/assets/buttons/button11.gif",
-    "alt": "nekoweb",
-    "class": ""
+    "alt": "nekoweb"
   },
   {
     "href": "https://breq.dev/",
     "src": "/assets/buttons/breq.png",
-    "alt": "breq",
-    "class": ""
+    "alt": "breq"
   },
   {
     "href": "https://synth.download/",
     "src": "https://synth.download/assets/buttons/synth.download.svg",
-    "alt": "Synth.Download!",
-    "class": ""
+    "alt": "Synth.Download!"
   },
   {
     "href": "https://eightyeightthirty.one/",
     "src": "/assets/buttons/eightyeightythirtyone.png",
-    "alt": "eightyeightthirtyone",
-    "class": ""
+    "alt": "eightyeightthirtyone"
   },
   {
     "href": "https://votehusky.org/",
     "src": "https://votehusky.org/buttons/button2.png",
     "alt": "votehusky",
-    "class": ""
+    "hidden": true
   },
   {
     "href": "https://swiftyshq.neocities.org/",
     "src": "/assets/buttons/swsign.png",
-    "alt": "swiftyshq",
-    "class": ""
+    "alt": "swiftyshq"
   },
   {
     "href": "https://dimden.dev/",
     "src": "https://dimden.dev/services/images/88x31.gif",
-    "alt": "dimden",
-    "class": ""
+    "alt": "dimden"
   },
   {
     "href": "https://tuxedodragon.art/",
     "src": "/assets/buttons/tuxedodragon.gif",
-    "alt": "tuxedodragon",
-    "class": ""
+    "alt": "tuxedodragon"
   },
   {
     "href": "https://status.cafe/",
     "src": "https://status.cafe/assets/button.png",
-    "alt": "Status Cafe",
-    "class": ""
+    "alt": "Status Cafe"
   },
   {
     "href": "https://maia.crimew.gay/",
     "src": "/assets/buttons/maia.png",
-    "alt": "maia :3",
-    "class": ""
+    "alt": "maia :3"
   },
   {
     "href": "https://jbc.lol/",
     "src": "https://jbc.lol/imgs/buttons/jbtn.svg",
     "alt": "jb's site",
-    "class": ""
+    "friend": true
   },
   {
     "href": "https://millacat3.nekoweb.org/",
     "src": "https://file.garden/aVfFIHMNm0ogIHA8/Millacat3%20web.gif",
-    "alt": "milacat3",
-    "class": ""
+    "alt": "milacat3"
   },
   {
     "href": "https://bomberfish.ca/?ref=button",
     "src": "https://bomberfish.ca/button.gif",
-    "alt": "BomberFish",
-    "class": ""
+    "alt": "BomberFish"
   }
 ]
