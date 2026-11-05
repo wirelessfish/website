@@ -2,7 +2,7 @@
   "name": "website",
   "version": "1.0.0",
   "scripts": {
-    "typecheck": "tsc --noEmit",
+    "typecheck": "astro sync && tsc --noEmit",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview"
