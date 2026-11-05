@@ -33,7 +33,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
 
         <nav>
           <a href={getRelativeLocaleUrl(locale, "/")}>{t.nav.home}</a>
-          <a href={getRelativeLocaleUrl(locale, "/blog/")}>{t.nav.blog}<NewIndicator blog={blog} client:only /></a>
+          <a href={getRelativeLocaleUrl(locale, "/blog/")}>{t.nav.blog}</a>
           <a href={getRelativeLocaleUrl(locale, "/vinyl/")}>{t.nav.vinyls}</a>
           <a href={getRelativeLocaleUrl(locale, "/scrobbles/")}>{t.nav.scrobbles}</a>
           <a href={getRelativeLocaleUrl(locale, "/guestbook/")}>{t.nav.guestbook}</a>
