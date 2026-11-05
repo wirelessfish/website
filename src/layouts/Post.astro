@@ -4,11 +4,25 @@ import Page from "./Page.astro";
 import FormatAgo from "@components/FormatAgo.svelte";
 import { format } from "date-fns";
 const { frontmatter } = Astro.props;
+const locale = (Astro.currentLocale ?? "en") as "cs" | "en";
 
 const updated_str = frontmatter.updated;
 
 const published = new Date(frontmatter.published);
 const updated = updated_str ? new Date(updated_str) : undefined;
+
+const componentLocalization = {
+    en: {
+      published: "Published",
+      lastUpdated: "Last Updated"
+    },
+    cs: {
+      published: "Publikováno",
+      lastUpdated: "Naposledy akutalizováno"
+    },
+  };
+
+const t = componentLocalization[locale];
 ---
 
 <Page
@@ -26,14 +40,14 @@ const updated = updated_str ? new Date(updated_str) : undefined;
             frontmatter.publishedLabelOverride
           ) : (
             <span>
-              Published: {format(published, "yyyy/MM/dd")} (<FormatAgo client:only date={published} format="round" />)
+              {t.published}: {format(published, "yyyy/MM/dd")} (<FormatAgo {locale} client:only date={published} format="round" />)
             </span>
 
             <span>
               {
                 updated ? (
                   <span>
-                    Last updated: {format(updated, "yyyy/MM/dd")} (<FormatAgo client:only date={updated} format="round" />)
+                    {t.lastUpdated}: {format(updated, "yyyy/MM/dd")} (<FormatAgo {locale} client:only date={updated} format="round" />)
                   </span>
                 ) : (
                   ""
