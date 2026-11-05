@@ -35,6 +35,6 @@ jobs:
         uses: indiefellas/deploy2nekoweb@main
         with:
           nekoweb-api-key: ${{ secrets.API_KEY }}
-          nekoweb-domain: "wireless.fish"
+          nekoweb-domain: "f1sh.cz"
           nekoweb-username: "sharkyfur"
           directory: "dist"
