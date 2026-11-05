@@ -1,0 +1,15 @@
+---
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const vinyls = await getCollection("vinyls", (v) => v.id.includes("cs/"));
+
+  return vinyls.map((v) => ({
+    params: { slug: v.id.replace("cs/", "") },
+    props: { v },
+  }));
+}
+const { Content } = await render(Astro.props.v);
+---
+
+<Content />

@@ -6,12 +6,13 @@ const vinylCollection = await getCollection("vinyls");
 
 type Props = {
   entry: (typeof vinylCollection)[0];
+  locale: "en" | "cs";
 };
 
-const { entry }: Props = Astro.props;
+const { entry, locale = "en" }: Props = Astro.props;
 ---
 
-<a class="entry" href={"/vinyl/" + entry.id}>
+<a class="entry" href={(locale === "en" ? "/vinyl/" : "/cs/vinyl/") + entry.id}>
   <img src={entry.data.albumArt} alt={entry.data.albumArtAlt} loading="lazy" />
 
   <div class="info">

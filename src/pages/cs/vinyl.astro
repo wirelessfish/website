@@ -4,14 +4,15 @@ import { getCollection } from "astro:content";
 
 import VinylEntry from "@components/vinyl/VinylEntry.astro";
 
-let vinyls = await getCollection("vinyls");
+let vinyls = await getCollection("vinyls", (v) => v.id.includes("cs/"));
+vinyls.map((v) => (v.id = v.id.replace("cs/", "")));
 vinyls = vinyls.sort((a, b) => b.data.dateAdded.valueOf() - a.data.dateAdded.valueOf());
 ---
 
 <VinylBase title="Vinyls" description="My collection of vinyls">
   <div class="content">
     <div class="vinyls">
-      {vinyls.map((vinylEntry) => <VinylEntry entry={vinylEntry} />)}
+      {vinyls.map((vinylEntry) => <VinylEntry locale="cs" entry={vinylEntry} />)}
     </div>
 
     <div class="hint">(Klikni pro detaily)</div>

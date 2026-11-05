@@ -15,7 +15,7 @@ const blog = defineCollection({
 });
 
 const vinyls = defineCollection({
-  loader: glob({ pattern: "**/*.mdx", base: "./src/pages/vinyl" }),
+  loader: glob({ pattern: "**/*.mdx", base: "./src/vinyl" }),
   schema: z.object({
     title: z.string(),
     dateAdded: z.coerce.date(),

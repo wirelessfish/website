@@ -3,6 +3,7 @@ import Hint from "@components/Hint.astro";
 import VinylBase from "@layouts/VinylBase.astro";
 
 import { getCollection } from "astro:content";
+import { localization } from "@i18n/index";
 
 const vinylCollection = await getCollection("vinyls");
 
@@ -11,14 +12,17 @@ type Props = {
 };
 
 const { frontmatter }: Props = Astro.props;
+
+const locale = (Astro.currentLocale ?? "en") as keyof typeof localization;
+const t = localization[locale];
 ---
 
 <VinylBase
   title={frontmatter.title}
-  description={"A page about the " + frontmatter.title + " album by " + frontmatter.artist}
+  description={t.vinyl.pageAboutThe + frontmatter.title + t.vinyl.albumBy + frontmatter.artist}
 >
   <div class="content">
-    <a class="back" href="/vinyl/">&lt;&lt;&lt; Go back</a>
+    <a class="back" href="/vinyl/">&lt;&lt;&lt; {t.vinyl.back}</a>
 
     <div class="header">
       <h2>{frontmatter.title}</h2>
@@ -32,7 +36,7 @@ const { frontmatter }: Props = Astro.props;
           ""
         )
       }
-      <Hint>(Click the images for full resolution)</Hint>
+      <Hint>({t.vinyl.clickForFullRes})</Hint>
     </div>
 
     <slot />

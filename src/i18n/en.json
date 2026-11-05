@@ -15,5 +15,11 @@
       "text": "Version 4.2 ",
       "link": "[source code]"
     }
+  },
+  "vinyl": {
+    "pageAboutThe": "A page about the ",
+    "albumBy": " album by ",
+    "back": "Go back",
+    "clickForFullRes": "Click the images for full resolution"
   }
 }

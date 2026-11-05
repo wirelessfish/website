@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 
 import VinylEntry from "@components/vinyl/VinylEntry.astro";
 
-let vinyls = await getCollection("vinyls");
+let vinyls = await getCollection("vinyls", (v) => !v.id.includes("cs/"));
 vinyls = vinyls.sort((a, b) => b.data.dateAdded.valueOf() - a.data.dateAdded.valueOf());
 ---
 

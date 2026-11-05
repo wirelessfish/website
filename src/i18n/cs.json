@@ -15,5 +15,11 @@
       "text": "Verze 4.2 ",
       "link": "[zdrojový kód]"
     }
+  },
+  "vinyl": {
+    "pageAboutThe": "Stránka o ",
+    "albumBy": " albu od ",
+    "back": "Jít zpět",
+    "clickForFullRes": "Pro plné rozlišení klikni na obrázky"
   }
 }
