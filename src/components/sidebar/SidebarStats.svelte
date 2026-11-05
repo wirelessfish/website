@@ -23,7 +23,7 @@
     }
   }
 
-  getNekowebStats("wireless.fish").then((data) => (nw_stats = data));
+  getNekowebStats("f1sh.cz").then((data) => (nw_stats = data));
   getBackendStatus().then((state) => (backend_alive = state));
 
   const componentLocalization = {
