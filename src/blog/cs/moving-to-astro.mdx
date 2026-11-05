@@ -1,77 +1,74 @@
 ---
 layout: "@layouts/Post.astro"
 title: Sbohem a šáteček, Eleventy!
-description: I have migrated my site to a different SSG, from Eleventy to Astro.
-  This was for various reasons... mainly because of the utility of components and better documentation.
+description:
+  Změnil jsem site generator mojí strány, přešel jsem z Eleventy na Astro. Tohle se stalo z více důvodů... hlavně kvůli jednodužšímu vývoji za pomocí
+  komponentů a lepší dokumentace od Astro.
 published: 2026-09-02T15:32:00.000+2:00
 # updated: timedate string of last update
 og_img: "/assets/post/moving-to-astro/thumbnail.webp"
-og_img_alt: "Two anime girls from the anime 'Girls Last Tour' holding an opossum (11ty mascot) above them"
+og_img_alt: "Dvě anime holky držící vačici (maskot Eleventy) nad nimi"
 ---
 
 import AeroButton from "@components/AeroButton.svelte";
 import ChangingShowcase from "@components/posts/moving-to-astro/ChangingShowcase.svelte";
 import EleventyMascot from "@components/posts/moving-to-astro/EleventyMascot.svelte";
 
-<EleventyMascot />
+<EleventyMascot locale="cs" />
 
-Okay so some context, my site has used the [Eleventy](https://www.11ty.dev/) static
-site generator ever since the commit
+Oukej, abys měl nějaký kontext: moje webovka používala [Eleventy](https://www.11ty.dev/) jako static site generator od commitu
 [141d103](https://github.com/wirelessfish/website/commit/141d103337e7ba7e349cec8d05aa5660aa627680)
-(2025/06/07 - wow that's 7 months ago). This was what I would call an "alright" decision,
-since I only really needed to avoid copy-pasting my navbar on every page.
+(2025/06/07 - wow, to už je 7 měsíců). Bylo to v pohodě rozhodnutí, protože jsem se tehdy potřeboval vyhnout kopírování mojí navigace
+na každou stránku.
 
-11ty rocks (so does their mascot)! It is perfect for inserting html snippets and creating
-simple blogs. However the problem arises when you try to do anything more than that. When I
-wanted to go from simple html snippets to full blown components, Eleventy just does not have a
-simple way of doing that. And then you end up manually manipulating the DOM just do make
-a guestbook. [Ask me how I know](https://github.com/wirelessfish/website/blob/52f49ba1e4f89ac7559efc5e938e10c9957563e5/src/scripts/guestbook.ts).
+11ty je super (stejně jako jejich maskot)! Je perfektní pro automatické vkládání html kódu jako třeba u jednoduchých blogů. Jenomže problémy
+se začnou oběvovat, když se snažíte dosáhnout něčeho více než jen to. Když jsem chtěl přejít od jednoduchých html úryvků na reálné komponenty, tak jsem nemohl,
+protože na to Eleventy jednodužše není postavený. No a pak musíš manuálně manipulovat DOM, jenom proto abys mohl mít návštěvnickou knihu.
+[Pročpak to asi vím](https://github.com/wirelessfish/website/blob/52f49ba1e4f89ac7559efc5e938e10c9957563e5/src/scripts/guestbook.ts).
 
-Needless to say that combined with the lacking documentation (it's bearable only when you use an AI
-chatbot to search for stuff) has made me want to move away more and more. So I've bitten the bullet
-and ported the whole website to Astro+Svelte over the course of 5 days.
+Nemluvě o poněkud nedostatečné dokumentaci (dá se v tom vyznat jenom díky AI). Všechy tyhle věci vedly k tomu, že se mi Eleventy spíše ztěžovala život. Tak jsem
+se konečně sebral a předělal celou stránku tak, aby používala Astro a Svelte přes cca týden.
 
-## The good
+## To dobré
 
-### Community
+### Komunita
 
-Documentation is now actually useful, yay! Both Astro and Svelte have good docs
-and combined with their large communities make it way easier to troubleshoot things.
+Dokumentace je teď doopravdy užitečná! Jak Astro tak Svelte mají super dokumentaci a v kombinaci se svými obrovskými komunitami je mnohem jednodužší
+najít a opravit chyby v kódu.
 
-### Integration
+### Integrace
 
-Integrating Svelte into Astro is as easy as:
+Integrace Svelte do Astro frameworku je velmi jednoduché:
 
 ```bash
 pnpm astro add svelte
 ```
 
-So convenient!
+A hotovo!
 
-### Components!!!! &lt;3
+### Komponenty!!!! &lt;3
 
-Now that I have the power of components on my side, I can do what Eleventy can only dream of:
+Teď, když mám sílu komponentů na mojí straně, můžu dělat to o čem může Eleventy jenom snít:
 
 ```svelte
-<AeroButton color={"#1e78ff"}>Button 1</AeroButton>
-<AeroButton color={"#9d41da"}>Button 2</AeroButton>
-<AeroButton color={"#ffb41f"}>Button 3</AeroButton>
-<AeroButton color={"#ff1e1e"}>Button 4</AeroButton>
-<AeroButton color={"#ec5757"}>Button 5</AeroButton>
+<AeroButton color={"#1e78ff"}>Čudlík 1</AeroButton>
+<AeroButton color={"#9d41da"}>Čudlík 2</AeroButton>
+<AeroButton color={"#ffb41f"}>Čudlík 3</AeroButton>
+<AeroButton color={"#ff1e1e"}>Čudlík 4</AeroButton>
+<AeroButton color={"#ec5757"}>Čudlík 5</AeroButton>
 ```
 
-The snipped above produces this:
+Tento úryvek vytvoří tohle:
 
-<AeroButton color={"#1e78ff"}>Button 1</AeroButton>
-<AeroButton color={"#9d41da"}>Button 2</AeroButton>
-<AeroButton color={"#ffb41f"}>Button 3</AeroButton>
-<AeroButton color={"#ff1e1e"}>Button 4</AeroButton>
-<AeroButton color={"#ec5757"}>Button 5</AeroButton>
+<AeroButton color={"#1e78ff"}>Čudlík 1</AeroButton>
+<AeroButton color={"#9d41da"}>Čudlík 2</AeroButton>
+<AeroButton color={"#ffb41f"}>Čudlík 3</AeroButton>
+<AeroButton color={"#ff1e1e"}>Čudlík 4</AeroButton>
+<AeroButton color={"#ec5757"}>Čudlík 5</AeroButton>
 
-See that? The button component automatically computes it's colors based on
-one color you pass to it! So cool!
+Vidíš to? Čudlík si automaticky vypočítá barvy na základě jen jedné, která je nadefinována! Velmi cool!
 
-It uses the `color` npm package to work with colors and essentially does this:
+Využívá to npm klinovnu `color` pro manipulaci s barvami a cca dělá tohle:
 
 ```ts
 let border = original_color.lighten(0.5).fade(0.5);
@@ -89,23 +86,22 @@ let hover = {
 };
 ```
 
-Foolproof? No. Could it be done with less scripting and more css? Sure. But I like this
-one, I've made it. This one is mine. And I am happy with it (for now lol).
+Neprůstřelná implementace? Určitě ne. Šlo by to udělat s více css a méně javascriptu? Určitě. Ale mě se líbí tahle implementace. Udělal jsem ji já a jsem s ní
+spokojenej (prozatím lol).
 
-### Interactivity / scripting
+### Interaktivita / skriptování
 
-Another thing Astro+Svelte allows me to do is update the DOM (webpage content) very easily! I can
-simply define a variable with `$state()` (in Svelte components), use it in a page
-and whenever the variable changes, so does the webpage content!
+Další věc co mi Astro a Svelte dovolí je jednoduchá modifikace DOMu (obsahu stránky)! Jednoduše nadefinuju proměnnou pomocí `$state()` (ve Svelte komponentech),
+použiju ju ve stránce a kdykoliv kdy se ta proměnná změní, změní se i obsah stránky!
 
-<ChangingShowcase client:only />
+<ChangingShowcase locale="cs" client:only />
 
-The above example _roughly_ requires me to do this (not valid code):
+Příklad nad tímhle _zhruba_ potřebuje tento kód:
 
 ```svelte
 <script>
 // import {sleep} from ...
-let words = ["I can", "make these", "words change", "very easily", "with svelte!"];
+let words = ["Můžu tyhle", "slova měnit", "dost jednodužše", "za pomocí", "Svelte komponentů!"];
 let current_word: number = $state(0);
 
 while (true) {
@@ -124,55 +120,40 @@ while (true) {
 </div>
 ```
 
-This doesn't look that different compared to just updating the element's content directly with
-`document.getElementById()` and changing it's `innerHtml`. But that gets messy fast
-with every new element that need changing. Also the Eleventy approach would most
-likely have you split HTML, CSS and Javascript into multiple files whereas Svelte
-components contain everything in one, making it way easier to navigate the codebase.
+Přímo tento příklad není o moc rozdílný od toho, když získáme element za pomoci `document.getElementById()` a změníme `innerHtml` proměnou. Ale takový přístup
+začne vypadat hodně škaredě hodně rychle. Obzvlášť jakmile musíte aktualizovat třeba přes čtyři proměnné. Navíc Eleventy by vyžadoval rozdělení HTML, CSS a
+Javascriptu do jednotlivých souborů kdežto Svelte vám dovolí mít vše v jednom souboru. Díky tomuto je zdrojový kód se Svelte o dost přehlednější.
 
-This is extremely useful for things like... [my guestbook](/guestbook/)
-(which you should definitely sign btw) or the status thingies on the
-left sidebar! The files contain everything they need to function on their own and I can
-just build site as if I was playing with LEGO. And if something needs changing,
-everything related to one building block is contained within itself \:D
+Tohle je velmi užitečné pro věci jako... moje [návštěvnická kniha](/cs/guestbook/) (kterou by jsi měl určitě podepsat btw) nebo takový ten status na boku stránky!
+Ty soubory obsahují vše co potřebují k fungování a můžu potom stránku stavět jako z LEGO kostek. A když něco potřebuje pozměnit, vše k jedné stavební kostce
+je obsaženo právě v jejím souboru \:D
 
-## The bad
+## To špatné
 
-So far I haven't had any issues with Astro. It has everything I need and the rest can
-be added with additional npm packages. I'm looking forward to working with astro more.
+Zatím jsem neměl žádné problémy s Astro. Má vše co potřebuju a extra věci můžu přidat pomocí dalších npm knihoven. Dost se těším se na další programování s Astro.
 
-## Would you recommend Eleventy/Astro?
+## Doporučoval bys Eleventy/Astro?
 
-Eleventy is honestly not the worst, but it has significantly more friction when configuring
-compared to astro. If all you need is simple layouts and html snippets and don't mind the
-config, it's probably right for you. Though if you need anything more (you probably do,
-svelte components are awesome if not only for the scoped styles) you'll want to run Astro
-together with another framework like Svelte.
+Eleventy rozhodně není špatná volba, ale je tam o dost více práce při prvním nastavení oproti Astro. Pokud jenom potřebuješ jednoduché layouty a html úryvky a
+nevadí ti to nastavování, tak je to asi ta správná volba pro tebe. Ale když chceš cokliv více (nejspíš ano, komponenty jsou mega super) tak bych spíše doporučoval
+Astro s frameworkem jako Svelte.
 
-Astro's nice, it compiles to a static pages just like Eleventy (perfect for nekoweb/neocities)
-and stays fast thanks to javascript islands (honestly I still don't really understand
-it fully, so [here's](https://docs.astro.build/en/concepts/islands/) a link).
+Astro je super, compiluje se na statické stránky jako Eleventy (perfektní pro nekoweb nebo neocities) a zůstává rychlé díky javascript ostrůvkům (upřímě se mě neptej
+co přesně to znamená, můžeš si to načíst [tady](https://docs.astro.build/en/concepts/islands/)).
 
-## What's next?
+## A co dál?
 
-Well the next thing on the chopping block is the backend for my website. It was mostly written
-by an AI agent over the span of a week while I studied for my maturita exam
-(Czech shool-leaving exam, roughly the same thing as a high school diploma exam). I'm not
-proud of that and I'm sure it's full of bugs. That's exactly why I'll rewrite it
-from scratch. With as little AI generated code as possible.
+No, další na řadě je můj backend. Byl více méně napsán AI agentem zatímco sem se učil na maturitu. Nejsem na to hrdý a je mi jasné, že je plný bugů. Přesně kvůli tomu
+ho přepíšu úplně od začátku. S co nejmenším využitím AI.
 
-It's hard to say when that whole thing's going to be done, since my first university semester
-starts on the 14<sup>th</sup> (just 12 days away!). For anyone wondering, I'm going to study Software
-Engineering at the Faculty of Applied Informatics at the [Tomas Bata University](https://www.utb.cz/en/) in Zlín.
-I'm very excited... and have ZERO idea how things are going to work, how much free time I'll have
-and how long it'll take to get adjusted to the new environment. Regardless I will try to finish
-this rewrite as soon as possible, so that I can focus on adding more cool stuff to the site
-(such as a like button for blogposts).
+Těžko číct kdy to bude hotovo, protože první semestr mi začíná čtrnáctého. Pro ty koho to zajímá, budu studovat softwarové inženýrství na Fakultě Aplikované Informatiky
+na [Univerzitě Tomáše Bati](https://www.utb.cz/) ve Zlíně. Dost se na to těším... a nemám ponětí jak to všechno bude fungovat, kolik volného času budu mít a jak
+dlouho mi potrvá, než si zvyknu na nové prostředí. Tak i onak se budu snažit překopat ten backend co nejdřív ať se můžu soustředit na přidávání dalších cool věcí
+na moju stránku (jako například odkaz na seznam blogpostů).
 
-Hey there, you're still reading this? Hi! Do you like this? It's my first "blog post", whatever
-that is. Honestly I might just make an actual blog and write more posts like this one.
+Ahoj, pořád tohle čteš? Líbí se ti to? Je to můj první "blog post", cokoliv co to znamená. Upřímě možná udělám reálný blog a budu psát další posty jako tenhleten.
 
-Thank you for reading and as always, more things to come (hopefully!),  
-Much love, Sharky ♥
+Díky za tvůj čas a jako vždycky, více věcí přijde brzy (doufám!).  
+Přeju hezký zbytek dne, Sharky ♥
 
-![girls](/assets/post/moving-to-astro/chii.webp)
+![Anime holka, která natahuje ruce ke čtenáři](/assets/post/moving-to-astro/chii.webp)

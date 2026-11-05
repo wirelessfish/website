@@ -1,14 +1,35 @@
 <script lang="ts">
+  type Props = {
+    locale: "en" | "cs";
+  };
+  const { locale = "en" }: Props = $props();
+
+  const componentLocalization = {
+    en: {
+      title: "The 11ty mascot (2026)",
+      mascotName: '"Awesome Possum"',
+      mascotNote1: "It's actually spelled",
+      mascotNote2: '"Opossum" but whatever...',
+      imgAlt: "Eleventy mascot (opossum) floating with a baloon strapped to them",
+    },
+    cs: {
+      title: "Maskot 11ty (2026)",
+      mascotName: '"Awesome Possum"',
+      mascotNote1: "Správně to je hláskováno",
+      mascotNote2: '"Opossum" ale co už...',
+      imgAlt: "Maskot Eleventy (vačice), který se vznáší pomocí balónku",
+    },
+  };
+
+  const t = $derived(componentLocalization[locale]);
 </script>
 
 <div class="container">
-  <img
-    alt="Eleventy mascot (opossum) floating with a baloon strapped to them"
-    src="/assets/post/moving-to-astro/eleventy.svg"
-  />
-  <div class="title">The 11ty mascot (2026)</div>
-  <div>"Awesome Possum"</div>
-  <div class="note">It's actually spelled<br />"Opossum" but whatever...</div>
+  <img alt={t.imgAlt} src="/assets/post/moving-to-astro/eleventy.svg" />
+  <div class="title">{t.title}</div>
+  <div>{t.mascotName}</div>
+  <div class="note">{t.mascotNote1}</div>
+  <div class="note">{t.mascotNote2}</div>
 </div>
 
 <style>
