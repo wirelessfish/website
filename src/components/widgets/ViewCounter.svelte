@@ -5,7 +5,7 @@
   let viewcountStr: string = $derived(String(viewcount).padStart(5, "0"));
 
   $effect(() => {
-    getNekowebStats("wireless.fish").then((s) => {
+    getNekowebStats("f1sh.cz").then((s) => {
       viewcount = s.views;
     });
   });
