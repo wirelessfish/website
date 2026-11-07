@@ -12,6 +12,7 @@ import type {
   LastFmPeriod,
   Track,
   Artist,
+  Album,
 } from "../types/lastfm.js";
 
 export type { Scrobble, RecentTracks, UserInfo, LastFmImageSize };
@@ -218,6 +219,10 @@ export function getTrackCover(track: Track, size: LastFmImageSize = "large"): st
 
 export function getArtistImage(artist: Artist, size: LastFmImageSize = "large"): string {
   return resolveImage(artist.image, size);
+}
+
+export function getAlbumImage(album: Album, size: LastFmImageSize = "large"): string {
+  return resolveImage(album.image, size);
 }
 
 export function getUserAvatar(info: UserInfo, size: LastFmImageSize = "large"): string {

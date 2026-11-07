@@ -11,7 +11,7 @@ vinyls = vinyls.sort((a, b) => b.data.dateAdded.valueOf() - a.data.dateAdded.val
 <VinylBase title="Vinyls" description="My collection of vinyls">
   <div class="content">
     <div class="vinyls">
-      {vinyls.map((vinylEntry) => <VinylEntry entry={vinylEntry} />)}
+      {vinyls.map((vinylEntry) => <VinylEntry locale="en" entry={vinylEntry} />)}
     </div>
 
     <div class="hint">(Click to see details)</div>

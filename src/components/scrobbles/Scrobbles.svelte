@@ -6,13 +6,15 @@
 
   import {
     getRecentTracks,
+    getTopAlbums,
     getTopArtists,
     getTopTracks,
     getUserInfo,
     type RecentTracks,
     type UserInfo,
   } from "../../scripts/module/lastfm";
-  import type { TopArtists, TopTracks } from "../../scripts/types/lastfm";
+  import type { TopAlbums, TopArtists, TopTracks } from "../../scripts/types/lastfm";
+  import TopAlbumsComponent from "./TopAlbumsComponent.svelte";
 
   type Props = {
     locale: "en" | "cs";
@@ -23,26 +25,30 @@
   let user_data: UserInfo | undefined = $state();
   let top_tracks: TopTracks | undefined = $state();
   let top_artists: TopArtists | undefined = $state();
+  let top_albums: TopAlbums | undefined = $state();
 
   getRecentTracks(10).then((tracks) => (recent_tracks = tracks));
   getUserInfo().then((data) => (user_data = data));
-  getTopTracks(10, "3month").then((tracks) => (top_tracks = tracks));
-  getTopArtists(10, "3month").then((artists) => (top_artists = artists));
+  getTopTracks(10, "1month").then((tracks) => (top_tracks = tracks));
+  getTopArtists(10, "1month").then((artists) => (top_artists = artists));
+  getTopAlbums(9, "1month").then((albums) => (top_albums = albums));
 
   const componentLocalization = {
     en: {
       recentTracks: "Recent tracks",
       userInfo: "User info",
-      topTracks: "Top tracks (90 days)",
-      topArtists: "Top artists (90 days)",
+      topTracks: "Top tracks (30 days)",
+      topArtists: "Top artists (30 days)",
       loading: "Loading...",
+      topAlbums: "Top Albums (30 days)",
     },
     cs: {
       recentTracks: "Nedávné skladby",
       userInfo: "Info uživatele",
-      topTracks: "Top skladby (90 dní)",
-      topArtists: "Top umělci (90 dní)",
+      topTracks: "Top skladby (30 dní)",
+      topArtists: "Top umělci (30 dní)",
       loading: "Načítání...",
+      topAlbums: "Top Alba (30 dní)",
     },
   };
 
@@ -67,25 +73,13 @@
   </div>
 
   <section>
-    <!-- PROFILE -->
-    <h3>{t.userInfo}</h3>
-    <div class="recent-tracks">
-      {#if !user_data}
-        <span>{t.loading}</span>
-      {:else}
-        <LastfmProfile user={user_data}></LastfmProfile>
-      {/if}
-    </div>
-
-    <!-- TOP TRACKS -->
-    <h3>{t.topTracks}</h3>
-    {#if !top_tracks}
+    <h3>{t.topAlbums}</h3>
+    {#if !top_albums}
       <span>{t.loading}</span>
     {:else}
-      <TopTracksComponent {top_tracks} />
+      <TopAlbumsComponent {locale} topAlbums={top_albums} />
     {/if}
 
-    <!-- TOP ARTISTS -->
     <h3>{t.topArtists}</h3>
     {#if !top_artists}
       <span>{t.loading}</span>
