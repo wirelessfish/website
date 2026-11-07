@@ -22,11 +22,11 @@
       <div class="comment_info">
         <span class="comment_name">
           {guestbook_entry.name}
-          {#if guestbook_entry.verified}
+          {#if guestbook_entry.badge === "owner"}
             <img class="verified-img" title="Webmaster" alt="verified icon" loading="lazy" src="/assets/shield.svg" />
           {/if}
         </span>
-        <span class="comment_date">{format(new Date(guestbook_entry.created), "yyyy/MM/dd")}</span>
+        <span class="comment_date">{format(new Date(guestbook_entry.date), "yyyy/MM/dd")}</span>
       </div>
     </div>
   </div>

@@ -1,6 +1,7 @@
 <script lang="ts">
   import AeroButton from "@components/AeroButton.svelte";
   import { colors } from "@scripts/colors";
+  import { Config } from "@scripts/config";
   import { sleep } from "@scripts/module/util";
   import type { GuestbookEntry, GuestbookPostBody } from "@scripts/types/guestbook";
   import validator from "validator";
@@ -82,7 +83,7 @@
 
     try {
       console.log(guesbook_post_data);
-      resp = await fetch("https://api.wireless.fish/guestbook", {
+      resp = await fetch(Config.apiUrl + "/guestbook", {
         method: "POST",
         body: JSON.stringify(guesbook_post_data),
         headers: {

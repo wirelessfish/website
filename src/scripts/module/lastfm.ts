@@ -14,22 +14,19 @@ import type {
   Artist,
   Album,
 } from "../types/lastfm.js";
+import { Config } from "@scripts/config.js";
 
 export type { Scrobble, RecentTracks, UserInfo, LastFmImageSize };
 
-const API_PROXY = "https://api.wireless.fish/lastfm/proxy";
-const API_RECENT_TRACKS = API_PROXY + "/user.getRecentTracks";
-const API_INFO = API_PROXY + "/user.getInfo";
-const API_TOP_TRACKS = API_PROXY + "/user.getTopTracks";
-const API_TOP_ALBUMS = API_PROXY + "/user.getTopAlbums";
-const API_TOP_ARTISTS = API_PROXY + "/user.getTopArtists";
+const API_PROXY = Config.apiUrl + "/lastfm";
 
 export const USERNAME = "sharkyblacktip";
 
 // === API FUNCTIONS ===
 
 async function api_getRecentTracks(username: string, limit?: number): Promise<RecentTracks> {
-  const url = new URL(API_RECENT_TRACKS);
+  const url = new URL(API_PROXY);
+  url.searchParams.set("method", "user.getrecenttracks");
   url.searchParams.set("user", username);
   if (limit) url.searchParams.set("limit", String(limit));
 
@@ -49,7 +46,8 @@ async function api_getRecentTracks(username: string, limit?: number): Promise<Re
 }
 
 async function api_getUserInfo(username: string): Promise<UserInfo> {
-  const url = new URL(API_INFO);
+  const url = new URL(API_PROXY);
+  url.searchParams.set("method", "user.getinfo");
   url.searchParams.set("user", username);
 
   const response = await fetch(url);
@@ -67,7 +65,8 @@ async function api_getUserInfo(username: string): Promise<UserInfo> {
 }
 
 async function api_getTopTracks(username: string, limit?: number, period?: LastFmPeriod): Promise<TopTracks> {
-  const url = new URL(API_TOP_TRACKS);
+  const url = new URL(API_PROXY);
+  url.searchParams.set("method", "user.gettoptracks");
   url.searchParams.set("user", username);
 
   if (period) url.searchParams.set("period", period);
@@ -89,7 +88,8 @@ async function api_getTopTracks(username: string, limit?: number, period?: LastF
 }
 
 async function api_getTopArtists(username: string, limit?: number, period?: LastFmPeriod): Promise<TopArtists> {
-  const url = new URL(API_TOP_ARTISTS);
+  const url = new URL(API_PROXY);
+  url.searchParams.set("method", "user.gettopartists");
   url.searchParams.set("user", username);
 
   if (period) url.searchParams.set("period", period);
@@ -111,7 +111,8 @@ async function api_getTopArtists(username: string, limit?: number, period?: Last
 }
 
 async function api_getTopAlbums(username: string, limit?: number, period?: LastFmPeriod): Promise<TopAlbums> {
-  const url = new URL(API_TOP_ALBUMS);
+  const url = new URL(API_PROXY);
+  url.searchParams.set("method", "user.gettopalbums");
   url.searchParams.set("user", username);
 
   if (period) url.searchParams.set("period", period);

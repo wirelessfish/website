@@ -1,7 +1,8 @@
+import { Config } from "@scripts/config";
 import type { GuestbookEntry, GuestbookResponse } from "../types/guestbook";
 import { getLocalStorage, setLocalStorageMinutes } from "./localstorage";
 
-const API = "https://api.wireless.fish/guestbook";
+const API = Config.apiUrl + "/guestbook";
 
 let name_map: Map<number, string> = new Map<number, string>();
 
@@ -16,9 +17,7 @@ async function api_getGuestbook(): Promise<GuestbookResponse> {
   }
 
   const data: GuestbookResponse = await response.json();
-  if (data.count == 0) {
-    throw new Error(`guestbook api error`);
-  }
+  console.log(data);
 
   data.entries.forEach((comment) => {
     comment.replies.forEach((reply) => {

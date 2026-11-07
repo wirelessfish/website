@@ -4,6 +4,7 @@
   import "javascript-time-ago/locale/en";
   import "javascript-time-ago/locale/cs";
   import TimeAgo from "javascript-time-ago";
+  import { Config } from "@scripts/config";
 
   type Props = {
     locale: "en" | "cs";
@@ -16,7 +17,7 @@
 
   async function getBackendStatus() {
     try {
-      let response = await fetch("https://api.wireless.fish/", { signal: AbortSignal.timeout(5000) });
+      let response = await fetch(Config.apiUrl, { signal: AbortSignal.timeout(5000) });
       return response.ok;
     } catch {
       return false;

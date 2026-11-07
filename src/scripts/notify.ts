@@ -1,3 +1,4 @@
+import { Config } from "./config.js";
 import { getEl } from "./module/dom.js";
 
 const input = getEl<HTMLInputElement>("notifyinput");
@@ -16,7 +17,7 @@ async function sendNotification() {
   button.innerHTML = "Sending...";
   button.disabled = true;
 
-  let resp = await fetch("https://api.wireless.fish/ntfy", {
+  let resp = await fetch(Config.apiUrl + "/ntfy", {
     method: "POST",
     body: JSON.stringify({ text: input.value, agent: navigator.userAgent }),
     headers: {
