@@ -48,6 +48,7 @@
     position: relative;
     padding: 0;
     display: flex;
+    color: var(--white);
   }
 
   section {
@@ -60,6 +61,8 @@
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
     gap: 8px;
+
+    min-height: 300px;
   }
 
   .onhover {

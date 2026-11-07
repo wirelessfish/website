@@ -27,10 +27,9 @@
   let top_artists: TopArtists | undefined = $state();
   let top_albums: TopAlbums | undefined = $state();
 
-  getRecentTracks(10).then((tracks) => (recent_tracks = tracks));
+  getRecentTracks(11).then((tracks) => (recent_tracks = tracks));
   getUserInfo().then((data) => (user_data = data));
-  getTopTracks(10, "1month").then((tracks) => (top_tracks = tracks));
-  getTopArtists(10, "1month").then((artists) => (top_artists = artists));
+  getTopArtists(9, "1month").then((artists) => (top_artists = artists));
   getTopAlbums(9, "1month").then((albums) => (top_albums = albums));
 
   const componentLocalization = {
@@ -84,7 +83,7 @@
     {#if !top_artists}
       <span>{t.loading}</span>
     {:else}
-      <TopArtistsComponent {top_artists} />
+      <TopArtistsComponent {locale} {top_artists} />
     {/if}
   </section>
 </section>
