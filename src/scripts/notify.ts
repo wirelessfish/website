@@ -19,7 +19,7 @@ async function sendNotification() {
 
   let resp = await fetch(Config.apiUrl + "/ntfy", {
     method: "POST",
-    body: JSON.stringify({ text: input.value, agent: navigator.userAgent }),
+    body: JSON.stringify({ content: input.value, agent: navigator.userAgent }),
     headers: {
       "Content-Type": "application/json",
     },
