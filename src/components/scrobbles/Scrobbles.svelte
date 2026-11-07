@@ -22,13 +22,10 @@
   const { locale = "en" }: Props = $props();
 
   let recent_tracks: RecentTracks | undefined = $state();
-  let user_data: UserInfo | undefined = $state();
-  let top_tracks: TopTracks | undefined = $state();
   let top_artists: TopArtists | undefined = $state();
   let top_albums: TopAlbums | undefined = $state();
 
   getRecentTracks(11).then((tracks) => (recent_tracks = tracks));
-  getUserInfo().then((data) => (user_data = data));
   getTopArtists(9, "1month").then((artists) => (top_artists = artists));
   getTopAlbums(9, "1month").then((albums) => (top_albums = albums));
 

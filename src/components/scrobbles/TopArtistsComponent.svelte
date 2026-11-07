@@ -25,7 +25,7 @@
 <section>
   {#each a as artist}
     <a href={artist.url}>
-      <img src={artist.image[4]["#text"]} alt={artist.name} loading="lazy" />
+      <img src={artist.image[1]["#text"]} alt={artist.name} loading="lazy" />
 
       <div class="onhover">
         <div style="font-weight: bold;">
