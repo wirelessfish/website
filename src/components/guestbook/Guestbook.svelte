@@ -42,7 +42,7 @@
   </div>
 {/if}
 
-<CommentForm locale="cs" {reply_to} />
+<CommentForm {locale} {reply_to} />
 
 <div class="content-padding comment-container">
   {#if !guestbook_data}
