@@ -164,4 +164,4 @@ User-agent: YouBot
 User-agent: ZanistaBot
 Disallow: /
 
-Sitemap: https://wireless.fish/sitemap.xml
+Sitemap: https://f1sh.cz/sitemap.xml

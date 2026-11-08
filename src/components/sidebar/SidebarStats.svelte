@@ -100,9 +100,9 @@
 
   <div>
     {#if locale === "en"}
-      You could <a href="https://nekoweb.org/follow/wireless.fish">follow me</a> on nekoweb... that'd be cool
+      You could <a href="https://nekoweb.org/follow/f1sh.cz">follow me</a> on nekoweb... that'd be cool
     {:else}
-      Můžeš mě <a href="https://nekoweb.org/follow/wireless.fish">dát follow</a> na nekowebu... to by bylo cool
+      Můžeš mě <a href="https://nekoweb.org/follow/f1sh.cz">dát follow</a> na nekowebu... to by bylo cool
     {/if}
   </div>
 </div>
