@@ -15,9 +15,9 @@ Zdrojový kód a soubory s designem krabičky můžeš najít na [githubu](https
 
 ## Proč
 
-Vždycky jsem chtěl něco vyrobit. Něco, co by propojilo můj zájem o počítače a reálný svět, protože se člověk nemůže dotknout kódu. Jenže čeho
-se dá dotknout je hardware. Tak jsem si pořídíl mikropočítač ESP32-C6. Pro ty co neví, to je mikropočítač s vestavěným WiFi a Bluetooth, který může
-ovládát různé periferie jako třeba čudlíky, obrazovky, senzory, páčky, apod...
+Vždycky jsem chtěl něco vyrobit. Něco, co by propojilo můj zájem o počítače s reálným světem, protože kódu se člověk dotknout nemůže.
+Jenže čeho se dotknout dá je hardware. Tak jsem si pořídíl mikropočítač ESP32-C6. Pro ty co neví, je to mikropočítač s vestavěným WiFi
+a Bluetooth, který může ovládát různé periferie jako třeba čudlíky, obrazovky, senzory, páčky, apod...
 
 <Image
   src="/assets/projects/nw-stats/stats-photo.webp"
@@ -28,8 +28,10 @@ ovládát různé periferie jako třeba čudlíky, obrazovky, senzory, páčky, 
 
 ## Ale jak se to programuje?
 
-Samotné programování je poměrně jednoduché. Můžeš používat C++ jako já, nebo jde taky MicroPython. Ale MicroPython nemá tolik knihoven jako C++ (díky frameworku
-Arduino). Můj program je celkem jednoduchý, zhruba dělá tohle:
+Samotné programování je poměrně jednoduché. Můžeš používat C++ jako já, nebo MicroPython.
+Ale MicroPython nemá tolik knihoven jako C++ (díky frameworku Arduino).
+
+Můj program je celkem jednoduchý, zhruba se tam děje tohle:
 
 ```
 inicializovat displej
@@ -37,16 +39,16 @@ inicializovat displej
 pokusit se připojit k WiFi
 
 pokud připojeno
-    opakovat každých 5 minut:
+    každých 5 minut:
         získat data z nekoweb API
         vykreslit data na displeji
 pokud nepřipojeno
     vypsat "Připojení WiFi se nezdařilo" na displej
 ```
 
-Pokud se podíváte na [zdrojový kód](https://github.com/wirelessfish/nekoweb-stats-esp32/blob/main/src/main.cpp) tak zjistíte že to opravdu žádná hrůza není. Je to
-prakticky jeden soubor, který má 71 řádků kódu a obsahuje dvě knihovny (jedna pro pracování s JSON daty a druhá pro displej). Ta nejtěžší část byla designování
-té krabičky.
+Pokud se podíváte na [zdrojový kód](https://github.com/wirelessfish/nekoweb-stats-esp32/blob/main/src/main.cpp) tak zjistíte
+že to opravdu žádná hrůza není. Je to prakticky jeden soubor, který má 71 řádků kódu a obsahuje dvě knihovny
+(jedna pro pracování s JSON daty a druhá pro displej). Ta nejtěžší část byla designování krabičky.
 
 Ten model stojí za prd, protože to byl můj první CAD projekt. Skládá se ze čtyř částí: vrch, spodek, záda a držák na ten mikropočítač.
 
@@ -68,6 +70,7 @@ Ten model stojí za prd, protože to byl můj první CAD projekt. Skládá se ze
 
 ## Více věcí je na cestě
 
-I když ten model je takový, jaký je, tak mě dost bavilo ho designovat a psát software pro to ESPčko. Plánuju někdy postavit malou meteostanici. Bude to super
-projekt na procvičení jak hardwarových, tak softwarových schopností, protože bude mít solární panel, li-ionovou baterku a různé senzory pro teplotu, vlhkost,
+I když ten model je takový, jaký je, tak mě dost bavilo ho designovat a psát software pro to ESPčko.
+Plánuju někdy v budoucnu postavit malou meteostanici. Bude to super projekt k procvičení designu hardwaru i
+softwaru, protože bude mít solární panel, li-ionovou baterku a různé senzory pro teplotu, vlhkost,
 tlak a jasnost. Až si tu všimneš komponentu s počasím, tak budeš vědět, že sem to postavil!
