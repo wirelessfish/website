@@ -1,0 +1,18 @@
+---
+layout: "@layouts/Post.astro"
+title: I updated my backend
+description: Rewritten it to get rid of mostly vibecoded slop I've made when I was too lazy to learn backend.
+published: 2026-11-09T12:36:00.000+2:00
+---
+
+So if you've read my [thoughts on gen ai](/blog/thoughts-on-ai) blogpost you probably know that my backend was pretty much vibecoded
+because I was too lazy to actually learn express.js and stuff and I was also studying for an important exam in school.
+
+So i've pretty much rewritten it from scratch, now with [fastify](https://fastify.dev/). The difference from the old version is
+the database schema, I feel like the new one makes more sense. Also the last.fm proxy now intercepts the `user.gettopartists`
+method and injects artist profile pictures from deezer because last.fm just sends you a placeholder picture for some reason.
+Also logging, it now has better logs.
+
+Hardware-wise it's now running on a Dell Latitude E6400 (Core 2 Duo with 4GB of RAM 😭) with an ethernet connection
+instead of the Raspberry Pi 3B+ with 1GB of RAM over WiFi. So it should (hopefully) feel faster.
+Especially since it's now running on an actual SSD and not a usb flash disk... ([yeah, really](/assets/post/backend-update/rpi.webp))

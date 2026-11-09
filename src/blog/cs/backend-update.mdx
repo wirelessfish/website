@@ -1,0 +1,18 @@
+---
+layout: "@layouts/Post.astro"
+title: Aktualizoval sem můj backend
+description: Přepsal jsem to kvůlu vibecodovanému slopu, který jsem vygeneroval, když jsem byl
+  moc líný se doopravdy naučit backend programování.
+published: 2026-11-09T12:36:00.000+2:00
+---
+
+Jestli sis přečetl můj [blogpost o gen ai](/cs/blog/thoughts-on-ai), tak nejspíš víš, že můj backend byl prakticky vibekódovaný, protože
+jsem byl moc líný se doopravdy naučit express.js atd... a taky sem se učil na maturitu.
+
+Tak sem to kompletně přepsal, místo express jsem použil [fastify](https://fastify.dev/). Oproti staré verzi má ta nová (podle mě) lepší
+schéma databáze a last.fm proxy zachycuje metodu `user.gettopartists` a přepíše profilovky umělců s obrázkama z deezeru, protože
+last.fm tam z nějakého důvou má jenom nějaký výchozí obrázek. A taky to má lepší logování.
+
+Hardware byl taky vylepšen: teď to jede na noťasu Dell Latitude E6400 (Core 2 Duo s 4GB RAM 😭) připojený síťovým kabelem. To je dost
+velké vylepšení oproti Raspberry Pi 3B+ s 1GB RAM a připojením přes WiFi. Takže doufám že je to teďka rychlejší. Obzvlášť díky tomu,
+že to je na reálném SSDčku a ne na usb flash disku... ([jo, doopravdy](/assets/post/backend-update/rpi.webp))
