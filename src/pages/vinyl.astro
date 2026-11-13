@@ -3,6 +3,10 @@ import VinylBase from "@layouts/VinylBase.astro";
 import { getCollection } from "astro:content";
 
 import VinylEntry from "@components/vinyl/VinylEntry.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { localization } from "@i18n/index";
+
+const locale = (Astro.currentLocale ?? "en") as keyof typeof localization;
 
 let vinyls = await getCollection("vinyls", (v) => !v.id.includes("cs/"));
 vinyls = vinyls.sort((a, b) => b.data.dateAdded.valueOf() - a.data.dateAdded.valueOf());
@@ -15,6 +19,7 @@ vinyls = vinyls.sort((a, b) => b.data.dateAdded.valueOf() - a.data.dateAdded.val
     </div>
 
     <div class="hint">(Click to see details)</div>
+    <div class="home-link"><a href={getRelativeLocaleUrl(locale, "/")}>Home</a></div>
   </div>
 </VinylBase>
 
@@ -40,5 +45,9 @@ vinyls = vinyls.sort((a, b) => b.data.dateAdded.valueOf() - a.data.dateAdded.val
     margin-top: 1rem;
     text-align: center;
     opacity: 30%;
+  }
+
+  .home-link {
+    text-align: center;
   }
 </style>

@@ -1,21 +1,26 @@
 ---
 import VinylBase from "@layouts/VinylBase.astro";
 import { getCollection } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { localization } from "@i18n/index";
 
 import VinylEntry from "@components/vinyl/VinylEntry.astro";
+
+const locale = (Astro.currentLocale ?? "en") as keyof typeof localization;
 
 let vinyls = await getCollection("vinyls", (v) => v.id.includes("cs/"));
 vinyls.map((v) => (v.id = v.id.replace("cs/", "")));
 vinyls = vinyls.sort((a, b) => b.data.dateAdded.valueOf() - a.data.dateAdded.valueOf());
 ---
 
-<VinylBase title="Vinyls" description="My collection of vinyls">
+<VinylBase title="Moje vinily" description="Moje sbírka vinylů">
   <div class="content">
     <div class="vinyls">
       {vinyls.map((vinylEntry) => <VinylEntry locale="cs" entry={vinylEntry} />)}
     </div>
 
     <div class="hint">(Klikni pro detaily)</div>
+    <div class="home-link"><a href={getRelativeLocaleUrl(locale, "/")}>Domů</a></div>
   </div>
 </VinylBase>
 
@@ -41,5 +46,9 @@ vinyls = vinyls.sort((a, b) => b.data.dateAdded.valueOf() - a.data.dateAdded.val
     margin-top: 1rem;
     text-align: center;
     opacity: 30%;
+  }
+
+  .home-link {
+    text-align: center;
   }
 </style>
