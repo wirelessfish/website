@@ -109,9 +109,6 @@
 
 <style>
   .stats {
-    background-color: var(--blacker);
-    border: 1px solid var(--lightgrey);
-    border-radius: 2px;
   }
 
   .stats > * {
@@ -119,7 +116,7 @@
   }
 
   .stats > *:not(:last-child) {
-    border-bottom: 1px solid var(--lightgrey);
+    border-bottom: 1px solid var(--grey);
   }
 
   h2 {

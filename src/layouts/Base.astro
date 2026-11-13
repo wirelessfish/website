@@ -8,7 +8,6 @@ const color_vars = `:root {\n${Object.entries(colors)
   .map(([k, v]) => `  --${k}: ${v};`)
   .join('\n')}\n}`;
 ---
-<style set:html={color_vars} is:global></style>
 
 <!DOCTYPE html>
 
@@ -26,8 +25,8 @@ const color_vars = `:root {\n${Object.entries(colors)
     <!-- SOME STUFF -->
     <title>{ title }</title>
     <meta name="description" content={ description } />
-    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-    <link rel="alternate icon" type="image/png" href="/assets/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="alternate icon" type="image/png" href="/assets/favicon.png" />
 
     <!-- https://ogp.me stuff -->
     <meta property="og:url" content={`https://f1sh.cz${Astro.url.pathname}`} />
@@ -63,3 +62,5 @@ const color_vars = `:root {\n${Object.entries(colors)
       <slot />
   </body>
 </html>
+
+<style set:html={color_vars} is:global></style>

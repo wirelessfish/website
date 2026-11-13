@@ -29,7 +29,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
 
     <div class="page-content">
       <header>
-        <h1>f1sh.cz</h1>
+        <h1><a href={getRelativeLocaleUrl(locale, "/")}>f1sh.cz</a></h1>
 
         <nav>
           <a href={getRelativeLocaleUrl(locale, "/")}>{t.nav.home}</a>
@@ -107,6 +107,11 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
       font-family: "HS LunaObscura";
       font-size: 24px;
       line-height: 1em;
+
+      a {
+        text-decoration: none;
+        padding: 0;
+      }
     }
   }
 
@@ -152,7 +157,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
 
   .sidebar {
     height: 100%;
-    margin-top: 128px;
+    background-color: var(--blacker);
   }
 
   .page-content {
@@ -163,6 +168,8 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     flex: 1;
     display: flex;
     flex-direction: column;
+    border-left: 4px solid var(--darkgrey);
+    border-right: 4px solid var(--darkgrey);
   }
 
   .sidecard {
@@ -174,10 +181,9 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
   }
 
   .main-layout {
-    margin: 40px 128px;
+    margin: 0px 128px;
     display: grid;
     grid-template-columns: 200px 800px 200px;
-    gap: 1em;
     height: 100%;
   }
 
