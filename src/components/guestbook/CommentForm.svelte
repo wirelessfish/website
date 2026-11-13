@@ -95,7 +95,7 @@
       return;
     }
 
-    if (resp.status == 200) {
+    if (resp.ok) {
       reply_to = undefined;
 
       name = "";
