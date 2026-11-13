@@ -15,6 +15,10 @@ const { frontmatter }: Props = Astro.props;
 
 const locale = (Astro.currentLocale ?? "en") as keyof typeof localization;
 const t = localization[locale];
+
+const path = Astro.url.pathname;
+const otherLocaleUrl = Astro.currentLocale === "cs" ? path.replace("/cs/", "/") : "/cs" + path;
+const otherLocaleString = Astro.currentLocale === "cs" ? "English" : "Čeština";
 ---
 
 <VinylBase
@@ -22,7 +26,10 @@ const t = localization[locale];
   description={t.vinyl.pageAboutThe + frontmatter.title + t.vinyl.albumBy + frontmatter.artist}
 >
   <div class="content">
-    <a class="back" href="/vinyl/">&lt;&lt;&lt; {t.vinyl.back}</a>
+    <span class="control">
+      <a class="back" href="/vinyl/">&lt;&lt;&lt; {t.vinyl.back}</a>
+      <a class="lang-switch" href={otherLocaleUrl}>{otherLocaleString}</a>
+    </span>
 
     <div class="header">
       <h2>{frontmatter.title}</h2>
@@ -70,5 +77,19 @@ const t = localization[locale];
 
   .header {
     margin-bottom: 1rem;
+  }
+
+  .control {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .lang-switch {
+    color: var(--orange);
+  }
+
+  .lang-switch:hover {
+    color: var(--black);
+    background-color: var(--orange);
   }
 </style>
