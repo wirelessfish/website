@@ -41,6 +41,17 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
   </section>
 
   <section class="content-padding">
+    <h3>Where to find me</h3>
+
+    <div class="contact">
+      <span><b>Email:</b> sharkyblacktip at protonmail dot com</span>
+      <span><b>Discord:</b> somef1sh</span>
+      <span><b>Fluxer:</b> sharky#3273</span>
+      <span><b>Fedi:</b> <a href="https://neo.tokyonight.city/blog/sharky">sharky@neo.tokyonight.city</a></span>
+    </div>
+  </section>
+
+  <section class="content-padding">
     <h3>Friends</h3>
 
     <div class="eightyeight">
@@ -201,16 +212,9 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     padding: 0px 4px 4px;
   }
 
-  .contact-div {
+  .contact {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-
-    div {
-      align-items: center;
-      display: flex;
-    }
+    flex-direction: column;
   }
 
   .arivertisement {

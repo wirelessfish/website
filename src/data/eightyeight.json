@@ -71,5 +71,10 @@
     "href": "https://bomberfish.ca/?ref=button",
     "src": "https://bomberfish.ca/button.gif",
     "alt": "BomberFish"
+  },
+  {
+    "href": "https://ari.lt/",
+    "src": "/assets/buttons/ari.png",
+    "alt": "ari.lt"
   }
 ]
