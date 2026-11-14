@@ -22,6 +22,8 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
 ---
 
 <Base title={title} description={description} og_img={og_img} og_img_alt={og_img_alt}>
+  <a href={getRelativeLocaleUrl(locale, "/")} class="header-img"></a>
+
   <div class="main-layout">
     <div class="sidebar">
       <SidebarStats locale={locale} client:only />
@@ -153,6 +155,16 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
 
       background: linear-gradient(to right, var(--black) 80%, transparent);
     }
+  }
+
+  .header-img {
+    height: 200px;
+    width: 1200px;
+    background-image: url("/assets/header.webp");
+    background-size: cover;
+    background-position: center;
+
+    padding: 0;
   }
 
   .sidebar {
