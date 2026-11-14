@@ -6,7 +6,6 @@
 /* === BASE ELEMENTS === */
 
 html {
-  background-attachment: fixed;
   background-color: var(--bg);
   background-image: url("/assets/bg.webp");
   color: var(--white);
