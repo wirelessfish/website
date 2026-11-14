@@ -108,9 +108,6 @@
 </div>
 
 <style>
-  .stats {
-  }
-
   .stats > * {
     padding: 4px 8px;
   }
