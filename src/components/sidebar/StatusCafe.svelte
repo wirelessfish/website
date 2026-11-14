@@ -49,12 +49,12 @@
 
 <style>
   h3 {
+    background-color: var(--black);
     text-align: center;
     border-bottom: 1px solid var(--grey);
   }
 
   .main {
-    background-color: var(--blacker);
     border-top: 1px solid var(--grey);
     border-bottom: 1px solid var(--grey);
     padding-bottom: 4px;

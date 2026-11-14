@@ -117,6 +117,7 @@
   }
 
   h2 {
+    background-color: var(--black);
     color: var(--white);
     text-align: center;
     margin: 0;
