@@ -1,0 +1,83 @@
+---
+import WebRing from "@components/index/WebRing.astro";
+---
+
+<section>
+  <h3>Webrings</h3>
+
+  <div class="webrings">
+    <WebRing
+      title="SSG ring"
+      prev="https://jbc.lol/webrings/ssgring/redirect?slug=sharky&way=prev"
+      next="https://jbc.lol/webrings/ssgring/redirect?slug=sharky&way=next"
+      home="https://jbc.lol/webrings/ssgring/"
+    />
+
+    <WebRing
+      title="retronaut webring"
+      prev="https://webring.dinhe.net/prev/https://f1sh.cz/"
+      next="https://webring.dinhe.net/next/https://f1sh.cz/"
+      home="https://webring.dinhe.net"
+    />
+
+    <div>
+      <map name="noaitxtwidget">
+        <area
+          href="https://baccyflap.com/noai"
+          target="_blank"
+          shape="rect"
+          coords="28,0,219,30"
+          alt="no ai webring"
+          title="no ai webring"
+        />
+        <area
+          href="https://baccyflap.com/noai/?prv&s=shr"
+          target="_top"
+          shape="rect"
+          coords="0,0,27,30"
+          alt="previous"
+          title="previous"
+        />
+        <area
+          href="https://baccyflap.com/noai/?rnd"
+          target="_top"
+          shape="rect"
+          coords="221,6,235,25"
+          alt="random"
+          title="random"
+        />
+        <area
+          href="https://baccyflap.com/noai/?nxt&s=shr"
+          target="_top"
+          shape="rect"
+          coords="239,0,263,30"
+          alt="next"
+          title="next"
+        />
+      </map>
+      <img
+        usemap="#noaitxtwidget"
+        src="https://baccyflap.com/noai/txtwidget-light.gif"
+        alt="a white rectangular box with a dashed outline with the words 'the no ai webring' in the centre, with a parenthetical question mark next to it and two arrows pointing left and right to either side"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .webrings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 4px;
+    padding: 0px 8px;
+  }
+
+  h3 {
+    text-align: center;
+    background-color: var(--black);
+    border-bottom: 1px solid var(--grey);
+    border-top: 1px solid var(--grey);
+  }
+</style>

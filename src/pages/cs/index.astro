@@ -100,31 +100,6 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     <Scrobble locale="cs" client:only />
   </section>
 
-  <section class="content-padding">
-    <div class="webrings">
-      <WebRing
-        title="SSG ring"
-        prev="https://jbc.lol/webrings/ssgring/redirect?slug=sharky&way=prev"
-        next="https://jbc.lol/webrings/ssgring/redirect?slug=sharky&way=next"
-        home="https://jbc.lol/webrings/ssgring/"
-      />
-
-      <WebRing
-        title="no AI webring"
-        prev="https://baccyflap.com/noai/?prv&s=shr"
-        next="https://baccyflap.com/noai"
-        home="https://baccyflap.com/noai/?nxt&s=shr"
-      />
-
-      <WebRing
-        title="retronaut webring"
-        prev="https://webring.dinhe.net/prev/https://f1sh.cz/"
-        next="https://webring.dinhe.net/next/https://f1sh.cz/"
-        home="https://webring.dinhe.net"
-      />
-    </div>
-  </section>
-
   <section class="arivertisement">
     <iframe
       src="https://ad.ari.lt/ads/embed?from=https%3A%2F%2Ff1sh.cz"
@@ -155,13 +130,6 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
-  }
-
-  .webrings {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
   }
 
   .notify {
