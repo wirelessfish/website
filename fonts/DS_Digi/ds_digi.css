@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "DS Digital";
+  src: url("DS-DIGI.TTF");
+  font-display: swap;
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "DS Digital";
+  src: url("DS-DIGIB.TTF");
+  font-display: swap;
+  font-style: normal;
+  font-weight: bold;
+}

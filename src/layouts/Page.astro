@@ -7,6 +7,7 @@ import StatusCafe from "@components/sidebar/StatusCafe.svelte";
 import SidebarStats from "@components/sidebar/SidebarStats.svelte";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import Webrings from "@components/sidebar/Webrings.astro";
+import Casio from "@components/sidebar/Casio.svelte";
 
 const { title, description, og_img, og_img_alt } = Astro.props;
 const locale = (Astro.currentLocale ?? "en") as keyof typeof localization;
@@ -53,6 +54,8 @@ const otherLocaleString = Astro.currentLocale === "cs" ? "English" : "Čeština"
 
     <div class="sidebar">
       <StatusCafe locale={Astro.currentLocale as "en" | "cs"} client:only />
+
+      <Casio locale={Astro.currentLocale as "en" | "cs"} client:only />
 
       <div style="display: flex; justify-content: center; margin-top: 1em;">
         <iframe
