@@ -122,8 +122,7 @@ details:open {
   color: var(--black) !important;
 }
 
-.button,
-.button_disabled {
+.button {
   background: linear-gradient(#0a5cb9, #1672db);
   border: none;
   color: #aecaee !important;
@@ -144,60 +143,15 @@ details:open {
   cursor: pointer;
 }
 
-.button:disabled,
-.button_disabled,
-.button-action:disabled {
+.button:disabled {
   background: var(--blue-disabled);
   color: #637286 !important;
   cursor: default;
 }
 
-.button-action {
-  background-color: #4e81cc;
-  border: 1px solid var(--white);
-  border-radius: 2px;
-  color: white;
-  font-weight: bold;
-}
-
-.button-action:hover:not(:disabled) {
-  background-color: #1b3463;
-  color: var(--blue);
-  cursor: pointer;
-}
-
-.button-cancel {
-  background: linear-gradient(var(--red), var(--darkred));
-  border: none;
-  color: var(--peach);
-}
-
-.button-cancel:hover {
-  background: var(--peach);
-  color: var(--red);
-  cursor: pointer;
-}
-
 /* === LAYOUT === */
 
 /* === STYLE === */
-
-.box-thing {
-  background-color: var(--black);
-
-  border: 1px solid var(--blue);
-  border-radius: 4px;
-  overflow: hidden;
-  padding: 16px;
-}
-
-.no-padding {
-  padding: 0px;
-}
-
-.box-thing + .box-thing {
-  margin-top: 16px;
-}
 
 .content-padding {
   margin: 8px 16px;
@@ -206,12 +160,6 @@ details:open {
 .content-padding + .content-padding {
   padding-top: 0px;
   padding-bottom: 0px;
-}
-
-.site-title {
-  a {
-    text-decoration: none;
-  }
 }
 
 .error-text {
@@ -228,15 +176,6 @@ details:open {
 
 .color-darkred {
   color: var(--darkred);
-}
-
-.input-invalid {
-  border-color: var(--error-red);
-}
-
-.less-important {
-  font-style: italic;
-  opacity: 0.6;
 }
 
 pre.astro-code {

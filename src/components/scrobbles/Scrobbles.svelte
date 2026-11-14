@@ -1,19 +1,9 @@
 <script lang="ts">
   import Track from "./Track.svelte";
-  import LastfmProfile from "./LastfmProfile.svelte";
-  import TopTracksComponent from "./TopTracksComponent.svelte";
   import TopArtistsComponent from "./TopArtistsComponent.svelte";
 
-  import {
-    getRecentTracks,
-    getTopAlbums,
-    getTopArtists,
-    getTopTracks,
-    getUserInfo,
-    type RecentTracks,
-    type UserInfo,
-  } from "../../scripts/module/lastfm";
-  import type { TopAlbums, TopArtists, TopTracks } from "../../scripts/types/lastfm";
+  import { getRecentTracks, getTopAlbums, getTopArtists, type RecentTracks } from "../../scripts/module/lastfm";
+  import type { TopAlbums, TopArtists } from "../../scripts/types/lastfm";
   import TopAlbumsComponent from "./TopAlbumsComponent.svelte";
 
   type Props = {
@@ -32,16 +22,12 @@
   const componentLocalization = {
     en: {
       recentTracks: "Recent tracks",
-      userInfo: "User info",
-      topTracks: "Top tracks (30 days)",
       topArtists: "Top artists (30 days)",
       loading: "Loading...",
       topAlbums: "Top Albums (30 days)",
     },
     cs: {
       recentTracks: "Nedávné skladby",
-      userInfo: "Info uživatele",
-      topTracks: "Top skladby (30 dní)",
       topArtists: "Top umělci (30 dní)",
       loading: "Načítání...",
       topAlbums: "Top Alba (30 dní)",
