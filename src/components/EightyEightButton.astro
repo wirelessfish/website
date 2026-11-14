@@ -2,6 +2,10 @@
 const { src, alt, href, css_classes = "" } = Astro.props;
 ---
 
+<a target="_blank" href={href} class={css_classes}>
+  <img loading="lazy" src={src} alt={alt} class="img" />
+</a>
+
 <style>
   a,
   img {
@@ -10,9 +14,12 @@ const { src, alt, href, css_classes = "" } = Astro.props;
     image-rendering: pixelated;
     background-color: transparent;
     padding: 0 0;
+    transition: 100ms;
+  }
+
+  a:hover {
+    .img {
+      scale: 115%;
+    }
   }
 </style>
-
-<a target="_blank" href={href} class={css_classes}>
-  <img loading="lazy" src={src} alt={alt} />
-</a>
