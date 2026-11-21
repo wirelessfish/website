@@ -76,5 +76,11 @@
     "href": "https://ari.lt/",
     "src": "/assets/buttons/ari.png",
     "alt": "ari.lt"
+  },
+  {
+    "href": "https://lucastheguy.nekoweb.org/",
+    "src": "https://lucastheguy.nekoweb.org/images/button.gif",
+    "alt": "lucas the guy",
+    "friend": true
   }
 ]
