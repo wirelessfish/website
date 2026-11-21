@@ -4,6 +4,7 @@ import mdx from "@astrojs/mdx";
 import { satteri } from "@astrojs/markdown-satteri";
 
 export default defineConfig({
+  site: "https://f1sh.cz",
   integrations: [svelte(), mdx()],
   markdown: {
     processor: satteri({ features: { directive: true } }),

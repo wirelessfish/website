@@ -9,6 +9,8 @@ import Scrobble from "@components/index/Scrobble.svelte";
 import { getCollection } from "astro:content";
 import { format } from "date-fns";
 
+import RssSvg from "@assets/icons/rss.svg";
+
 let blog = await getCollection("blog", (p) => p.id.startsWith("cs/"));
 blog.forEach((i) => {
   i.id = i.id.replace("cs/", "");
@@ -75,7 +77,9 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
   </section>
 
   <section class="content-padding blog">
-    <h3>Moje psaní</h3>
+    <h3>
+      Moje psaní <a href="/cs/rss.xml" class="rss-icon"><img src={RssSvg.src} alt="RSS icon" loading="lazy" /></a>
+    </h3>
     {
       blog.map((post) => (
         <span>
@@ -208,6 +212,17 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     padding: 4px 8px;
     border: 1px solid var(--orange);
     display: none;
+  }
+
+  .rss-icon:hover {
+    background: none;
+  }
+
+  .rss-icon > img {
+    height: 1em;
+    vertical-align: -0.2em;
+    margin-left: 0.2em;
+    display: inline;
   }
 
   @media (max-width: 500px) {

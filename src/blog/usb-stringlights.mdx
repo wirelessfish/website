@@ -1,0 +1,63 @@
+---
+layout: "@layouts/Post.astro"
+title: AA batteries? In 2026? No thanks.
+description: I have modified some string lights to use a USB-C connector instead of 3xAA Batteries as their power source.
+published: 2026-11-21T21:37:00.000+01:00
+lang: en
+og_img: "/assets/post/usb-stringlights/thumb.webp"
+og_img_alt: "photo of string lights on my desk"
+---
+
+import Image from "@components/posts/Image.astro";
+import ImageGrid from "@components/posts/ImageGrid.astro";
+
+Are we seriously using disposable batteries in the 26? Unreal. Not only does this create unnecessary waste, but it doesn't even make any sense! Rechargeable batteries
+are dirt cheap now. Some manufacturers even make AA sized li-ion batteries with a USB-C port integrated into the body! Why are we not using this?!
+
+Anyways I've gotten these dirt cheap string lights (5m) for about €2.5 (christmas is coming up, gotta get some decor going).
+I've accepted that they require AA batteries, otherwise they wouldn't be that cheap. However once the batteries ran out after roughly a week
+of use, I had a thought. Why doesn't this use a rechargeable battery?
+
+<Image
+  src="/assets/post/usb-stringlights/old-box.webp"
+  alt="photo of a plastic box with slots for AA batteries and a PCB"
+  width="500px"
+  centered
+/>
+
+So I got to work. I didn't have a charging module on hand, so I threw in a USB-C module to directly power the lights. They don't need to move much and are always
+within reach of a power outlet anyway. The three batteries used to be connected in series, producing about 4.8V at most (AA batteries are labeled 1.5V, but fresh out
+the box they can produce up to about 1.6V). The USB producing 5V is not that big of a problem, the chip on the PCB is probably rated for 5V anyway. But it made the
+ligts draw more current than on the batteries, which _could_ lead to a shorter lifespan of the LEDs (more heat produced). So I added a 20 Ohm resistor to
+somewhat limit the current (from 77mA to 55mA not much but better than nothing + the percieved brightness is pretty much the same).
+
+<ImageGrid columns="1fr 1fr">
+  <Image src="/assets/post/usb-stringlights/usbc.webp" alt="USB-C breakout board" width="500px" centered />
+  <Image
+    src="/assets/post/usb-stringlights/insides.webp"
+    alt="insides of a 3d printed housing with electronics"
+    width="500px"
+    centered
+  />
+</ImageGrid>
+
+I've also 3D printed a housing for that thing. It's a really simple model, held together by a singular screw lol. Here's the string lights in action plugged into a
+phone charger!
+
+[Here's](/assets/post/usb-stringlights/stringlights_bottom.3mf) the model for the bottom part and [here's](/assets/post/usb-stringlights/stringlights_top.3mf)
+the model for the top part, if you're interested in that.
+
+Also don't forget that heatshrink shrinks when exposed to heat. So don't be a smartass like me, putting it on the wire you're soldering just for it to tighten in the middle
+of the wire instead of where you want it.
+
+<ImageGrid columns="1fr 1fr">
+  <Image src="/assets/post/usb-stringlights/box.webp" alt="3D printed plastic box" width="500px" centered />
+  <Image
+    src="/assets/post/usb-stringlights/lights.webp"
+    alt="photo of string lights on my desk"
+    width="500px"
+    centered
+  />
+</ImageGrid>
+
+Anyways... christmas is coming! I can't wait for literally ZERO snow, just like last year.
