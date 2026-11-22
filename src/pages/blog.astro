@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import { format } from "date-fns";
 
 import RssSvg from "@assets/icons/rss.svg";
+import ValidRssButton from "@assets/buttons/valid-rss.webp";
 
 let blog = await getCollection("blog", (p) => !p.id.startsWith("cs/"));
 blog.forEach((i) => {
@@ -32,10 +33,24 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
       }
     </ul>
   </section>
+
+  <section class="content-padding">
+    <a class="valid-rss" href="http://validator.w3.org/feed/check.cgi?url=https%3A//f1sh.cz/rss.xml">
+      <img src={ValidRssButton.src} alt="[Valid RSS]" loading="lazy" title="Validate my RSS feed" />
+    </a>
+  </section>
 </Page>
 
 <style>
-  .rss-icon:hover {
+  .valid-rss,
+  .valid-rss > img {
+    width: fit-content;
+    display: inline;
+    padding: 0;
+  }
+
+  .rss-icon:hover,
+  .valid-rss:hover {
     background: none;
   }
 
