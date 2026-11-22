@@ -27,7 +27,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     <p>Doporučená velikost obrazovky je 1920x1080 (počítač). Sorry těm co jsou na mobilu!</p>
   </section>
 
-  <section class="content-padding">
+  <section class="content-padding section-thing">
     <h2>Čauky mňauky</h2>
 
     <p>
@@ -41,8 +41,8 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     </p>
   </section>
 
-  <section class="content-padding">
-    <h3>Kde mě najdeš</h3>
+  <section class="content-padding section-thing">
+    <h3>Kontakt / social</h3>
 
     <div class="contact">
       <span><b>Email:</b> sharky zavináč f1sh tečka cz</span>
@@ -52,7 +52,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     </div>
   </section>
 
-  <section class="content-padding">
+  <section class="content-padding section-thing">
     <h3>Kamarádi</h3>
 
     <div class="eightyeight">
@@ -62,9 +62,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
           .map((i) => <EightyEightButton src={i.src} href={i.href} alt={i.alt} />)
       }
     </div>
-  </section>
 
-  <section class="content-padding">
     <h3>Zajímávé místa</h3>
 
     <div class="eightyeight">
@@ -76,7 +74,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     </div>
   </section>
 
-  <section class="content-padding blog">
+  <section class="content-padding blog section-thing">
     <h3>
       Moje psaní <a href="/cs/rss.xml" class="rss-icon"><img src={RssSvg.src} alt="RSS icon" loading="lazy" /></a>
     </h3>
@@ -89,7 +87,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     }
   </section>
 
-  <section class="content-padding">
+  <section class="content-padding section-thing">
     <h3>Pošli mi oznámení na můj telefon!</h3>
 
     <noscript>Vyžaduje javascript!!</noscript>
@@ -181,6 +179,11 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     flex-direction: column;
     float: right;
     padding: 0px 4px 4px;
+  }
+
+  .section-thing {
+    border: 2px solid var(--grey);
+    padding: 8px 16px;
   }
 
   .contact {
