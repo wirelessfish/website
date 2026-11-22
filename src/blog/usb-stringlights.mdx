@@ -28,8 +28,8 @@ of use, I had a thought. Why doesn't this use a rechargeable battery?
 So I got to work. I didn't have a charging module on hand, so I threw in a USB-C module to directly power the lights. They don't need to move much and are always
 within reach of a power outlet anyway. The three batteries used to be connected in series, producing about 4.8V at most (AA batteries are labeled 1.5V, but fresh out
 the box they can produce up to about 1.6V). The USB producing 5V is not that big of a problem, the chip on the PCB is probably rated for 5V anyway. But it made the
-ligts draw more current than on the batteries, which _could_ lead to a shorter lifespan of the LEDs (more heat produced). So I added a 20 Ohm resistor to
-somewhat limit the current (from 77mA to 55mA not much but better than nothing + the percieved brightness is pretty much the same).
+lights draw more current than on the batteries, which _could_ lead to a shorter lifespan of the LEDs (more heat produced). So I added a 20 Ohm resistor to
+somewhat limit the current (from 77mA to 55mA not much but better than nothing + the perceived brightness is pretty much the same).
 
 <ImageGrid columns="1fr 1fr">
   <Image src="/assets/post/usb-stringlights/usbc.webp" alt="USB-C breakout board" width="500px" centered />

@@ -25,7 +25,7 @@ since I only really needed to avoid copy-pasting my navbar on every page.
 11ty rocks (so does their mascot)! It is perfect for inserting html snippets and creating
 simple blogs. However the problem arises when you try to do anything more than that. When I
 wanted to go from simple html snippets to full blown components, Eleventy just does not have a
-simple way of doing that. And then you end up manually manipulating the DOM just do make
+simple way of doing that. And then you end up manually manipulating the DOM just to make
 a guestbook. [Ask me how I know](https://github.com/wirelessfish/website/blob/52f49ba1e4f89ac7559efc5e938e10c9957563e5/src/scripts/guestbook.ts).
 
 Needless to say that combined with the lacking documentation (it's bearable only when you use an AI
@@ -61,7 +61,7 @@ Now that I have the power of components on my side, I can do what Eleventy can o
 <AeroButton color={"#ec5757"}>Button 5</AeroButton>
 ```
 
-The snipped above produces this:
+The snippet above produces this:
 
 <AeroButton color={"#1e78ff"}>Button 1</AeroButton>
 <AeroButton color={"#9d41da"}>Button 2</AeroButton>
@@ -69,7 +69,7 @@ The snipped above produces this:
 <AeroButton color={"#ff1e1e"}>Button 4</AeroButton>
 <AeroButton color={"#ec5757"}>Button 5</AeroButton>
 
-See that? The button component automatically computes it's colors based on
+See that? The button component automatically computes its colors based on
 one color you pass to it! So cool!
 
 It uses the `color` npm package to work with colors and essentially does this:
@@ -126,7 +126,7 @@ while (true) {
 ```
 
 This doesn't look that different compared to just updating the element's content directly with
-`document.getElementById()` and changing it's `innerHtml`. But that gets messy fast
+`document.getElementById()` and changing its `innerHtml`. But that gets messy fast
 with every new element that need changing. Also the Eleventy approach would most
 likely have you split HTML, CSS and Javascript into multiple files whereas Svelte
 components contain everything in one, making it way easier to navigate the codebase.
@@ -150,7 +150,7 @@ config, it's probably right for you. Though if you need anything more (you proba
 svelte components are awesome if not only for the scoped styles) you'll want to run Astro
 together with another framework like Svelte.
 
-Astro's nice, it compiles to a static pages just like Eleventy (perfect for nekoweb/neocities)
+Astro's nice, it compiles to static pages just like Eleventy (perfect for nekoweb/neocities)
 and stays fast thanks to javascript islands (honestly I still don't really understand
 it fully, so [here's](https://docs.astro.build/en/concepts/islands/) a link).
 
@@ -158,7 +158,7 @@ it fully, so [here's](https://docs.astro.build/en/concepts/islands/) a link).
 
 Well the next thing on the chopping block is the backend for my website. It was mostly written
 by an AI agent over the span of a week while I studied for my maturita exam
-(Czech shool-leaving exam, roughly the same thing as a high school diploma exam). I'm not
+(Czech school-leaving exam, roughly the same thing as a high school diploma exam). I'm not
 proud of that and I'm sure it's full of bugs. That's exactly why I'll rewrite it
 from scratch. With as little AI generated code as possible.
 

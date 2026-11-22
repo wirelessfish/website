@@ -2,7 +2,7 @@
 layout: "@layouts/Post.astro"
 title: Sbohem a šáteček, Eleventy!
 description:
-  Změnil jsem site generator mojí strány, přešel jsem z Eleventy na Astro. Tohle se stalo z více důvodů... hlavně kvůli jednodužšímu vývoji za pomocí
+  Změnil jsem site generator mojí stránky, přešel jsem z Eleventy na Astro. Tohle se stalo z více důvodů... hlavně kvůli jednoduššímu vývoji za pomocí
   komponentů a lepší dokumentace od Astro.
 published: 2026-09-02T15:32:00.000+02:00
 # updated: timedate string of last update
@@ -23,11 +23,11 @@ Oukej, abys měl nějaký kontext: moje webovka používala [Eleventy](https://w
 na každou stránku.
 
 11ty je super (stejně jako jejich maskot)! Je perfektní pro automatické vkládání html kódu jako třeba u jednoduchých blogů. Jenomže problémy
-se začnou oběvovat, když se snažíte dosáhnout něčeho více než jen to. Když jsem chtěl přejít od jednoduchých html úryvků na reálné komponenty, tak jsem nemohl,
+se začnou objevovat, když se snažíte dosáhnout něčeho více než jen to. Když jsem chtěl přejít od jednoduchých html úryvků na reálné komponenty, tak jsem nemohl,
 protože na to Eleventy jednodužše není postavený. No a pak musíš manuálně manipulovat DOM, jenom proto abys mohl mít návštěvnickou knihu.
 [Pročpak to asi vím](https://github.com/wirelessfish/website/blob/52f49ba1e4f89ac7559efc5e938e10c9957563e5/src/scripts/guestbook.ts).
 
-Nemluvě o poněkud nedostatečné dokumentaci (dá se v tom vyznat jenom díky AI). Všechy tyhle věci vedly k tomu, že se mi Eleventy spíše ztěžovala život. Tak jsem
+Nemluvě o poněkud nedostatečné dokumentaci (dá se v tom vyznat jenom díky AI). Všechny tyhle věci vedly k tomu, že se mi Eleventy spíše ztěžovala život. Tak jsem
 se konečně sebral a předělal celou stránku tak, aby používala Astro a Svelte přes cca týden.
 
 ## To dobré
@@ -69,7 +69,7 @@ Tento úryvek vytvoří tohle:
 
 Vidíš to? Čudlík si automaticky vypočítá barvy na základě jen jedné, která je nadefinována! Velmi cool!
 
-Využívá to npm klinovnu `color` pro manipulaci s barvami a cca dělá tohle:
+Využívá to npm kninovnu `color` pro manipulaci s barvami a cca dělá tohle:
 
 ```ts
 let border = original_color.lighten(0.5).fade(0.5);
@@ -102,7 +102,7 @@ Příklad nad tímhle _zhruba_ potřebuje tento kód:
 ```svelte
 <script>
 // import {sleep} from ...
-let words = ["Můžu tyhle", "slova měnit", "dost jednodužše", "za pomocí", "Svelte komponentů!"];
+let words = ["Můžu tyhle", "slova měnit", "dost jednodušše", "za pomocí", "Svelte komponentů!"];
 let current_word: number = $state(0);
 
 while (true) {
@@ -136,10 +136,10 @@ Zatím jsem neměl žádné problémy s Astro. Má vše co potřebuju a extra v�
 ## Doporučoval bys Eleventy/Astro?
 
 Eleventy rozhodně není špatná volba, ale je tam o dost více práce při prvním nastavení oproti Astro. Pokud jenom potřebuješ jednoduché layouty a html úryvky a
-nevadí ti to nastavování, tak je to asi ta správná volba pro tebe. Ale když chceš cokliv více (nejspíš ano, komponenty jsou mega super) tak bych spíše doporučoval
+nevadí ti to nastavování, tak je to asi ta správná volba pro tebe. Ale když chceš cokoliv více (nejspíš ano, komponenty jsou mega super) tak bych spíše doporučoval
 Astro s frameworkem jako Svelte.
 
-Astro je super, compiluje se na statické stránky jako Eleventy (perfektní pro nekoweb nebo neocities) a zůstává rychlé díky javascript ostrůvkům (upřímě se mě neptej
+Astro je super, compiluje se na statické stránky jako Eleventy (perfektní pro nekoweb nebo neocities) a zůstává rychlé díky javascript ostrůvkům (upřímně se mě neptej
 co přesně to znamená, můžeš si to načíst [tady](https://docs.astro.build/en/concepts/islands/)).
 
 ## A co dál?
@@ -147,12 +147,12 @@ co přesně to znamená, můžeš si to načíst [tady](https://docs.astro.build
 No, další na řadě je můj backend. Byl více méně napsán AI agentem zatímco sem se učil na maturitu. Nejsem na to hrdý a je mi jasné, že je plný bugů. Přesně kvůli tomu
 ho přepíšu úplně od začátku. S co nejmenším využitím AI.
 
-Těžko číct kdy to bude hotovo, protože první semestr mi začíná čtrnáctého. Pro ty koho to zajímá, budu studovat softwarové inženýrství na Fakultě Aplikované Informatiky
+Těžko říct kdy to bude hotovo, protože první semestr mi začíná čtrnáctého. Pro ty koho to zajímá, budu studovat softwarové inženýrství na Fakultě Aplikované Informatiky
 na [Univerzitě Tomáše Bati](https://www.utb.cz/) ve Zlíně. Dost se na to těším... a nemám ponětí jak to všechno bude fungovat, kolik volného času budu mít a jak
 dlouho mi potrvá, než si zvyknu na nové prostředí. Tak i onak se budu snažit překopat ten backend co nejdřív ať se můžu soustředit na přidávání dalších cool věcí
 na moju stránku (jako například odkaz na seznam blogpostů).
 
-Ahoj, pořád tohle čteš? Líbí se ti to? Je to můj první "blog post", cokoliv co to znamená. Upřímě možná udělám reálný blog a budu psát další posty jako tenhleten.
+Ahoj, pořád tohle čteš? Líbí se ti to? Je to můj první "blog post", cokoliv co to znamená. Upřímně možná udělám reálný blog a budu psát další posty jako tenhleten.
 
 Díky za tvůj čas a jako vždycky, více věcí přijde brzy (doufám!).  
 Přeju hezký zbytek dne, Sharky ♥
