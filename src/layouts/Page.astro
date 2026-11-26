@@ -1,5 +1,5 @@
 ---
-import Base from "./Base.astro";
+import Blank from "@layouts/Blank.astro";
 
 import { localization } from "@i18n/index";
 
@@ -18,7 +18,7 @@ const otherLocaleUrl = Astro.currentLocale === "cs" ? path.replace("/cs/", "/") 
 const otherLocaleString = Astro.currentLocale === "cs" ? "English" : "Čeština";
 ---
 
-<Base title={title} description={description} og_img={og_img} og_img_alt={og_img_alt}>
+<Blank title={title} description={description} og_img={og_img} og_img_alt={og_img_alt}>
   <a href={getRelativeLocaleUrl(locale, "/")} class="header-img"></a>
 
   <div class="main-layout">
@@ -85,7 +85,7 @@ const otherLocaleString = Astro.currentLocale === "cs" ? "English" : "Čeština"
       </div>
     </div>
   </div>
-</Base>
+</Blank>
 
 <style>
   body {

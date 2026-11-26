@@ -1,0 +1,87 @@
+---
+import Blank from "@layouts/Blank.astro";
+import { getCollection } from "astro:content";
+import { format } from "date-fns";
+
+import RssSvg from "@assets/icons/rss.svg";
+
+let blog = await getCollection("blog", (p) => !p.id.startsWith("cs/"));
+blog.forEach((i) => {
+  i.id = i.id.replace("en/", "");
+});
+blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
+---
+
+<Blank>
+  <main>
+    <h2>Hey there</h2>
+
+    <p>
+      I'm a 1<sup>st</sup> year software engineering student from Czechia that likes computers and does a bit of hobby programming.
+    </p>
+
+    <p>
+      I also like sharks. I can't decide on my fav species, but it's got to be either the <a
+        href="https://en.wikipedia.org/wiki/Blacktip_reef_shark">Blacktip Reef Shark</a
+      > or the <a href="https://en.wikipedia.org/wiki/Nurse_shark">Nurse Shark</a>.
+    </p>
+
+    <h3>Contact</h3>
+
+    <div class="contact">
+      <span><b>Email:</b> mail [at] sharky [dot] fyi</span>
+      <span><b>Discord:</b> somef1sh</span>
+      <span><b>Fluxer:</b> sharky#3273</span>
+      <span><b>Fedi:</b> <a href="https://neo.tokyonight.city/blog/sharky">sharky@neo.tokyonight.city</a></span>
+    </div>
+
+    <h3>My writing <a href="/rss.xml" class="rss-icon"><img src={RssSvg.src} alt="RSS icon" loading="lazy" /></a></h3>
+    <div class="blog">
+      {
+        blog.map((post) => (
+          <span>
+            <a href={"/blog/" + post.id}>{post.data.title}</a> [{format(post.data.published, "yyyy/MM/dd")}]
+          </span>
+        ))
+      }
+    </div>
+  </main>
+</Blank>
+
+<style>
+  html {
+    background: black;
+  }
+
+  main {
+    border: 1px solid white;
+    padding: 16px;
+    padding-top: 8px;
+
+    max-width: 800px;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+  }
+
+  .contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .rss-icon > img {
+    height: 1em;
+    vertical-align: -0.2em;
+    margin-left: 0.2em;
+    display: inline;
+  }
+
+  .blog {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
