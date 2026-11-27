@@ -1,3 +1,3 @@
 export const Config = {
-  apiUrl: "https://api.f1sh.cz",
+  apiUrl: "https://api.kabeyai.net",
 };

@@ -5,6 +5,8 @@ import eightyeight from "@data/eightyeight.json";
 import EightyEightButton from "@components/EightyEightButton.astro";
 import AeroButton from "@components/AeroButton.svelte";
 import Scrobble from "@components/index/Scrobble.svelte";
+import BlogCard from "@components/blog/BlogCard.svelte";
+
 import { getCollection } from "astro:content";
 import { format } from "date-fns";
 
@@ -15,43 +17,38 @@ blog.forEach((i) => {
   i.id = i.id.replace("en/", "");
 });
 blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
+blog = blog.slice(0, 3); // last 3 posts
 ---
 
 <script src="../scripts/notify.ts"></script>
 
-<Page title="f1sh.cz" description="Sharky's personal webpage. The creature. Shark-infested website. f1sh.cz 🐟">
+<Page title="kabeyai.net" description="Sharky's personal webpage. The creature. Shark-infested website. kabeyai.net 🐟">
   <section class="content-padding mobile-warning">
     <h4>[ [ WARNING ] ]</h4>
 
     <p>The recommended screen size to have the full, intended experience is 1920x1080. Sorry mobile users!</p>
   </section>
 
-  <section class="content-padding section-thing">
+  <section class="content-padding">
     <h2>Hey there</h2>
 
     <p>
       I'm a 1<sup>st</sup> year software engineering student from Czechia that likes computers and does a bit of hobby programming.
     </p>
-
-    <p>
-      I also like sharks. I can't decide on my fav species, but it's got to be either the <a
-        href="https://en.wikipedia.org/wiki/Blacktip_reef_shark">Blacktip Reef Shark</a
-      > or the <a href="https://en.wikipedia.org/wiki/Nurse_shark">Nurse Shark</a>.
-    </p>
   </section>
 
-  <section class="content-padding section-thing">
-    <h3>Contact / social</h3>
+  <section class="content-padding">
+    <h3>Contact</h3>
 
     <div class="contact">
-      <span><b>Email:</b> sharky at f1sh dot cz</span>
-      <span><b>Discord:</b> somef1sh</span>
-      <span><b>Fluxer:</b> sharky#3273</span>
-      <span><b>Fedi:</b> <a href="https://neo.tokyonight.city/blog/sharky">sharky@neo.tokyonight.city</a></span>
+      <div id="contact-email">sharky@kabeyai.net</div>
+      <div id="contact-discord">somef1sh</div>
+      <div id="contact-fluxer">sharky#3273</div>
+      <div id="contact-fedi">sharky@neo.tokyonight.city</div>
     </div>
   </section>
 
-  <section class="content-padding section-thing">
+  <section class="content-padding">
     <h3>Friends</h3>
 
     <div class="eightyeight">
@@ -73,26 +70,21 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     </div>
   </section>
 
-  <section class="content-padding blog section-thing">
-    <h3>My writing <a href="/rss.xml" class="rss-icon"><img src={RssSvg.src} alt="RSS icon" loading="lazy" /></a></h3>
-    {
-      blog.map((post) => (
-        <span>
-          <a href={"/blog/" + post.id}>{post.data.title}</a> [{format(post.data.published, "yyyy/MM/dd")}]
-        </span>
-      ))
-    }
-  </section>
+  <section class="content-padding blog">
+    <h3>
+      Recent blogposts <a href="/rss.xml" class="rss-icon"><img src={RssSvg.src} alt="RSS icon" loading="lazy" /></a>
+    </h3>
 
-  <section class="content-padding section-thing">
-    <h3>Send me a push noitification!</h3>
-
-    <noscript>Requires javascript!!</noscript>
-
-    <form class="notify">
-      <textarea id="notifyinput" placeholder="Hello, fishy" rows="1" spellcheck="false"></textarea>
-      <AeroButton color="#1e78ff" id="notifysend">Send →</AeroButton>
-    </form>
+    <div class="recent-blogposts">
+      {
+        blog.map((post) => (
+          <BlogCard client:load post={post} />
+          // <span>
+          //   <a href={"/blog/" + post.id}>{post.data.title}</a> [{format(post.data.published, "yyyy/MM/dd")}]
+          // </span>
+        ))
+      }
+    </div>
   </section>
 
   <section>
@@ -101,7 +93,7 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
 
   <section class="arivertisement">
     <iframe
-      src="https://ad.ari.lt/ads/embed?from=https%3A%2F%2Ff1sh.cz"
+      src="https://ad.ari.lt/ads/embed?from=https%3A%2F%2Fkabeyai.net"
       sandbox="allow-popups allow-popups-to-escape-sandbox"
       referrerpolicy="no-referrer"
       title="An embed showing a silly image and author information."
@@ -139,7 +131,6 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
   }
 
   .section-thing {
-    border: 2px solid var(--grey);
     padding: 8px 16px;
   }
 
@@ -147,13 +138,21 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     height: 1em;
   }
 
+  .recent-blogposts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   #contact-fluxer::before,
   #contact-discord::before,
-  #contact-email::before {
-    display: inline-block;
-    height: 1.5em;
-    margin-right: 0.5em;
-    width: 1.5em;
+  #contact-email::before,
+  #contact-fedi::before {
+    display: inline;
+    height: 1.3em;
+    margin-right: 0.4em;
+    width: 1.3em;
+    vertical-align: -0.4em;
   }
 
   #contact-fluxer::before {
@@ -165,6 +164,9 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
   }
   #contact-email::before {
     content: url("/assets/icons/email_light.svg");
+  }
+  #contact-fedi::before {
+    content: url("/assets/icons/fedi.svg");
   }
 
   .heading {
@@ -184,8 +186,18 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
   }
 
   .contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .contact > * {
+    padding: 4px;
+    background-color: var(--darkergrey);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid var(--darkgrey);
   }
 
   .arivertisement {

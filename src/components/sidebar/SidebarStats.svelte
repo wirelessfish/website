@@ -24,7 +24,7 @@
     }
   }
 
-  getNekowebStats("f1sh.cz").then((data) => (nw_stats = data));
+  getNekowebStats("kabeyai.net").then((data) => (nw_stats = data));
   getBackendStatus().then((state) => (backend_alive = state));
 
   const componentLocalization = {
@@ -100,9 +100,9 @@
 
   <div>
     {#if locale === "en"}
-      You could <a href="https://nekoweb.org/follow/f1sh.cz">follow me</a> on nekoweb... that'd be cool
+      You could <a href="https://nekoweb.org/follow/kabeyai.net">follow me</a> on nekoweb... that'd be cool
     {:else}
-      Můžeš mě <a href="https://nekoweb.org/follow/f1sh.cz">dát follow</a> na nekowebu... to by bylo cool
+      Můžeš mě <a href="https://nekoweb.org/follow/kabeyai.net">dát follow</a> na nekowebu... to by bylo cool
     {/if}
   </div>
 </div>

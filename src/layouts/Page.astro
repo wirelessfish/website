@@ -1,89 +1,30 @@
 ---
 import Blank from "@layouts/Blank.astro";
 
-import { localization } from "@i18n/index";
-
-import StatusCafe from "@components/sidebar/StatusCafe.svelte";
-import SidebarStats from "@components/sidebar/SidebarStats.svelte";
-import { getRelativeLocaleUrl } from "astro:i18n";
-import Webrings from "@components/sidebar/Webrings.astro";
-import Casio from "@components/sidebar/Casio.svelte";
-
 const { title, description, og_img, og_img_alt } = Astro.props;
-const locale = (Astro.currentLocale ?? "en") as keyof typeof localization;
-const t = localization[locale];
-
-const path = Astro.url.pathname;
-const otherLocaleUrl = Astro.currentLocale === "cs" ? path.replace("/cs/", "/") : "/cs" + path;
-const otherLocaleString = Astro.currentLocale === "cs" ? "English" : "Čeština";
 ---
 
 <Blank title={title} description={description} og_img={og_img} og_img_alt={og_img_alt}>
-  <a href={getRelativeLocaleUrl(locale, "/")} class="header-img"></a>
-
   <div class="main-layout">
-    <div class="sidebar">
-      <SidebarStats locale={locale} client:only />
-      <Webrings />
+    <header>
+      <a href="/" class="header-img"></a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/vinyl/">Vinyls</a>
+        <a href="/scrobbles/">Scrobbles</a>
+        <a href="/guestbook/">Guestbook</a>
+      </nav>
+    </header>
 
-      <section class="simple-analytics">
-        <a
-          href="https://www.simpleanalytics.com/f1sh.cz?referral=kocor&utm_source=f1sh.cz&utm_content=badge"
-          referrerpolicy="origin"
-          target="_blank"
-        >
-          <img
-            src="https://simpleanalyticsbadges.com/f1sh.cz?background=edf3f4&text=111111&logo=ff4f64&border=677779&radius=3&border-width=2"
-            width="168"
-            height="40"
-            alt="Simple Analytics"
-            loading="lazy"
-            referrerpolicy="no-referrer"
-            crossorigin="anonymous"
-          />
-        </a>
-      </section>
-    </div>
+    <main>
+      <slot />
+    </main>
 
-    <div class="page-content">
-      <header>
-        <h1><a href={getRelativeLocaleUrl(locale, "/")}>f1sh.cz</a></h1>
-
-        <nav>
-          <a href={getRelativeLocaleUrl(locale, "/")}>{t.nav.home}</a>
-          <a href={getRelativeLocaleUrl(locale, "/blog/")}>{t.nav.blog}</a>
-          <a href={getRelativeLocaleUrl(locale, "/vinyl/")}>{t.nav.vinyls}</a>
-          <a href={getRelativeLocaleUrl(locale, "/scrobbles/")}>{t.nav.scrobbles}</a>
-          <a href={getRelativeLocaleUrl(locale, "/guestbook/")}>{t.nav.guestbook}</a>
-          |
-          <a class="lang-switch" href={otherLocaleUrl}>{otherLocaleString}</a>
-        </nav>
-      </header>
-
-      <main>
-        <slot />
-      </main>
-
-      <footer>
-        <div>{t.footer.copyright.text}<a href="/license/">{t.footer.copyright.link}</a></div>
-        <div>{t.footer.version.text}<a href="https://github.com/wirelessfish/website">{t.footer.version.link}</a></div>
-      </footer>
-    </div>
-
-    <div class="sidebar">
-      <StatusCafe locale={Astro.currentLocale as "en" | "cs"} client:only />
-
-      <Casio locale={Astro.currentLocale as "en" | "cs"} client:only />
-
-      <div style="display: flex; justify-content: center; margin-top: 1em;">
-        <iframe
-          width="150"
-          height="450"
-          style="border:none"
-          src="https://dogspit.nekoweb.org/sidelink.html"
-          name="sidelink"></iframe>
-      </div>
-    </div>
+    <footer>
+      <div>© Sharky 2025-2026 <a href="/license/">[license]</a></div>
+      <div>Version 4.2<a href="https://github.com/wirelessfish/website">[source code]</a></div>
+    </footer>
   </div>
 </Blank>
 
@@ -113,45 +54,30 @@ const otherLocaleString = Astro.currentLocale === "cs" ? "English" : "Čeština"
 
   header {
     background-color: var(--black);
-
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-
-    padding: 8px 12px;
-
-    h1 {
-      font-family: "HS LunaObscura";
-      font-size: 24px;
-      line-height: 1em;
-
-      a {
-        text-decoration: none;
-        padding: 0;
-      }
-    }
+    width: 100%;
+    border-bottom: 1px solid var(--white);
   }
 
   nav {
+    width: 100%;
     display: flex;
-    gap: 4px;
+    border-top: 1px solid var(--white);
 
-    .lang-switch {
-      color: var(--orange);
-    }
-
-    .lang-switch:hover {
-      color: var(--black);
-      background-color: var(--orange);
+    a {
+      padding: 2px 32px;
+      text-decoration: none;
+      color: var(--white);
     }
   }
 
   .header-img {
     height: 200px;
-    width: 1200px;
-    background-image: url("/assets/header.webp");
+    width: 100%;
+    display: block;
+    background-image: url("/assets/header_title.webp");
     background-size: cover;
     background-position: center;
+    image-rendering: pixelated;
 
     padding: 0;
   }
@@ -174,10 +100,10 @@ const otherLocaleString = Astro.currentLocale === "cs" ? "English" : "Čeština"
   }
 
   .main-layout {
-    margin: 0px 128px;
-    display: grid;
-    grid-template-columns: 200px 800px 200px;
-    height: 100%;
+    width: 800px;
+    margin: 32px;
+    background-color: var(--black);
+    border: 1px solid var(--white);
   }
 
   .simple-analytics > a,

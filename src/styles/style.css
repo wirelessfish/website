@@ -51,6 +51,7 @@ a,
 a:visited {
   color: var(--blue);
   padding: 0px 2px;
+  /* font-weight: bold; */
 }
 
 a:hover {
