@@ -1,25 +1,9 @@
 <script lang="ts">
-  type Props = {
-    locale: "en" | "cs";
-  };
-  const { locale = "en" }: Props = $props();
-
-  let time = $state(new Date(new Date().toLocaleString("cz", { timeZone: "Europe/Prague" })));
-
-  const componentLocalization = {
-    en: {
-      title: "Webmaster time",
-    },
-    cs: {
-      title: "Čas webmastera",
-    },
-  };
-
-  const t = $derived(componentLocalization[locale]);
+  let time = $state(new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Prague" })));
 </script>
 
 <div>
-  <h3>{t.title}</h3>
+  <h3>Webmaster time</h3>
 
   <div class="watch">
     <span>

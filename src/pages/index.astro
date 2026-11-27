@@ -12,10 +12,7 @@ import { format } from "date-fns";
 
 import RssSvg from "@assets/icons/rss.svg";
 
-let blog = await getCollection("blog", (p) => !p.id.startsWith("cs/"));
-blog.forEach((i) => {
-  i.id = i.id.replace("en/", "");
-});
+let blog = await getCollection("blog");
 blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
 blog = blog.slice(0, 3); // last 3 posts
 ---

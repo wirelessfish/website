@@ -43,14 +43,6 @@ const color_vars = `:root {\n${Object.entries(colors)
     href={new URL("rss.xml", Astro.site)}
     />
 
-    <link
-    rel="alternate"
-    type="application/rss+xml"
-    title="kabeyai.net"
-    lang="cs"
-    href={new URL("cs/rss.xml", Astro.site)}
-    />
-    
     {description ? (
       <meta property="og:description" content={ description } />
     ) : ""}

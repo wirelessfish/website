@@ -2,12 +2,8 @@
   import { getRecentTracks, getScrobbleCover } from "@scripts/module/lastfm";
   import type { RecentTracks } from "@scripts/types/lastfm";
   import "javascript-time-ago/locale/en";
-  import "javascript-time-ago/locale/cs";
   import TimeAgo from "javascript-time-ago";
-  let timeAgo = new TimeAgo("en");
-  let timeAgoCs = new TimeAgo("cs");
-
-  const { locale } = $props();
+  const timeAgo = new TimeAgo("en");
 
   let recent_tracks: RecentTracks | undefined = $state();
   let track = $derived(recent_tracks?.recenttracks.track[0]);
@@ -15,7 +11,6 @@
   let playbackChar = $derived(track?.["@attr"]?.nowplaying ? "⏸" : "▶");
   let trackDate = $derived(track?.date?.["#text"]);
   let playedAgo = $derived(trackDate ? timeAgo.format(new Date(trackDate), "mini") : undefined);
-  let playedAgoCs = $derived(trackDate ? timeAgoCs.format(new Date(trackDate), "mini") : undefined);
 
   getRecentTracks(1).then((tracks) => (recent_tracks = tracks));
 </script>
@@ -26,11 +21,7 @@
       <span style="color: var(--red)">⏺</span>
     {/if}
 
-    {#if locale === "cs"}
-      Hudební poslech ({track?.["@attr"]?.nowplaying ? "právě teď" : playedAgoCs})
-    {:else}
-      Listening activity ({track?.["@attr"]?.nowplaying ? "right now" : playedAgo + " ago"})
-    {/if}
+    Listening activity ({track?.["@attr"]?.nowplaying ? "right now" : playedAgo + " ago"})
   </div>
 
   <div class="scrobble-content" style:--bg="url({albumArt})">
@@ -45,11 +36,7 @@
         <div class="playbar"></div>
       </div>
     {:else}
-      {#if locale === "cs"}
-        Načítání...
-      {:else}
-        Loading...
-      {/if}
+      Loading...
     {/if}
   </div>
 </div>

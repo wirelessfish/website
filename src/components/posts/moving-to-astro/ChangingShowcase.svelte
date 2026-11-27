@@ -1,20 +1,7 @@
 <script lang="ts">
   import { sleep } from "@scripts/module/util";
 
-  type Props = {
-    locale: "en" | "cs";
-  };
-  const { locale = "en" }: Props = $props();
-
-  let words = $state(new Array());
-
-  $effect(() => {
-    if (locale === "en") {
-      words = ["I can", "make these", "words change", "very easily", "with Svelte!"];
-    } else {
-      words = ["Můžu tyhle", "slova měnit", "dost jednodužše", "za pomocí", "Svelte komponentů!"];
-    }
-  });
+  let words = ["I can", "make these", "words change", "very easily", "with Svelte!"];
 
   let current_word: number = $state(0);
 

@@ -10,7 +10,6 @@ export async function GET(context) {
     site: context.site,
     trailingSlash: false,
     items: blog
-      .filter((e) => e.data.lang === "en")
       .sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf())
       .map((post) => ({
         title: post.data.title,

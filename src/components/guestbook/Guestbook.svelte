@@ -5,10 +5,6 @@
   import { getGuestbook } from "../../scripts/module/guestbook";
   import Comment from "./Comment.svelte";
 
-  type Props = {
-    locale: "en" | "cs";
-  };
-  const { locale = "en" }: Props = $props();
   let guestbook_data: GuestbookResponse | undefined = $state();
   let reply_to: GuestbookEntry | undefined = $state();
 
@@ -22,31 +18,19 @@
 
   getGuestbook().then((data) => (guestbook_data = data));
 
-  const componentLocalization = {
-    en: {
-      reply: "Replying to",
-      loading: "Loading...",
-    },
-    cs: {
-      reply: "Odpovědět",
-      loading: "Loading...",
-    },
-  };
-
-  const t = $derived(componentLocalization[locale]);
 </script>
 
 {#if reply_to}
   <div class="content-padding reply_info">
-    ↳ {t.reply} "{reply_to?.name}"
+    ↳ Replying to "{reply_to?.name}"
   </div>
 {/if}
 
-<CommentForm {locale} {reply_to} />
+<CommentForm {reply_to} />
 
 <div class="content-padding comment-container">
   {#if !guestbook_data}
-    <span>{t.loading}</span>
+    <span>Loading...</span>
   {:else}
     {#each guestbook_data.entries as entry}
       <Comment

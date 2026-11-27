@@ -4,22 +4,10 @@
 
   interface Props {
     top_artists: TopArtists;
-    locale: "en" | "cs";
   }
 
-  let { top_artists, locale = "en" }: Props = $props();
+  let { top_artists }: Props = $props();
   let a = $derived(top_artists.topartists.artist);
-
-  const componentLocalization = {
-    en: {
-      plays: "plays",
-    },
-    cs: {
-      plays: "přehrání",
-    },
-  };
-
-  const t = $derived(componentLocalization[locale]);
 </script>
 
 <section>
@@ -34,7 +22,7 @@
 
         <div>
           {artist.playcount}
-          {t.plays}
+          plays
         </div>
       </div>
     </a>

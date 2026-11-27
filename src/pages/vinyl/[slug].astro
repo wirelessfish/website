@@ -2,10 +2,10 @@
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  const vinyls = await getCollection("vinyls", (p) => !p.id.startsWith("cs/"));
+  const vinyls = await getCollection("vinyls");
 
   return vinyls.map((v) => ({
-    params: { slug: v.id.replace("cs/", "") },
+    params: { slug: v.id },
     props: { v },
   }));
 }

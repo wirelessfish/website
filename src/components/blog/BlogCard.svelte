@@ -18,7 +18,7 @@
   <div class="text-content">
     <div class="title">
       <span>{post.data.title}</span>
-      <FormatAgo locale="en" date={post.data.published} format="round" />
+      <FormatAgo date={post.data.published} format="round" />
     </div>
 
     <div>

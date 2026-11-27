@@ -3,7 +3,6 @@ import Hint from "@components/Hint.astro";
 import VinylBase from "@layouts/VinylBase.astro";
 
 import { getCollection } from "astro:content";
-import { localization } from "@i18n/index";
 
 const vinylCollection = await getCollection("vinyls");
 
@@ -12,23 +11,15 @@ type Props = {
 };
 
 const { frontmatter }: Props = Astro.props;
-
-const locale = (Astro.currentLocale ?? "en") as keyof typeof localization;
-const t = localization[locale];
-
-const path = Astro.url.pathname;
-const otherLocaleUrl = Astro.currentLocale === "cs" ? path.replace("/cs/", "/") : "/cs" + path;
-const otherLocaleString = Astro.currentLocale === "cs" ? "English" : "Čeština";
 ---
 
 <VinylBase
   title={frontmatter.title}
-  description={t.vinyl.pageAboutThe + frontmatter.title + t.vinyl.albumBy + frontmatter.artist}
+  description={"The page about " + frontmatter.title + " by " + frontmatter.artist}
 >
   <div class="content">
     <span class="control">
-      <a class="back" href="/vinyl/">&lt;&lt;&lt; {t.vinyl.back}</a>
-      <a class="lang-switch" href={otherLocaleUrl}>{otherLocaleString}</a>
+      <a class="back" href="/vinyl/">&lt;&lt;&lt; Back</a>
     </span>
 
     <div class="header">
@@ -43,7 +34,7 @@ const otherLocaleString = Astro.currentLocale === "cs" ? "English" : "Čeština"
           ""
         )
       }
-      <Hint>({t.vinyl.clickForFullRes})</Hint>
+      <Hint>(Click for full resolution)</Hint>
     </div>
 
     <slot />
@@ -84,12 +75,4 @@ const otherLocaleString = Astro.currentLocale === "cs" ? "English" : "Čeština"
     justify-content: space-between;
   }
 
-  .lang-switch {
-    color: var(--orange);
-  }
-
-  .lang-switch:hover {
-    color: var(--black);
-    background-color: var(--orange);
-  }
 </style>

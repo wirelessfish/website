@@ -3,23 +3,19 @@ import VinylBase from "@layouts/VinylBase.astro";
 import { getCollection } from "astro:content";
 
 import VinylEntry from "@components/vinyl/VinylEntry.astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
-import { localization } from "@i18n/index";
 
-const locale = (Astro.currentLocale ?? "en") as keyof typeof localization;
-
-let vinyls = await getCollection("vinyls", (v) => !v.id.includes("cs/"));
+let vinyls = await getCollection("vinyls");
 vinyls = vinyls.sort((a, b) => b.data.dateAdded.valueOf() - a.data.dateAdded.valueOf());
 ---
 
 <VinylBase title="Vinyls" description="My collection of vinyls">
   <div class="content">
     <div class="vinyls">
-      {vinyls.map((vinylEntry) => <VinylEntry locale="en" entry={vinylEntry} />)}
+      {vinyls.map((vinylEntry) => <VinylEntry entry={vinylEntry} />)}
     </div>
 
     <div class="hint">(Click to see details)</div>
-    <div class="home-link"><a href={getRelativeLocaleUrl(locale, "/")}>Home</a></div>
+    <div class="home-link"><a href="/">Home</a></div>
   </div>
 </VinylBase>
 

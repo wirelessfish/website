@@ -6,10 +6,7 @@ import { format } from "date-fns";
 import RssSvg from "@assets/icons/rss.svg";
 import ValidRssButton from "@assets/buttons/valid-rss.webp";
 
-let blog = await getCollection("blog", (p) => !p.id.startsWith("cs/"));
-blog.forEach((i) => {
-  i.id = i.id.replace("en/", "");
-});
+let blog = await getCollection("blog");
 blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
 ---
 
