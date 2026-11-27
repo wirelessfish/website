@@ -5,6 +5,8 @@ import EightyEightButton from "@components/EightyEightButton.astro";
 import { createHash } from "node:crypto";
 import { clamp } from "@scripts/module/util";
 
+import "@fonts/SourceCodePro/source_code_pro.css";
+
 const trainTypes = ["Os", "Sp", "LE", "rj", "IC", "SC", "EN", "R", "EC"];
 
 function hashNum(str: string) {
@@ -157,7 +159,7 @@ function getDeparture() {
 
                 <td>{hashNumPad(i.href)}</td>
 
-                <td style="font-size: 0.75em; vertical-align: bottom;">{i.name}</td>
+                <td style="font-size: 0.75em;">{i.name}</td>
 
                 <td>
                   <EightyEightButton src={i.src} href={i.href} alt={i.alt} />
@@ -288,7 +290,7 @@ function getDeparture() {
 
                 <td>{hashNumPad(i.href)}</td>
 
-                <td style="font-size: 0.75em; vertical-align: bottom;">{i.name}</td>
+                <td style="font-size: 0.75em;">{i.name}</td>
 
                 <td>
                   <EightyEightButton src={i.src} href={i.href} alt={i.alt} />
@@ -324,7 +326,7 @@ function getDeparture() {
 
   body {
     background: var(--black);
-    font-family: monospace;
+    font-family: "Source Code Pro", monospace;
     padding: 64px;
   }
 
