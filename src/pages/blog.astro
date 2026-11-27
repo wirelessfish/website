@@ -5,6 +5,7 @@ import { format } from "date-fns";
 
 import RssSvg from "@assets/icons/rss.svg";
 import ValidRssButton from "@assets/buttons/valid-rss.webp";
+import BlogCard from "@components/blog/BlogCard.svelte";
 
 let blog = await getCollection("blog");
 blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
@@ -17,18 +18,8 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
     </h2>
   </section>
 
-  <section class="content-padding">
-    <ul>
-      {
-        blog.map((post) => (
-          <li>
-            <a href={"/blog/" + post.id}>{post.data.title}</a> [{format(post.data.published, "yyyy/MM/dd")}]
-            <br />
-            {post.data.description}
-          </li>
-        ))
-      }
-    </ul>
+  <section class="content-padding blog-cards">
+    {blog.map((post) => <BlogCard client:load {post} />)}
   </section>
 
   <section class="content-padding">
@@ -39,6 +30,12 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
 </Page>
 
 <style>
+  .blog-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   .valid-rss,
   .valid-rss > img {
     width: fit-content;

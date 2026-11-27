@@ -73,14 +73,9 @@ blog = blog.slice(0, 3); // last 3 posts
     </h3>
 
     <div class="recent-blogposts">
-      {
-        blog.map((post) => (
-          <BlogCard client:load post={post} />
-          // <span>
-          //   <a href={"/blog/" + post.id}>{post.data.title}</a> [{format(post.data.published, "yyyy/MM/dd")}]
-          // </span>
-        ))
-      }
+      {blog.map((post) => <BlogCard client:load post={post} />)}
+
+      <a href="/blog/">See all blogposts...</a>
     </div>
   </section>
 
