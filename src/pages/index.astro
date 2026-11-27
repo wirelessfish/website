@@ -1,15 +1,10 @@
 ---
 import Page from "@layouts/Page.astro";
 
-import eightyeight from "@data/eightyeight.json";
-import EightyEightButton from "@components/EightyEightButton.astro";
-import AeroButton from "@components/AeroButton.svelte";
 import Scrobble from "@components/index/Scrobble.svelte";
 import BlogCard from "@components/blog/BlogCard.svelte";
 
 import { getCollection } from "astro:content";
-import { format } from "date-fns";
-
 import RssSvg from "@assets/icons/rss.svg";
 
 let blog = await getCollection("blog");
@@ -32,6 +27,11 @@ blog = blog.slice(0, 3); // last 3 posts
     <p>
       I'm a 1<sup>st</sup> year software engineering student from Czechia that likes computers and does a bit of hobby programming.
     </p>
+
+    <p>
+      Would you like to travel elsewhere on the web? Check <a href="/departures/">departures</a> and take a train to your
+      next destination!
+    </p>
   </section>
 
   <section class="content-padding">
@@ -42,28 +42,6 @@ blog = blog.slice(0, 3); // last 3 posts
       <div id="contact-discord">somef1sh</div>
       <div id="contact-fluxer">sharky#3273</div>
       <div id="contact-fedi">sharky@neo.tokyonight.city</div>
-    </div>
-  </section>
-
-  <section class="content-padding">
-    <h3>Friends</h3>
-
-    <div class="eightyeight">
-      {
-        eightyeight
-          .filter((i) => i.friend && !i.hidden)
-          .map((i) => <EightyEightButton src={i.src} href={i.href} alt={i.alt} />)
-      }
-    </div>
-
-    <h3>Interesting places</h3>
-
-    <div class="eightyeight">
-      {
-        eightyeight
-          .filter((i) => !i.friend && !i.hidden)
-          .map((i) => <EightyEightButton src={i.src} href={i.href} alt={i.alt} />)
-      }
     </div>
   </section>
 

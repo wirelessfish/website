@@ -1,0 +1,391 @@
+---
+import Blank from "@layouts/Blank.astro";
+import eightyeight from "@data/eightyeight.json";
+import EightyEightButton from "@components/EightyEightButton.astro";
+import { createHash } from "node:crypto";
+import { clamp } from "@scripts/module/util";
+
+const trainTypes = ["Os", "Sp", "LE", "rj", "IC", "SC", "EN", "R", "EC"];
+
+function hashNum(str: string) {
+  const digest = createHash("sha256").update(str).digest();
+  const hash = digest.readUInt32BE(0);
+  return hash % 10000;
+}
+
+function hashTrainType(str: string) {
+  const digest = createHash("sha256").update(str).digest();
+  const hash = digest.readUInt32BE(0);
+  return trainTypes[hash % trainTypes.length];
+}
+
+function hashPlatform(str: string) {
+  const digest = createHash("sha256").update(str).digest();
+  const hash = digest.readUInt32BE(0);
+  const rail = clamp(hash % 10, 1, 10);
+
+  const possiblePlatformLetter = ["A", "B", "C", "D", "E"];
+  const platform = possiblePlatformLetter[hash % possiblePlatformLetter.length];
+
+  return `${rail}${platform}`;
+}
+
+function hashNumPad(str: string) {
+  return hashNum(str).toString().padStart(4, "0");
+}
+
+let departureSeed = 12345;
+let departureMinutes = 7 * 60 + 53;
+
+function getDeparture() {
+  departureSeed = (departureSeed * 5 + 1) % 16;
+  const time = `${Math.floor(departureMinutes / 60)
+    .toString()
+    .padStart(2, "0")}:${(departureMinutes % 60).toString().padStart(2, "0")}`;
+  departureMinutes += (departureSeed % 3) + 1;
+
+  return time;
+}
+---
+
+<Blank title="Departures" description="Departures from my website.">
+  <div class="container">
+    <p>
+      Go back <a href="/">home</a>?
+    </p>
+
+    <table class="departures">
+      <colgroup>
+        <col style="width: 40px;" />
+        <col />
+        <col />
+        <col />
+        <col />
+        <col />
+        <col />
+        <col />
+        <col style="width: 3em;" />
+      </colgroup>
+      <thead class="blue-bg">
+        <tr class="title-row">
+          <th colspan="9">
+            <div class="title-content" style="display: flex; justify-content: space-between;">
+              <span style="font-size: 2.5em; font-style: italic;">DEPARTURE</span>
+              <span style="font-size: 5em;">ODJEZD</span>
+              <span style="font-size: 2.5em; font-style: italic;">ABFAHRT</span>
+            </div>
+          </th>
+        </tr>
+        <tr>
+          <th scope="col">
+            <div class="col-heading">
+              <span>Zug</span>
+              <span>Train</span>
+              <span>Vlak</span>
+            </div>
+          </th>
+
+          <th scope="col">
+            <div class="col-heading">
+              <span>Nummer</span>
+              <span>Number</span>
+              <span>Číslo</span>
+            </div>
+          </th>
+
+          <th scope="col">
+            <div class="col-heading">
+              <span>Name</span>
+              <span>Name</span>
+              <span>Jméno</span>
+            </div>
+          </th>
+
+          <th scope="col">
+            <div class="col-heading">
+              <span>Transp.</span>
+              <span>Carrier</span>
+              <span>Doprav.</span>
+            </div>
+          </th>
+
+          <th scope="col">
+            <div class="col-heading-alt">
+              <span>DESTINATION / ZIELSTATION</span>
+              <span>CÍLOVÁ STANICE</span>
+            </div>
+          </th>
+
+          <th scope="col">
+            <div class="col-heading-alt">
+              <span>Via / Über</span>
+              <span>Směr jízdy</span>
+            </div>
+          </th>
+          <th scope="col">
+            <div class="col-heading-alt col-right-align">
+              <span>Time/ Zeit</span>
+              <span>Pravidelný<br />odjezd</span>
+            </div>
+          </th>
+
+          <th scope="col">
+            <div class="col-heading col-right-align">
+              <span>Bahnsteig</span>
+              <span>Platform</span>
+              <span>Nást.</span>
+            </div>
+          </th>
+
+          <th scope="col">
+            <div class="col-heading col-right-align">
+              <span>Verspätung</span>
+              <span>Delay</span>
+              <span>Zpoždění<br />min</span>
+            </div>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody class="blue-bg">
+        {
+          eightyeight
+            .filter((i) => i.friend && !i.hidden)
+            .map((i) => (
+              <tr style="font-size: 1.5em;">
+                <td class="bold">{hashTrainType(i.href)}</td>
+
+                <td>{hashNumPad(i.href)}</td>
+
+                <td style="font-size: 0.75em; vertical-align: bottom;">{i.name}</td>
+
+                <td>
+                  <EightyEightButton src={i.src} href={i.href} alt={i.alt} />
+                </td>
+
+                <td class="bold">
+                  <a href={i.href}>{i.destination ?? i.alt}</a>
+                </td>
+
+                <td class="bold">the internet</td>
+
+                <td class="bold" style="text-align: right;">
+                  {getDeparture()}
+                </td>
+
+                <td class="bold" style="text-align: right;">
+                  {hashPlatform(i.href)}
+                </td>
+
+                <td class="bold" style="text-align: right;" />
+              </tr>
+            ))
+        }
+      </tbody>
+    </table>
+
+    <table class="departures">
+      <colgroup>
+        <col style="width: 40px;" />
+        <col />
+        <col />
+        <col />
+        <col />
+        <col />
+        <col />
+        <col />
+        <col style="width: 3em;" />
+      </colgroup>
+      <thead class="blue-bg">
+        <tr class="title-row">
+          <th colspan="9">
+            <div class="title-content" style="display: flex; justify-content: space-between;">
+              <span style="font-size: 2.5em; font-style: italic;">DEPARTURE</span>
+              <span style="font-size: 5em;">ODJEZD</span>
+              <span style="font-size: 2.5em; font-style: italic;">ABFAHRT</span>
+            </div>
+          </th>
+        </tr>
+        <tr>
+          <th scope="col">
+            <div class="col-heading">
+              <span>Zug</span>
+              <span>Train</span>
+              <span>Vlak</span>
+            </div>
+          </th>
+
+          <th scope="col">
+            <div class="col-heading">
+              <span>Nummer</span>
+              <span>Number</span>
+              <span>Číslo</span>
+            </div>
+          </th>
+
+          <th scope="col">
+            <div class="col-heading">
+              <span>Name</span>
+              <span>Name</span>
+              <span>Jméno</span>
+            </div>
+          </th>
+
+          <th scope="col">
+            <div class="col-heading">
+              <span>Transp.</span>
+              <span>Carrier</span>
+              <span>Doprav.</span>
+            </div>
+          </th>
+
+          <th scope="col">
+            <div class="col-heading-alt">
+              <span>DESTINATION / ZIELSTATION</span>
+              <span>CÍLOVÁ STANICE</span>
+            </div>
+          </th>
+
+          <th scope="col">
+            <div class="col-heading-alt">
+              <span>Via / Über</span>
+              <span>Směr jízdy</span>
+            </div>
+          </th>
+          <th scope="col">
+            <div class="col-heading-alt col-right-align">
+              <span>Time/ Zeit</span>
+              <span>Pravidelný<br />odjezd</span>
+            </div>
+          </th>
+
+          <th scope="col">
+            <div class="col-heading col-right-align">
+              <span>Bahnsteig</span>
+              <span>Platform</span>
+              <span>Nást.</span>
+            </div>
+          </th>
+
+          <th scope="col">
+            <div class="col-heading col-right-align">
+              <span>Verspätung</span>
+              <span>Delay</span>
+              <span>Zpoždění<br />min</span>
+            </div>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody class="blue-bg">
+        {
+          eightyeight
+            .filter((i) => !i.friend && !i.hidden)
+            .reverse()
+            .map((i) => (
+              <tr style="font-size: 1.5em;">
+                <td class="bold">{hashTrainType(i.href)}</td>
+
+                <td>{hashNumPad(i.href)}</td>
+
+                <td style="font-size: 0.75em; vertical-align: bottom;">{i.name}</td>
+
+                <td>
+                  <EightyEightButton src={i.src} href={i.href} alt={i.alt} />
+                </td>
+
+                <td class="bold">
+                  <a href={i.href}>{i.destination ?? i.alt}</a>
+                </td>
+
+                <td class="bold">the internet</td>
+
+                <td class="bold" style="text-align: right;">
+                  {getDeparture()}
+                </td>
+
+                <td class="bold" style="text-align: right;">
+                  {hashPlatform(i.href)}
+                </td>
+
+                <td class="bold" style="text-align: right;" />
+              </tr>
+            ))
+        }
+      </tbody>
+    </table>
+  </div>
+</Blank>
+
+<style>
+  a {
+    color: var(--white);
+  }
+
+  body {
+    background: var(--black);
+    font-family: monospace;
+    padding: 64px;
+  }
+
+  th > :first-child,
+  td {
+    padding: 4px 8px;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  .blue-bg {
+    background: #1f35cc;
+    padding: 4px 8px;
+  }
+
+  .container {
+    display: flex;
+    gap: 32px;
+    flex-direction: column;
+  }
+
+  .col-heading,
+  .col-heading-alt {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: end;
+    text-align: left;
+    height: 100%;
+  }
+
+  .col-heading > span:nth-child(-n + 2),
+  .col-heading-alt > span:first-child {
+    font-style: italic;
+    font-size: 0.9em;
+  }
+
+  .col-right-align {
+    text-align: right;
+    align-items: end;
+  }
+
+  .departures thead tr:nth-child(2) th {
+    height: 4lh;
+    padding: 0;
+  }
+
+  .departures .title-row th {
+    height: 69px;
+    position: relative;
+  }
+
+  .departures .title-content {
+    position: absolute;
+    inset: 0;
+  }
+
+  .departures {
+    width: 1200px;
+    border-collapse: collapse;
+  }
+</style>

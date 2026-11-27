@@ -3,27 +3,42 @@
     "href": "https://ivrry.nekoweb.org/",
     "src": "https://ivrry.nekoweb.org/assets/images/button.png",
     "alt": "ivrry",
-    "friend": true
+    "friend": true,
+
+    "name": "Nl",
+    "destination": "ivrry"
   },
   {
     "href": "https://nekoweb.org/",
     "src": "https://nekoweb.org/assets/buttons/button11.gif",
-    "alt": "nekoweb"
+    "alt": "nekoweb",
+
+    "name": "NKW",
+    "destination": "nekoweb"
   },
   {
     "href": "https://breq.dev/",
     "src": "/assets/buttons/breq.png",
-    "alt": "breq"
+    "alt": "breq",
+
+    "name": "BRC",
+    "destination": "Brooke Chalmers"
   },
   {
     "href": "https://synth.download/",
     "src": "https://synth.download/assets/buttons/synth.download.svg",
-    "alt": "Synth.Download!"
+    "alt": "Synth.Download!",
+
+    "name": "Sd",
+    "destination": "Synth.Download!"
   },
   {
     "href": "https://eightyeightthirty.one/",
     "src": "/assets/buttons/eightyeightythirtyone.png",
-    "alt": "eightyeightthirtyone"
+    "alt": "eightyeightthirtyone",
+
+    "name": "EETO",
+    "destination": "eightyeightthirty.one"
   },
   {
     "href": "https://votehusky.org/",
@@ -34,58 +49,91 @@
   {
     "href": "https://swiftyshq.neocities.org/",
     "src": "/assets/buttons/swsign.png",
-    "alt": "swiftyshq"
+    "alt": "swiftyshq",
+
+    "name": "SHQ",
+    "destination": "SWIFTY'S HQ!"
   },
   {
     "href": "https://dimden.dev/",
     "src": "https://dimden.dev/services/images/88x31.gif",
-    "alt": "dimden"
+    "alt": "dimden",
+
+    "name": "Dh",
+    "destination": "dimden's hotel"
   },
   {
     "href": "https://tuxedodragon.art/",
     "src": "/assets/buttons/tuxedodragon.gif",
-    "alt": "tuxedodragon"
+    "alt": "tuxedodragon",
+
+    "name": "Td",
+    "destination": "Shapeshifter Shenanigans"
   },
   {
     "href": "https://status.cafe/",
     "src": "https://status.cafe/assets/button.png",
-    "alt": "Status Cafe"
+    "alt": "Status Cafe",
+
+    "name": "Sc",
+    "destination": "Status Cafe"
   },
   {
     "href": "https://maia.crimew.gay/",
     "src": "/assets/buttons/maia.png",
-    "alt": "maia :3"
+    "alt": "maia :3",
+
+    "name": "Ma",
+    "destination": "maia :3"
   },
   {
     "href": "https://jbc.lol/",
     "src": "https://jbc.lol/imgs/buttons/jbtn.svg",
     "alt": "jb's site",
-    "friend": true
+    "friend": true,
+
+    "name": "Jb",
+    "destination": "jb's site"
   },
   {
     "href": "https://millacat3.nekoweb.org/",
     "src": "https://file.garden/aVfFIHMNm0ogIHA8/Millacat3%20web.gif",
-    "alt": "milacat3"
+    "alt": "milacat3",
+
+    "name": "Mc",
+    "destination": "The Cat's Lunch"
   },
   {
     "href": "https://bomberfish.ca/?ref=button",
     "src": "https://bomberfish.ca/button.gif",
-    "alt": "BomberFish"
+    "alt": "BomberFish",
+
+    "name": "Bf",
+    "destination": "bomberfish.ca"
   },
   {
     "href": "https://ari.lt/",
     "src": "/assets/buttons/ari.png",
-    "alt": "ari.lt"
+    "alt": "ari.lt",
+
+    "name": "Aa",
+    "destination": "ari.lt"
   },
   {
     "href": "https://lucastheguy.nekoweb.org/",
     "src": "https://lucastheguy.nekoweb.org/images/button.gif",
     "alt": "lucas the guy",
-    "friend": true
+    "friend": true,
+
+    "name": "LTG",
+    "destination": "what do i put on this"
   },
   {
     "href": "https://mistablizzard.nekoweb.org",
     "src": "https://i.ibb.co/Z1hXtpz3/button-88x31.webp",
-    "alt": "mistablizzard"
+    "alt": "mistablizzard",
+
+    "name": "Mb",
+    "destination": "home of the blizzard"
   }
 ]
