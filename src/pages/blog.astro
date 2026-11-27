@@ -13,8 +13,9 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
 
 <Page title="Blog" description="Sometimes I like to write about stuff">
   <section class="content-padding">
-    <h2>
-      Blog <a href="/rss.xml" class="rss-icon"><img src={RssSvg.src} alt="RSS icon" loading="lazy" /></a>
+    <h2 style="display:flex; justify-content: space-between;">
+      <span>Blog</span>
+      <a href="/rss.xml" class="rss-icon"><img src={RssSvg.src} alt="RSS icon" loading="lazy" /></a>
     </h2>
   </section>
 
@@ -49,9 +50,8 @@ blog = blog.sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf
   }
 
   .rss-icon > img {
-    height: 1em;
-    vertical-align: -0.2em;
-    margin-left: 0.2em;
+    height: 0.7em;
+    vertical-align: -0.05em;
     display: inline;
   }
 </style>
