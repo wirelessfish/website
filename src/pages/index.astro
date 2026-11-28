@@ -1,7 +1,7 @@
 ---
 import Page from "@layouts/Page.astro";
 
-import Scrobble from "@components/index/Scrobble.svelte";
+// import Scrobble from "@components/index/Scrobble.svelte";
 import BlogCard from "@components/blog/BlogCard.svelte";
 
 import { getCollection } from "astro:content";
@@ -55,10 +55,6 @@ blog = blog.slice(0, 3); // last 3 posts
 
       <a href="/blog/">See all blogposts...</a>
     </div>
-  </section>
-
-  <section>
-    <Scrobble client:only />
   </section>
 
   <section class="arivertisement">
