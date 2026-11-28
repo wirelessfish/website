@@ -135,5 +135,14 @@
 
     "name": "Mb",
     "destination": "home of the blizzard"
+  },
+  {
+    "href": "https://hoffnungfuerdiezukunft.net/",
+    "src": "https://hoffnungfuerdiezukunft.net/assets/images/button.gif",
+    "alt": "Hoffnung für die Zukunft",
+    "friend": true,
+
+    "name": "HFDZ",
+    "destination": "Hoffnung für die Zukunft"
   }
 ]
