@@ -57,6 +57,24 @@ blog = blog.slice(0, 3); // last 3 posts
     </div>
   </section>
 
+  <section class="simple-analytics">
+    <a
+      href="https://www.simpleanalytics.com/f1sh.cz?referral=kocor&utm_source=f1sh.cz&utm_content=badge"
+      referrerpolicy="origin"
+      target="_blank"
+    >
+      <img
+        src="https://simpleanalyticsbadges.com/f1sh.cz?background=edf3f4&text=111111&logo=ff4f64&border=677779&radius=3&border-width=2"
+        width="168"
+        height="40"
+        alt="Simple Analytics"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+        crossorigin="anonymous"
+      />
+    </a>
+  </section>
+
   <section class="arivertisement">
     <iframe
       src="https://ad.ari.lt/ads/embed?from=https%3A%2F%2Fkabeyai.net"
@@ -108,6 +126,17 @@ blog = blog.slice(0, 3); // last 3 posts
     display: flex;
     flex-direction: column;
     gap: 8px;
+  }
+
+  .simple-analytics > a,
+  .simple-analytics > a:hover {
+    background: none;
+    padding: 0;
+  }
+
+  .simple-analytics {
+    display: flex;
+    justify-content: center;
   }
 
   #contact-fluxer::before,
