@@ -108,21 +108,6 @@ details:open {
   }
 }
 
-table {
-  border-collapse: collapse;
-  border: 1px solid var(--white);
-}
-
-td,
-th {
-  border: 1px solid var(--white);
-  padding: 2px 16px;
-}
-
-th {
-  background: var(--grey);
-}
-
 /* === INTERFACE === */
 
 .link-button {
