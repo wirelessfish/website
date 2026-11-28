@@ -1,0 +1,75 @@
+---
+title: Goodbye last.fm
+description: On the unexpected free api access removal from last.fm and my selfhosted solution.
+published: 2026-11-28T12:36:00.000+02:00
+og_img: "/assets/post/bye-lastfm/thumb.webp"
+og_img_alt: "screenshot of koito containing a bunch of artist and album images"
+---
+
+import Image from "@components/posts/Image.astro";
+
+It has been nice scrobbling to last.fm almost every day for the past two and a half years, but now, over 48000 scrobbles later I depart from this platform.
+
+I wanted to move off of this zombie shell of a platform for a few months and I've finally been pushed by
+[this](https://support.last.fm/t/api-keys-will-require-pro-from-1st-december/121030) announcement by last.fm staff. TLDR for anyone not in the loop: api access
+will require a pro subscription. This was announced only 12 days before the change goes into effect, too short of a notice in my opinion.
+
+Listenbrainz is a great alternative, but I've opted for completely owning my data by self-hosting [multi-scrobbler](https://docs.multi-scrobbler.app/). Setup was
+quick and easy. Works with a buch of apps including spotify so I'm more than happy with it. I'll see how stable its going to be on my shitty old laptop ""server""...
+Though so far it has been great.
+
+As for showing off my scrobbles, I set up a [koito](https://koito.io/) instance (check it out [here](https://koito.kabeyai.net/)).
+
+<Image
+  src="/assets/post/bye-lastfm/koito.webp"
+  alt="screenshot of koito containing a bunch of artist and album images"
+  width="500px"
+  centered
+/>
+
+I understand that the restriction was made to combat scrapers, though a longer heads up (at least three months) or a free tier with a more unforgiving rate limit
+could have been tested first before being fully paywalled.
+
+## "Just get the subscription"
+
+As of writing this, it's $5 a month, for an American that isn't a lot, but for people from other countries it can be way more. See this table of countries my online friends
+are from:
+
+_I tried to find median wage where I could, but most of these are the average wage per hour. Whereever the hourly wage wasn't listed, it was calculated
+for a 40h work week. Keep in mind most people typically earn less than the published numbers suggest._
+
+| Country     | Hourly wage             | Time to earn $5 |
+| ----------- | ----------------------- | --------------- |
+| USA         | $24.51[^1]              | 12.2 min        |
+| Germany     | $23.49 (€21.48)[^2]     | 12.8 min        |
+| Czechia     | $12.41 (277.11 Kč)[^3]  | 24.2 min        |
+| Brazil      | $4.29 (R$ 23.83)[^4]    | 1.2 h           |
+| Phillipines | $2.11 (₱134.65)[^5]     | 2.4 h           |
+| Indonesia   | $0.94 (Rp17 188.35)[^6] | 5.3 h           |
+
+Five dollars simply isn't as little in other countries. And last.fm does not implement regional pricing. You cannot share an api key issued to you with others and
+operating a proxy for others that injects your own key server-side is legally dubious.
+
+[^1]:
+    Occupational Employment and Wages News Release (May 15, 2026), Bureau of Labor Statistics. _Internet Archive Wayback Machine_,
+    Retrieved Nov 17, 2026 from [https://web.archive.org/web/20261117004354/https://www.bls.gov/news.release/ocwage.htm](https://web.archive.org/web/20261117004354/https://www.bls.gov/news.release/ocwage.htm)
+
+[^3]:
+    Structure of earnings (May 05, 2026), Czech Statistical Office. _Internet Archive Wayback Machine_,
+    Retrieved Nov 28, 2026 from [https://web.archive.org/web/20261128112707/https://csu.gov.cz/statistika/structure-of-earnings](https://web.archive.org/web/20261128112707/https://csu.gov.cz/statistika/structure-of-earnings)
+
+[^4]:
+    Continuous National Household Sample Survey (Oct 2026), Brazilian Institute of Geography and Statistics.
+    [https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html](https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html)
+
+[^5]:
+    Occupational Wages Survey (2024), Phillipine Statistics Authority.
+    [https://psa.gov.ph/statistics/occupational-wages-survey](https://psa.gov.ph/statistics/occupational-wages-survey)
+
+[^6]:
+    Decent Work Indicators in Indonesia (2025), BPS-Statistics Indonesia.
+    [https://www.bps.go.id/en/publication/2026/04/30/da7500eda2726087918c0d87/indikator-pekerjaan-layak-di-indonesia-2025.html](https://www.bps.go.id/en/publication/2026/04/30/da7500eda2726087918c0d87/indikator-pekerjaan-layak-di-indonesia-2025.html)
+
+[^2]:
+    Press release no. 434 of December 5, 2025 (2025), Destatis.
+    [https://www.destatis.de/DE/Presse/Pressemitteilungen/2025/12/PD25_434_623.html](https://www.destatis.de/DE/Presse/Pressemitteilungen/2025/12/PD25_434_623.html)
